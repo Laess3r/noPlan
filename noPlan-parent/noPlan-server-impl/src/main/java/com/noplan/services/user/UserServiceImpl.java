@@ -4,7 +4,6 @@ import javax.ws.rs.Path;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.type.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +23,6 @@ public class UserServiceImpl implements UserService {
 
 		// this is just a test for SPRING
 		// otherServiceImpl.getTest();
-
-		// hibernate test
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
