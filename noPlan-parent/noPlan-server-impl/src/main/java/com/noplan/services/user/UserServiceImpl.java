@@ -7,10 +7,14 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.noplan.data.user.UserDTO;
+import com.noplan.data.UserDTO;
 import com.noplan.persistence.HibernateUtil;
-import com.noplan.persistence.user.UserEntity;
+import com.noplan.persistence.entity.UserEntity;
+import com.noplan.services.UserService;
 
+/**
+ * @author DaHu4wA (Stefan Huber)
+ */
 @Path("/user")
 @Component
 public class UserServiceImpl implements UserService {
@@ -44,6 +48,8 @@ public class UserServiceImpl implements UserService {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 
 		session.beginTransaction();
+		
+		// TODO repository-Schicht einziehen?
 
 		UserEntity user = new UserEntity();
 		user.setUsername(username);

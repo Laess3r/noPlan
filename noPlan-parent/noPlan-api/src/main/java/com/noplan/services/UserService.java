@@ -1,4 +1,4 @@
-package com.noplan.services.user;
+package com.noplan.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -6,7 +6,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.noplan.data.user.UserDTO;
+import com.noplan.data.UserDTO;
 
 /**
  * @author DaHu4wA (Stefan Huber)

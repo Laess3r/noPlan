@@ -31,7 +31,7 @@
 		<property name="current_session_context_class">thread</property>
 
 
-        <mapping class="com.noplan.persistence.user.UserEntity"/>
+        <mapping class="com.noplan.persistence.entity.UserEntity"/>
 
 	</session-factory>
 

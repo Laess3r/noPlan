@@ -1,4 +1,4 @@
-package com.noplan.data.user;
+package com.noplan.data;
 
 import javax.xml.bind.annotation.XmlRootElement;
 

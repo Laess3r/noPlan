@@ -1,4 +1,4 @@
-package com.noplan.persistence.user;
+package com.noplan.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.noplan.data.user.UserDTO;
+import com.noplan.data.UserDTO;
 
 /**
  * The main user Entity
