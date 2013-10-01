@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.noplan.data.user.UserDTO;
+
 /**
  * The main user Entity
  * 
@@ -52,4 +54,12 @@ public class UserEntity {
 		this.password = password;
 	}
 
+	public UserDTO toUserDTO(){
+		UserDTO dTo = new UserDTO();
+		dTo.setId(getId());
+		dTo.setUsername(getUsername());
+		dTo.setPassword(getPassword());
+		return dTo;
+	}
+	
 }

@@ -11,9 +11,6 @@ import com.noplan.data.user.UserDTO;
 /**
  * @author DaHu4wA (Stefan Huber)
  */
-
-// @Path("/user") path needs to be defined on the implementation
-
 public interface UserService {
 
     @GET
@@ -21,5 +18,11 @@ public interface UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public UserDTO getUserById(@PathParam("id")
     Long id);
+
+    // TODO @POST
+    @GET
+    @Path("/create/{username}/{password}")
+    @Produces(MediaType.APPLICATION_JSON)
+	UserDTO createUser(@PathParam("username") String username,@PathParam("password") String password);
 
 }

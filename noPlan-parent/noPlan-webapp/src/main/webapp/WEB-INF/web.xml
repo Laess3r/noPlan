@@ -15,6 +15,10 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
     
+    <listener>  
+    	<listener-class>com.noplan.persistence.HibernateListener</listener-class>  
+	</listener>
+    
     <context-param>
     	<param-name>db.url</param-name>
     	<param-value>jdbc:h2:~/test</param-value>
