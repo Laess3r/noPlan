@@ -2,7 +2,6 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>noPlan</display-name>
   
-  
 <servlet>
     <servlet-name>jersey-serlvet</servlet-name>
 
@@ -27,8 +26,6 @@
     <servlet-name>jersey-serlvet</servlet-name>
     <url-pattern>/rest/*</url-pattern>
 </servlet-mapping>
-<!-- .. -->
-  
   
 <!-- <security-constraint> -->
 <!--     <web-resource-collection> -->

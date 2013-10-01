@@ -6,13 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author DaHu4wA (Stefan Huber)
  */
 @XmlRootElement
-public class User {
+public class UserDTO {
 
 	private Long id;
 	private String username;
 	private String password;
 
-	public User() {
+	public UserDTO() {
 
 	}
 

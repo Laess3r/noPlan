@@ -17,13 +17,13 @@
 
 		<dependency>
 			<groupId>com.noplan</groupId>
-			<artifactId>noPlan-webui</artifactId>
+			<artifactId>noPlan-server-impl</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.noplan</groupId>
-			<artifactId>noPlan-server-impl</artifactId>
+			<artifactId>noPlan-webui</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
