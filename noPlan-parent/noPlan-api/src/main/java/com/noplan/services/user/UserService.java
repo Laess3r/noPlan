@@ -13,6 +13,7 @@ import com.noplan.data.user.UserDTO;
  */
 
 // @Path("/user") path needs to be defined on the implementation
+
 public interface UserService {
 
     @GET
