@@ -11,8 +11,9 @@ import com.noplan.data.user.UserDTO;
 /**
  * @author DaHu4wA (Stefan Huber)
  */
-// @Path("/user")
-public interface HelloService {
+
+// @Path("/user") path needs to be defined on the implementation
+public interface UserService {
 
     @GET
     @Path("/{id}")

@@ -5,7 +5,7 @@ import javax.ws.rs.Path;
 import com.noplan.data.user.UserDTO;
 
 @Path("/user")
-public class HelloServiceImpl implements HelloService {
+public class UserServiceImpl implements UserService {
 
     private static int count = 0;
     
