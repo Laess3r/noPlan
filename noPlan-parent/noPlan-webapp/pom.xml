@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>noPlan-webapp</artifactId>
+	<packaging>war</packaging>
+	<name>noPlan-webapp</name>
+
+	<parent>
+		<groupId>com.noplan</groupId>
+		<artifactId>noPlan-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+
+		<!-- Modules -->
+
+		<dependency>
+			<groupId>com.noplan</groupId>
+			<artifactId>noPlan-webui</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.noplan</groupId>
+			<artifactId>noPlan-server-impl</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Common -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+		<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${basedir}/src/main/resources</directory>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpmanifest>true</wtpmanifest>
+					<wtpapplicationxml>true</wtpapplicationxml>
+					<wtpdefaultserver>omd-server development</wtpdefaultserver>
+					<wtpversion>2.0</wtpversion>
+					<manifest>${basedir}/src/main/webapp/META-INF/MANIFEST.MF
+					</manifest>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${basedir}/src/main/webapp</directory>
+						</resource>
+					</webResources>
+					<warSourceDirectory>${basedir}/src/main/webapp</warSourceDirectory>
+					<warSourceExcludes>${basedir}/src/main/webapp/WEB-INF/lib/*.jar</warSourceExcludes>
+					<archiveClasses>false</archiveClasses>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
