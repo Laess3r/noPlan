@@ -21,7 +21,7 @@
     
     <context-param>
     	<param-name>db.url</param-name>
-    	<param-value>jdbc:h2:~/test</param-value>
+    	<param-value>jdbc:h2:file:/noplan-h2/h2;AUTO_SERVER=TRUE</param-value>
 	</context-param>
 	<context-param>
 	    <param-name>db.user</param-name>
@@ -31,35 +31,35 @@
 	    <param-name>db.password</param-name>
     	<param-value>sa</param-value>
 	</context-param>
-<!-- 	<context-param> -->
-<!--     	<param-name>db.tcpServer</param-name> -->
-<!--     	<param-value>-tcpAllowOthers</param-value> -->
-<!-- 	</context-param> -->
+	<context-param>
+    	<param-name>db.tcpServer</param-name>
+    	<param-value>-tcpAllowOthers</param-value>
+	</context-param>
   
 	<servlet>
-    <servlet-name>jersey-serlvet</servlet-name>
+	    <servlet-name>jersey-serlvet</servlet-name>
+	
+	    <servlet-class>
+	        com.sun.jersey.spi.spring.container.servlet.SpringServlet
+	    </servlet-class>
+	
+	    <init-param>
+	        <param-name>com.sun.jersey.config.property.packages</param-name>
+	        <param-value>com.noplan.services</param-value>
+	    </init-param>
+	
+	    <init-param>
+	        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+	        <param-value>true</param-value>
+	    </init-param>
+	
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
 
-    <servlet-class>
-        com.sun.jersey.spi.container.servlet.ServletContainer
-    </servlet-class>
-
-    <init-param>
-        <param-name>com.sun.jersey.config.property.packages</param-name>
-        <param-value>com.noplan.services</param-value>
-    </init-param>
-
-    <init-param>
-        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-        <param-value>true</param-value>
-    </init-param>
-
-    <load-on-startup>1</load-on-startup>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>jersey-serlvet</servlet-name>
-    <url-pattern>/rest/*</url-pattern>
-</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>jersey-serlvet</servlet-name>
+	    <url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
 
 <!-- <security-constraint> -->
 <!--     <web-resource-collection> -->
