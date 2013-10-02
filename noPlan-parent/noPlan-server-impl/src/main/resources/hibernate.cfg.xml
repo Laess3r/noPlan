@@ -23,12 +23,6 @@
 
 		<property name="hbm2ddl.auto">update</property>
 
-		<property name="current_session_context_class">thread</property>
-
-		<!-- ENTITIES -->
-
-		<mapping class="com.noplan.persistence.entity.UserEntity" />
-
 	</session-factory>
 
 </hibernate-configuration>

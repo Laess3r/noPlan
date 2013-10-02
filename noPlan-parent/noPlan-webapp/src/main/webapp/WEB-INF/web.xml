@@ -15,9 +15,9 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
     
-    <listener>  
-    	<listener-class>com.noplan.persistence.HibernateListener</listener-class>  
-	</listener>
+<!--     <listener>   -->
+<!--     	<listener-class>com.noplan.persistence.HibernateListener</listener-class>   -->
+<!-- 	</listener> -->
     
     <context-param>
     	<param-name>db.url</param-name>
@@ -60,6 +60,22 @@
 	    <servlet-name>jersey-serlvet</servlet-name>
 	    <url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	
+<!-- 	<filter> -->
+<!--           <filter-name>hibernateFilter</filter-name> -->
+<!--           <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class> -->
+<!--           <init-param> -->
+<!--              <param-name>sessionFactoryBeanName</param-name> -->
+<!--              <param-value>sessionFactory</param-value>          -->
+<!--           </init-param>       -->
+<!--        </filter> -->
+
+<!--     <filter-mapping> -->
+<!--         <filter-name>hibernateFilter</filter-name> -->
+<!--         <url-pattern>/*</url-pattern> -->
+<!--     </filter-mapping> -->
+
 
 <!-- <security-constraint> -->
 <!--     <web-resource-collection> -->

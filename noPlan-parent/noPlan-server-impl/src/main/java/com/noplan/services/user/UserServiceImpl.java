@@ -3,12 +3,13 @@ package com.noplan.services.user;
 import javax.ws.rs.Path;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.noplan.data.UserDTO;
-import com.noplan.persistence.HibernateUtil;
 import com.noplan.persistence.entity.UserEntity;
+import com.noplan.services.AbstractPersistenceService;
 import com.noplan.services.UserService;
 
 /**
@@ -16,15 +17,15 @@ import com.noplan.services.UserService;
  */
 @Path("/user")
 @Component
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends AbstractPersistenceService implements
+		UserService {
 
 	@Override
+	@Transactional(readOnly = true)
 	public UserDTO getUserById(Long id) {
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		Query q = session
-				.createQuery("From UserEntity user where user.id = :id");
+		Query q = getSession().createQuery(
+				"From UserEntity user where user.id = :id");
 		q.setParameter("id", id);
 
 		Object result = q.uniqueResult();
@@ -37,19 +38,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public UserDTO createUser(String username, String password) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		session.beginTransaction();
 
 		UserEntity user = new UserEntity();
 		user.setUsername(username);
 		user.setPassword(password);
 
-		session.save(user);
-
-		session.getTransaction().commit();
+		getSession().save(user);
 
 		return user.toUserDTO();
 	}
+
 }
