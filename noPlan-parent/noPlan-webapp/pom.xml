@@ -45,6 +45,9 @@
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
 			</resource>
+			<resource>
+				<directory>${basedir}/src/main/webapp</directory>
+			</resource>
 		</resources>
 
 		<plugins>
@@ -54,7 +57,7 @@
 				<configuration>
 					<wtpmanifest>true</wtpmanifest>
 					<wtpapplicationxml>true</wtpapplicationxml>
-					<wtpdefaultserver>omd-server development</wtpdefaultserver>
+					<wtpdefaultserver>noPlan server development</wtpdefaultserver>
 					<wtpversion>2.0</wtpversion>
 					<manifest>${basedir}/src/main/webapp/META-INF/MANIFEST.MF
 					</manifest>
