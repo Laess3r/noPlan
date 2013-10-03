@@ -15,7 +15,7 @@ import com.noplan.data.UserDTO;
  */
 @Entity
 @Table(name = "TBLUSER")
-public class UserEntity {
+public class UserEntity extends AbstractEntity{
 
 	@Id
 	@GeneratedValue

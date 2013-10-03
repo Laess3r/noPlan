@@ -5,7 +5,10 @@ import org.hibernate.cfg.Configuration;
 
 /**
  * @author DaHu4wA (Stefan Huber)
+ * 
+ * Use @Transaction annotation instead!
  */
+@Deprecated
 public class HibernateUtil {
 
 	private static final SessionFactory sessionFactory = buildSessionFactory();
