@@ -9,23 +9,32 @@ import javax.persistence.Table;
 import com.noplan.data.UserDTO;
 
 /**
- * The main user Entity
+ * Represents a user within the application
  * 
  * @author DaHu4wA (Stefan Huber)
  */
 @Entity
 @Table(name = "TBLUSER")
-public class UserEntity extends AbstractEntity{
+public class UserEntity extends AbstractEntity {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "username")
+	@Column(name = "USERNAME")
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "PASSWORD")
 	private String password;
+
+	// TODO isAdmin
+
+	// TODO deleted
+
+	// TODO encrypt password
+
+	// TODO conncect with spring security
 
 	public UserEntity() {
 	}
@@ -54,12 +63,19 @@ public class UserEntity extends AbstractEntity{
 		this.password = password;
 	}
 
-	public UserDTO toUserDTO(){
+	public UserDTO toUserDTO() {
 		UserDTO dTo = new UserDTO();
 		dTo.setId(getId());
 		dTo.setUsername(getUsername());
 		dTo.setPassword(getPassword());
 		return dTo;
 	}
-	
+
+	public static UserEntity fromUserDTO(UserDTO userDTO) {
+		UserEntity entity = new UserEntity();
+		entity.setId(userDTO.getId());
+		entity.setUsername(userDTO.getUsername());
+		entity.setPassword(userDTO.getPassword());
+		return entity;
+	}
 }

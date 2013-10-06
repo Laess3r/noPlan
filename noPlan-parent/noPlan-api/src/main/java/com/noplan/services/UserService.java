@@ -1,6 +1,8 @@
 package com.noplan.services;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,16 +15,15 @@ import com.noplan.data.UserDTO;
  */
 public interface UserService {
 
-    @GET
-    @Path("/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public UserDTO getUserById(@PathParam("id")
-    Long id);
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UserDTO getUserById(@PathParam("id") Long id);
 
-    // TODO @POST
-    @GET
-    @Path("/create/{username}/{password}")
-    @Produces(MediaType.APPLICATION_JSON)
-	UserDTO createUser(@PathParam("username") String username,@PathParam("password") String password);
+	@POST
+	@Path("/create")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	UserDTO createUser(UserDTO user);
 
 }

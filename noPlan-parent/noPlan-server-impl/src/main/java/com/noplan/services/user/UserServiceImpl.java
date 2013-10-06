@@ -33,15 +33,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO createUser(String username, String password) {
+	public UserDTO createUser(UserDTO user) {
 
-		UserEntity user = new UserEntity();
-		user.setUsername(username);
-		user.setPassword(password);
+		// TODO check if username exists
 
-		userRepository.saveUser(user);
+		UserEntity userEntity = UserEntity.fromUserDTO(user);
 
-		return user.toUserDTO();
+		userRepository.saveUser(userEntity);
+
+		return userEntity.toUserDTO();
 	}
 
 }
