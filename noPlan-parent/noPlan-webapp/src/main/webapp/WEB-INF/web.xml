@@ -15,10 +15,6 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
     
-<!--     <listener>   -->
-<!--     	<listener-class>com.noplan.persistence.HibernateListener</listener-class>   -->
-<!-- 	</listener> -->
-    
     <context-param>
     	<param-name>db.url</param-name>
     	<param-value>jdbc:h2:file:/noplan-h2/h2;AUTO_SERVER=TRUE</param-value>
@@ -60,6 +56,8 @@
 	    <servlet-name>jersey-serlvet</servlet-name>
 	    <url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	<!--  This will be enabled later (security part) -->
 	
 <!-- <security-constraint> -->
 <!--     <web-resource-collection> -->

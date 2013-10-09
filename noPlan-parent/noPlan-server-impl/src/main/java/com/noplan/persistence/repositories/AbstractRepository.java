@@ -5,35 +5,37 @@ import java.io.Serializable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.noplan.persistence.entity.AbstractEntity;
 
 /**
+ * Abstract repo is used to always have at least a readonly transaction in the
+ * reposities
+ * 
  * @author DaHu4wA (Stefan Huber)
  */
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
+@Repository
 public abstract class AbstractRepository {
 
 	@Autowired
 	SessionFactory sessionFactory;
 
-	protected Session getSession() {
+	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
-	@Transactional
-	protected Serializable save(AbstractEntity entity) {
+	public Serializable save(AbstractEntity entity) {
 		return getSession().save(entity);
 	}
 
-	@Transactional
-	protected void update(AbstractEntity entity) {
+	public void update(AbstractEntity entity) {
 		getSession().update(entity);
 	}
 
-	@Transactional
-	protected void delete(AbstractEntity entity) {
+	public void delete(AbstractEntity entity) {
 		getSession().delete(entity);
 	}
 }

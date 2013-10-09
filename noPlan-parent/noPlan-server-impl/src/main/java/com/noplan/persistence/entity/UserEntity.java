@@ -3,8 +3,11 @@ package com.noplan.persistence.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.noplan.data.UserDTO;
 
@@ -14,18 +17,19 @@ import com.noplan.data.UserDTO;
  * @author DaHu4wA (Stefan Huber)
  */
 @Entity
-@Table(name = "TBLUSER")
+@Table(name = "TBLUSER", uniqueConstraints = {@UniqueConstraint(columnNames={"USERNAME"})})
+@SequenceGenerator(name = "SEQ", sequenceName = "SEQTBLUSER")
 public class UserEntity extends AbstractEntity {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "USERNAME")
+	@Column(name = "USERNAME", nullable = false)
 	private String username;
 
-	@Column(name = "PASSWORD")
+	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
 	// TODO isAdmin
@@ -37,6 +41,11 @@ public class UserEntity extends AbstractEntity {
 	// TODO conncect with spring security
 
 	public UserEntity() {
+
+	}
+
+	public UserEntity(UserDTO dTO) {
+		fromDTO(dTO, false);
 	}
 
 	public Long getId() {
@@ -63,7 +72,7 @@ public class UserEntity extends AbstractEntity {
 		this.password = password;
 	}
 
-	public UserDTO toUserDTO() {
+	public UserDTO toDTO() {
 		UserDTO dTo = new UserDTO();
 		dTo.setId(getId());
 		dTo.setUsername(getUsername());
@@ -71,11 +80,11 @@ public class UserEntity extends AbstractEntity {
 		return dTo;
 	}
 
-	public static UserEntity fromUserDTO(UserDTO userDTO) {
-		UserEntity entity = new UserEntity();
-		entity.setId(userDTO.getId());
-		entity.setUsername(userDTO.getUsername());
-		entity.setPassword(userDTO.getPassword());
-		return entity;
+	public void fromDTO(UserDTO userDTO, boolean isUpdate) {
+		if (!isUpdate) {
+			setId(userDTO.getId());
+		}
+		setUsername(userDTO.getUsername());
+		setPassword(userDTO.getPassword());
 	}
 }

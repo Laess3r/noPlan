@@ -4,9 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.noplan.data.EventDTO;
+import com.noplan.data.TrackDTO;
 
 /**
  * Represents a single event
@@ -15,21 +21,39 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TBLEVENT")
+@SequenceGenerator(name = "SEQ", sequenceName = "SEQTBLEVENT", allocationSize = 10)
 public class EventEntity extends AbstractEntity {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
+	@Column(name = "ID", nullable = false)
 	private Long id;
 
+	@JoinColumn(name = "FK_TRACK", nullable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TrackEntity track;
 
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false)
 	private String name;
 
 	@Column(name = "DESCRIPTION")
 	private String description;
+
+	// TODO from date
+
+	// TODO to-date
+
+	// TODO location
+
+	// TODO other info
+
+	public EventEntity() {
+
+	}
+
+	public EventEntity(EventDTO dTO, TrackEntity trackEntity) {
+		fromDTO(dTO, trackEntity, false);
+	}
 
 	public Long getId() {
 		return id;
@@ -63,12 +87,30 @@ public class EventEntity extends AbstractEntity {
 		this.description = description;
 	}
 
-	// TODO from date
+	public EventDTO toDTO() {
+		return toDTO(null);
+	}
 
-	// TODO to-date
+	public EventDTO toDTO(TrackDTO track) {
+		EventDTO dTO = new EventDTO();
+		dTO.setId(getId());
+		dTO.setName(getName());
+//		if (track != null) {
+//			dTO.setTrack(track);
+//		} else {
+//			dTO.setTrack(getTrack().toDTO());
+//		}
 
-	// TODO location
+		return dTO;
+	}
 
-	// TODO other info
+	public void fromDTO(EventDTO dTO, TrackEntity trackEntity, boolean isUpdate) {
+		if (!isUpdate) {
+			setId(dTO.getId());
+		}
+		setName(dTO.getName());
+		setDescription(dTO.getDescription());
+		setTrack(trackEntity);
+	}
 
 }
