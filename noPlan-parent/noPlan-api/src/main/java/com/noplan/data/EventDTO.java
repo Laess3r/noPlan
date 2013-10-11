@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EventDTO {
 
 	private Long id;
-//	private TrackDTO track;
+	private long trackId;
 	private String name;
 	private String description;
 
@@ -25,13 +25,13 @@ public class EventDTO {
 		this.id = id;
 	}
 
-//	public TrackDTO getTrack() {
-//		return track;
-//	}
-//
-//	public void setTrack(TrackDTO track) {
-//		this.track = track;
-//	}
+	public long getTrackId() {
+		return trackId;
+	}
+
+	public void setTrackId(long trackId) {
+		this.trackId = trackId;
+	}
 
 	public String getName() {
 		return name;

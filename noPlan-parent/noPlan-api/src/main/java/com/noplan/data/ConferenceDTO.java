@@ -14,7 +14,7 @@ public class ConferenceDTO {
 	private Long id;
 	private String name;
 	private String description;
-	private List<TrackDTO> tracks = new ArrayList<TrackDTO>();
+//	private List<TrackDTO> tracks = new ArrayList<TrackDTO>();
 
 	public Long getId() {
 		return id;
@@ -40,12 +40,12 @@ public class ConferenceDTO {
 		this.description = description;
 	}
 
-	public List<TrackDTO> getTracks() {
-		return tracks;
-	}
-
-	public void setTracks(List<TrackDTO> tracks) {
-		this.tracks = tracks;
-	}
+//	public List<TrackDTO> getTracks() {
+//		return tracks;
+//	}
+//
+//	public void setTracks(List<TrackDTO> tracks) {
+//		this.tracks = tracks;
+//	}
 
 }

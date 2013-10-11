@@ -95,11 +95,7 @@ public class EventEntity extends AbstractEntity {
 		EventDTO dTO = new EventDTO();
 		dTO.setId(getId());
 		dTO.setName(getName());
-//		if (track != null) {
-//			dTO.setTrack(track);
-//		} else {
-//			dTO.setTrack(getTrack().toDTO());
-//		}
+		dTO.setTrackId(getTrack().getId());
 
 		return dTO;
 	}
@@ -110,7 +106,9 @@ public class EventEntity extends AbstractEntity {
 		}
 		setName(dTO.getName());
 		setDescription(dTO.getDescription());
-		setTrack(trackEntity);
+		if (trackEntity != null) {
+			setTrack(trackEntity);
+		}
 	}
 
 }

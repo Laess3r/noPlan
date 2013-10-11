@@ -23,7 +23,7 @@ public class ConferenceRepository extends AbstractRepository {
 	public List<ConferenceEntity> getAllConferences() {
 		return getSession().createQuery("From ConferenceEntity").list();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<ConferenceDTO> getAllConferenceDTOs() {
 		List<ConferenceDTO> result = new ArrayList<ConferenceDTO>();
@@ -42,7 +42,7 @@ public class ConferenceRepository extends AbstractRepository {
 
 		return (ConferenceEntity) q.uniqueResult();
 	}
-	
+
 	@Transactional(readOnly = true)
 	public ConferenceDTO getConferenceDTOById(Long id) {
 		ConferenceEntity conference = getConferenceById(id);
@@ -53,7 +53,7 @@ public class ConferenceRepository extends AbstractRepository {
 
 		return conference.toDTO();
 	}
-	
+
 	@Transactional(readOnly = false)
 	public ConferenceDTO createConference(ConferenceDTO conference) {
 		ConferenceEntity entity = new ConferenceEntity(conference);
@@ -61,7 +61,7 @@ public class ConferenceRepository extends AbstractRepository {
 
 		return entity.toDTO();
 	}
-	
+
 	@Transactional(readOnly = false)
 	public void saveConference(ConferenceEntity conference) {
 		save(conference);
@@ -69,12 +69,10 @@ public class ConferenceRepository extends AbstractRepository {
 
 	@Transactional(readOnly = false)
 	public void updateConference(ConferenceEntity conference, ConferenceDTO dTO) {
-		
 		conference.fromDTO(dTO, true);
-		
 		update(conference);
 	}
-	
+
 	@Transactional(readOnly = false)
 	public ConferenceDTO updateConference(ConferenceDTO conference) {
 
@@ -86,8 +84,12 @@ public class ConferenceRepository extends AbstractRepository {
 	}
 
 	@Transactional(readOnly = false)
-	public void deleteConference(ConferenceEntity conference) {
-		delete(conference);
+	public void deleteConference(Long id) {
+		ConferenceEntity entity = getConferenceById(id);
+		
+		// TODO check if tracks exist!
+		
+		delete(entity);
 	}
 
 }

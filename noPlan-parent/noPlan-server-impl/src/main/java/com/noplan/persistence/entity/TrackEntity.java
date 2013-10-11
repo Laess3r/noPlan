@@ -1,8 +1,5 @@
 package com.noplan.persistence.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,15 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
-import com.noplan.data.ConferenceDTO;
-import com.noplan.data.EventDTO;
 import com.noplan.data.TrackDTO;
 
 /**
@@ -47,10 +38,6 @@ public class TrackEntity extends AbstractEntity {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	@Cascade(CascadeType.SAVE_UPDATE)
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "track", orphanRemoval = true)
-	private List<EventEntity> events = new ArrayList<EventEntity>();
-
 	public TrackEntity() {
 
 	}
@@ -60,23 +47,11 @@ public class TrackEntity extends AbstractEntity {
 	}
 
 	public TrackDTO toDTO() {
-		return toDTO(null);
-	}
-
-	public TrackDTO toDTO(ConferenceDTO conference) {
 		TrackDTO dTO = new TrackDTO();
 		dTO.setId(getId());
-//		if (conference != null) {
-//			dTO.setConference(conference);
-//		} else {
-//			dTO.setConference(getConference().toDTO());
-//		}
+		dTO.setConferenceId(getConference().getId());
 		dTO.setDescription(getDescription());
 		dTO.setName(getName());
-
-		for (EventEntity event : getEvents()) {
-			dTO.getEvents().add(event.toDTO(dTO));
-		}
 
 		return dTO;
 	}
@@ -85,38 +60,12 @@ public class TrackEntity extends AbstractEntity {
 		if (!isUpdate) {
 			setId(dTO.getId());
 		}
-		setConference(conference);
+		if (conference != null) {
+			setConference(conference);
+		}
+
 		setDescription(dTO.getDescription());
 		setName(dTO.getName());
-
-		for (EventDTO event : dTO.getEvents()) {
-
-			if (!isUpdate) {
-				insertNewEvent(event);
-				continue;
-			}
-
-			// existing events are already loaded if update is true
-			if (event.getId() == null) {
-				insertNewEvent(event);
-			} else {
-				updateEvent(event);
-			}
-		}
-
-		setEvents(events);
-	}
-
-	private void insertNewEvent(EventDTO event) {
-		getEvents().add(new EventEntity(event, this));
-	}
-
-	private void updateEvent(EventDTO event) {
-		for (EventEntity existingEvent : getEvents()) {
-			if (existingEvent.getId().equals(event.getId())) {
-				existingEvent.fromDTO(event, this, true);
-			}
-		}
 	}
 
 	public Long getId() {
@@ -151,12 +100,12 @@ public class TrackEntity extends AbstractEntity {
 		this.description = description;
 	}
 
-	public List<EventEntity> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<EventEntity> events) {
-		this.events = events;
-	}
+	// public List<EventEntity> getEvents() {
+	// return events;
+	// }
+	//
+	// public void setEvents(List<EventEntity> events) {
+	// this.events = events;
+	// }
 
 }

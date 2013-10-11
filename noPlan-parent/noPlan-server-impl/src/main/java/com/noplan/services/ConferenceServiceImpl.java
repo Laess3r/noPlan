@@ -42,4 +42,9 @@ public class ConferenceServiceImpl implements ConferenceService {
 		return conferenceRepository.updateConference(conference);
 	}
 
+	@Override
+	public void deleteConferenceById(Long conferenceId) {
+		conferenceRepository.deleteConference(conferenceId);
+	}
+
 }

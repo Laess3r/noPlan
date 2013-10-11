@@ -11,38 +11,38 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.noplan.data.ConferenceDTO;
+import com.noplan.data.TrackDTO;
 
 /**
- * This is the main service for the conferences
+ * This is the main service for tracks
  * 
  * @author DaHu4wA (Stefan Huber)
  */
-public interface ConferenceService {
+public interface TrackService {
 
 	@GET
-	@Path("/all")
+	@Path("/allforconference/{confid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<ConferenceDTO> getAllConferences();
+	List<TrackDTO> getAllTracksForConference(@PathParam("confid") Long conferenceId);
 
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	ConferenceDTO getConferenceById(@PathParam("id") Long conferenceId);
+	TrackDTO getTrackById(@PathParam("id") Long trackId);
 
 	@POST
 	@Path("/create")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	ConferenceDTO createConference(ConferenceDTO conference);
+	TrackDTO createTrack(TrackDTO track);
 
 	@POST
 	@Path("/update")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	ConferenceDTO updateConference(ConferenceDTO conference);
+	TrackDTO updateTrack(TrackDTO track);
 
 	@DELETE
 	@Path("/delete/{id}")
-	void deleteConferenceById(@PathParam("id") Long conferenceId);
+	void deleteTrackById(@PathParam("id") Long trackid);
 }
