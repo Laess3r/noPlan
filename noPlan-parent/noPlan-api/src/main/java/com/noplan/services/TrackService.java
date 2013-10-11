@@ -18,6 +18,7 @@ import com.noplan.data.TrackDTO;
  * 
  * @author DaHu4wA (Stefan Huber)
  */
+//@Path("/track")
 public interface TrackService {
 
 	@GET

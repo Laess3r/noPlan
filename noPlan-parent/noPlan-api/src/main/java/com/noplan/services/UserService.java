@@ -15,6 +15,7 @@ import com.noplan.data.UserDTO;
 /**
  * @author DaHu4wA (Stefan Huber)
  */
+//@Path("/user")
 public interface UserService {
 
 	@GET

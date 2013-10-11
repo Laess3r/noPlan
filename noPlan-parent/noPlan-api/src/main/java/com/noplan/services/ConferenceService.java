@@ -18,6 +18,7 @@ import com.noplan.data.ConferenceDTO;
  * 
  * @author DaHu4wA (Stefan Huber)
  */
+//@Path("/conference")
 public interface ConferenceService {
 
 	@GET

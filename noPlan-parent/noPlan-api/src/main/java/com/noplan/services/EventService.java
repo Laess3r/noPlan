@@ -18,12 +18,13 @@ import com.noplan.data.EventDTO;
  * 
  * @author DaHu4wA (Stefan Huber)
  */
+//@Path("/event")
 public interface EventService {
 
 	@GET
-	@Path("/allfortrack/{confid}")
+	@Path("/allfortrack/{trackid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	List<EventDTO> getAllEventsForTrack(@PathParam("confid") Long trackId);
+	List<EventDTO> getAllEventsForTrack(@PathParam("trackid") Long trackId);
 
 	@GET
 	@Path("/{id}")
