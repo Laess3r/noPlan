@@ -1,0 +1,28 @@
+<div class="navbar navbar-inverse" ng-controller="NavbarCtrl">
+
+    <div class="navbar-inner">
+        <a class="brand" href="/">noPlan</a>
+        <ul class="nav navbar-nav">
+            <li ng-class="{ active: isActive('/')}"><a href="/">Home</a> </li>
+            <li ng-class="{ active: isActive('/conferences')}"><a href="#/conferences">Conferences</a></li>
+            <li ng-class="{ active: isActive('/todo')}"><a href="#/todo">TodoApp</a></li>
+        </ul>
+
+        <ul class="nav pull-right">
+            <li class="nav pull-right"><label class="navbar-text">Martin</label></li>
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Admin
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/#/login">Login</a> </li>
+                    <li><a href="/#/users">Users</a> </li>
+                </ul>
+            </li>
+
+        </ul>
+        </div>
+    </div>
+</div>

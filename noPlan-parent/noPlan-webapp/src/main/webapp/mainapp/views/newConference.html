@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h3>Create a new Conference</h3>
+</div>
+<div class="modal-body">
+    <div>Name: <input type="text" ng-model="item.name"></div>
+    <div>Description: <input type="text" ng-model="item.description"></div>
+    <div>Startdate: <input type="date" ng-model="item.startDate"></div>
+    <div>Enddate: <input type="date" ng-model="item.endDate"></div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
