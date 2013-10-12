@@ -6,7 +6,7 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
     console.log('routeProvider');
     var baseUrl="application/"
     $routeProvider
-    .when('/', {
+    .when('/main', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'
         })

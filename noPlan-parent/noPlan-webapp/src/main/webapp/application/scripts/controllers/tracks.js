@@ -6,7 +6,7 @@ angular.module('mytodoApp')
         console.log('init TrackCtrl',$routeParams);
         $scope.conferenceId = $routeParams.id;
         $scope.items = [];
-        $scope.open = function () {
+        $scope.open = function (index) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'views/newTrack.html',
@@ -14,6 +14,9 @@ angular.module('mytodoApp')
                 resolve: {
                     items: function () {
                         return $scope.items;
+                    },
+                    item: function () {
+                        return $scope.items[index];
                     }
                 }
             });
@@ -21,7 +24,13 @@ angular.module('mytodoApp')
             modalInstance.result.then(function (item) {
                 console.log(item);
                 //$scope.items.push(item);
-                $scope.insertTrack({name:item.name,description:item.description})
+                if(item.id===undefined){
+                    $scope.insertTrack({name:item.name,description:item.description})
+                }
+                else{
+                    $scope.updateTrack({id:item.id,name:item.name,description:item.description})
+                }
+
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -52,6 +61,23 @@ angular.module('mytodoApp')
                 });
         }
 
+        $scope.updateTrack = function(data) {
+            data.conferenceId=$scope.conferenceId;
+            dataFactory.updateTrack(data)
+                .success(function (data) {
+                    var len = $scope.items.length;
+                    for(var i=0;i<len;i++){
+                        if(data.id===$scope.items[i].id){
+                            $scope.items[i]=data;
+                            break;
+                        }
+                    }
+
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to update track data: ' + error.message;
+                });
+        }
 
         $scope.deleteTrack = function(id,index) {
             dataFactory.deleteTrack(id)

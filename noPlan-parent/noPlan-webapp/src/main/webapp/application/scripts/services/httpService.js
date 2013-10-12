@@ -36,6 +36,10 @@ angular.module('mytodoApp')
             return $http.post(urlBase + '/track/create', id);
         };
 
+        dataFactory.updateTrack = function (id) {
+            return $http.post(urlBase + '/track/update', id)
+        };
+
         dataFactory.deleteTrack = function (id) {
             return $http.delete(urlBase + '/track/delete/' + id);
         };

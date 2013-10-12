@@ -1,8 +1,15 @@
-var ModalTrackCtrl = function ($scope, $modalInstance) {
+var ModalTrackCtrl = function ($scope, $modalInstance,item) {
     console.log('init ModaTrackCtrl');
-    $scope.item = { name:"Name",
-                    description:"Description",
+
+    if(item !== undefined ){
+        $scope.item=item;
+    }
+
+    else {
+         $scope.item = { name:"Name",
+                         description:"Description",
                     };
+    }
     $scope.ok = function () {
         console.log("item",$scope.item);
         $modalInstance.close($scope.item);

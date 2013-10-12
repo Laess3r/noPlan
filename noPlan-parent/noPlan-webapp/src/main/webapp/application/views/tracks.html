@@ -15,12 +15,14 @@
             <td>{{ item.conferenceId }}</td>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
-            <td><button class="btn" ng-click="deleteTrack(item.id,$index)">X</button></td>
+            <td>
+                <button class="btn" ng-click="open($index)"><i class="icon-edit-sign"></i> Edit</button>
+                <button class="btn" ng-click="deleteTrack(item.id,$index)"><i class="icon-remove"></i></button>
+            </td>
         </tr>
     </table>
-    <button class="btn" ng-click="open()">Create</button>
-    <button class="btn" >Save</button>
-    <button class="btn btn-danger" ng-click="getTracks()">Load</button>
+    <button class="btn" ng-click="open()"><i class="icon-plus"></i> Create</button>
+    <button class="btn btn-danger" ng-click="getTracks()"><i class="icon-refresh"></i> Load</button>
     <div class="info">{{ status }}</div>
 
 

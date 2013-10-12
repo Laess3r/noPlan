@@ -1,15 +1,13 @@
 var ModalConferenceCtrl = function ($scope, $modalInstance,item) {
     console.log('init ModalConferenceCtrl');
-    if(item.id !== undefined ){
 
+    if(item !== undefined ){
         $scope.item=item;
-
     }
 
     else {
         console.log("new Item")
-        $scope.item = { id:"undefined",
-                        name:"Name",
+        $scope.item = { name:"Name",
                         description:"Description",
                         startDate:new Date().toJSON().slice(0,10),
                         endDate:new Date().toJSON().slice(0,10)};
