@@ -1,0 +1,27 @@
+<div class="container">
+
+
+    <h2>Tracks</h2>
+
+    <table class="table">
+        <thead>
+            <td>ID</td>
+            <td>Conf ID</td>
+            <td>Name</td>
+            <td>Description</td>
+        </thead>
+        <tr ng-repeat="item in items">
+            <td>{{ item.id }}</td>
+            <td>{{ item.conferenceId }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.description }}</td>
+            <td><button class="btn" ng-click="deleteTrack(item.id,$index)">X</button></td>
+        </tr>
+    </table>
+    <button class="btn" ng-click="open()">Create</button>
+    <button class="btn" >Save</button>
+    <button class="btn btn-danger" ng-click="getTracks()">Load</button>
+    <div class="info">{{ status }}</div>
+
+
+</div>

@@ -1,11 +1,20 @@
-var ModalInstanceCtrl = function ($scope, $modalInstance) {
-    console.log('init ModalInstanceCtrl');
-    $scope.item = { name:"Name",
-                    description:"Description",
-                    startDate:new Date().toJSON().slice(0,10),
-                    endDate:new Date().toJSON().slice(0,10)};
+var ModalConferenceCtrl = function ($scope, $modalInstance,item) {
+    console.log('init ModalConferenceCtrl');
+    if(item.id !== undefined ){
+
+        $scope.item=item;
+
+    }
+
+    else {
+        console.log("new Item")
+        $scope.item = { id:"undefined",
+                        name:"Name",
+                        description:"Description",
+                        startDate:new Date().toJSON().slice(0,10),
+                        endDate:new Date().toJSON().slice(0,10)};
+    }
     $scope.ok = function () {
-        console.log("item",$scope.item);
         $modalInstance.close($scope.item);
     };
 

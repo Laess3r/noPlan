@@ -6,23 +6,31 @@ angular.module('mytodoApp')
         console.log('init ConferenceCtrl');
 
         $scope.items = [];
-        console.log("1");
-        $scope.open = function () {
+        $scope.open = function (index) {
+            console.log("index",index);
+
+
 
             var modalInstance = $modal.open({
                 templateUrl: 'views/newConference.html',
-                controller: ModalInstanceCtrl,
+                controller: ModalConferenceCtrl,
                 resolve: {
                     items: function () {
                         return $scope.items;
+                    },
+                    item: function () {
+                        return $scope.items[index];
                     }
                 }
             });
 
             modalInstance.result.then(function (item) {
-                console.log(item);
-                //$scope.items.push(item);
-                $scope.insertConference({name:item.name,description:item.description})
+                if(item.id===undefined){
+                    $scope.insertConference({name:item.name,description:item.description})
+                }
+                else{
+                    $scope.updateConference({id:item.id,name:item.name,description:item.description})
+                }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
             });
@@ -44,13 +52,29 @@ angular.module('mytodoApp')
             dataFactory.insertConference(data)
                 .success(function (data) {
                     $scope.items.push(data);
-                    console.log(data)
+                    console.log("create",data)
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create customer data: ' + error.message;
                 });
         }
 
+        $scope.updateConference = function(data) {
+            dataFactory.updateConference(data)
+                .success(function (data) {
+                    var len = $scope.items.length;
+                    for(var i=0;i<len;i++){
+                        if(data.id===$scope.items[i].id){
+                            $scope.items[i]=data;
+                            break;
+                        }
+                    }
+
+                })
+                .error(function (error) {
+                    $scope.status = 'Unable to update customer data: ' + error.message;
+                });
+        }
 
         $scope.deleteConference = function(id,index) {
             dataFactory.deleteConference(id)
@@ -64,6 +88,5 @@ angular.module('mytodoApp')
         }
         $scope.getConferences();
 
-    })
-    ;
+    });
 

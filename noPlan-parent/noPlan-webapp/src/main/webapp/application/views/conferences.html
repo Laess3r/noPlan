@@ -13,16 +13,18 @@
         </thead>
         <tr ng-repeat="item in items">
             <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
+            <td><a href="#/tracks/{{item.id}}">{{ item.name }}</a></td>
             <td>{{ item.description }}</td>
             <td>{{ item.startDate }}</td>
             <td>{{ item.endDate }}</td>
-            <td><button class="btn" ng-click="deleteConference(item.id,$index)">X</button></td>
+            <td>
+                <button class="btn" ng-click="open($index)"><i class="icon-edit-sign"></i> Edit</button>
+                <button class="btn" ng-click="deleteConference(item.id,$index)"><i class="icon-remove"></i></button>
+            </td>
         </tr>
     </table>
-    <button class="btn" ng-click="open()">Create</button>
-    <button class="btn" >Save</button>
-    <button class="btn btn-danger" ng-click="getConferences()">Load</button>
+    <button class="btn" ng-click="open()"><i class="icon-plus"></i> Create</button>
+    <button class="btn btn-danger" ng-click="getConferences()"><i class="icon-refresh"></i> Load</button>
     <div class="info">{{ status }}</div>
 
 

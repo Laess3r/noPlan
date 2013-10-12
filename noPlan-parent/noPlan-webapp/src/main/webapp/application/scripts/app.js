@@ -18,12 +18,17 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
             templateUrl: 'views/conferences.html',
             controller: 'ConferencesCtrl'
     })
+    .when('/tracks/:id', {
+            templateUrl: 'views/tracks.html',
+            controller: 'TracksCtrl'
+        })
     .when('/todo', {
         templateUrl: 'views/todo.html',
         controller: 'TodoCtrl'
     })
 
     .otherwise({
-        redirectTo: '/'
+        redirectTo: 'views/main.html',
+        controller: 'MainCtrl'
     });
   });

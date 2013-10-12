@@ -21,7 +21,7 @@ angular.module('mytodoApp')
         };
 
         dataFactory.updateConference = function (id) {
-            return $http.put(urlBase + '/conference/' + id.ID, id)
+            return $http.post(urlBase + '/conference/update', id)
         };
 
         dataFactory.deleteConference = function (id) {
@@ -29,7 +29,15 @@ angular.module('mytodoApp')
         };
 
         dataFactory.getTracks = function (id) {
-            return $http.get(urlBase + '/' + id + '/tracks/all');
+            return $http.get(urlBase + '/track/allforconference/'+id);
+        };
+
+        dataFactory.insertTrack = function (id) {
+            return $http.post(urlBase + '/track/create', id);
+        };
+
+        dataFactory.deleteTrack = function (id) {
+            return $http.delete(urlBase + '/track/delete/' + id);
         };
 
         return dataFactory;

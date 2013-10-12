@@ -17,7 +17,7 @@
     
     <context-param>
     	<param-name>db.url</param-name>
-    	<param-value>jdbc:h2:file:/noplan-h2/h2;AUTO_SERVER=TRUE</param-value>
+    	<param-value>jdbc:h2:~/test;AUTO_SERVER=TRUE</param-value>
 	</context-param>
 	<context-param>
 	    <param-name>db.user</param-name>
