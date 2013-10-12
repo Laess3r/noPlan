@@ -4,6 +4,12 @@
 	<center>
 		<h1>Welcome to *noPlan* REST API</h1>
 	</center>
+	
+	<div>
+		<a href="/noPlan-webapp/application/index.html">
+			<h2>Launch the main application</h2>
+		</a>
+	</div>
 
 	<hr />
 	<h2>* Conference Related data</h2>
