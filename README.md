@@ -3,12 +3,12 @@ noPlan - new online (conference) Planner
 
 noPlan is a online conference planner that offers following features:
 
-###BACKEND###
+####backend####
 
 * Create Conferences, create tracks and create events.
 * Every event can have attachments. 
 
-###FRONTEND###
+####frontend####
 
 
 * Log in as a user and choose a conference
