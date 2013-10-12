@@ -1,7 +1,5 @@
-noPlan
-======
-
 noPlan - new online (conference) Planner
+======
 
 noPlan is a online conference planner that offers following features:
 
