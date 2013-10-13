@@ -13,7 +13,7 @@ import com.noplan.persistence.entity.EventEntity;
 import com.noplan.persistence.entity.TrackEntity;
 
 /**
- * This repository is for the maintainence of events
+ * This repository is for the maintenance of events
  * 
  * @author DaHu4wA (Stefan Huber)
  */

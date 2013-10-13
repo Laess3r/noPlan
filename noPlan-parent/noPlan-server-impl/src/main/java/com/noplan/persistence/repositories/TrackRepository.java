@@ -13,7 +13,7 @@ import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.TrackEntity;
 
 /**
- * This repository is for the maintainence of tracks
+ * This repository is for the maintenance of tracks
  * 
  * @author DaHu4wA (Stefan Huber)
  */
