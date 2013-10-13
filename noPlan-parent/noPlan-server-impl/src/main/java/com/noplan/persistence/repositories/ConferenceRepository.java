@@ -3,7 +3,6 @@ package com.noplan.persistence.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +20,7 @@ public class ConferenceRepository extends AbstractRepository {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<ConferenceEntity> getAllConferences() {
-		return getSession().createQuery("From ConferenceEntity").list();
+		return getSession().createCriteria(ConferenceEntity.class).list();
 	}
 
 	@Transactional(readOnly = true)
@@ -37,10 +36,7 @@ public class ConferenceRepository extends AbstractRepository {
 
 	@Transactional(readOnly = true)
 	public ConferenceEntity getConferenceById(Long id) {
-		Query q = getSession().createQuery("From ConferenceEntity conf where conf.id = :id");
-		q.setParameter("id", id);
-
-		return (ConferenceEntity) q.uniqueResult();
+		return (ConferenceEntity) getSession().get(ConferenceEntity.class, id);
 	}
 
 	@Transactional(readOnly = true)
@@ -86,9 +82,9 @@ public class ConferenceRepository extends AbstractRepository {
 	@Transactional(readOnly = false)
 	public void deleteConference(Long id) {
 		ConferenceEntity entity = getConferenceById(id);
-		
+
 		// TODO check if tracks exist!
-		
+
 		delete(entity);
 	}
 

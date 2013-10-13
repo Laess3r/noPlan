@@ -3,7 +3,8 @@ package com.noplan.persistence.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +23,10 @@ public class EventRepository extends AbstractRepository {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<EventEntity> getAllEventsForTrack(Long trackId) {
-		Query q = getSession().createQuery("From EventEntity user where user.FK_TRACK = :FK_TRACK");
-		q.setParameter("FK_TRACK", trackId);
+		Criteria criteria = getSession().createCriteria(EventEntity.class);
+		criteria.add(Restrictions.eq("track.id", trackId));
 
-		return q.list();
+		return criteria.list();
 	}
 
 	@Transactional(readOnly = true)
@@ -41,10 +42,7 @@ public class EventRepository extends AbstractRepository {
 
 	@Transactional(readOnly = true)
 	public EventEntity getEventById(Long id) {
-		Query q = getSession().createQuery("From EventEntity evt where evt.id = :id");
-		q.setParameter("id", id);
-
-		return (EventEntity) q.uniqueResult();
+		return (EventEntity) getSession().get(EventEntity.class, id);
 	}
 
 	@Transactional(readOnly = true)

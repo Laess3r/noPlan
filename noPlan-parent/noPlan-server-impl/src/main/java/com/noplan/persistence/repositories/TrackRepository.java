@@ -3,7 +3,8 @@ package com.noplan.persistence.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Query;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,10 +23,11 @@ public class TrackRepository extends AbstractRepository {
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<TrackEntity> getAllTracksForConference(Long conferenceId) {
-		Query q = getSession().createQuery("From TrackEntity track where track.FK_CONFERENCE = :FK_CONFERENCE");
-		q.setParameter("FK_CONFERENCE", conferenceId);
 
-		return q.list();
+		Criteria criteria = getSession().createCriteria(TrackEntity.class);
+		criteria.add(Restrictions.eq("conference.id", conferenceId));
+
+		return criteria.list();
 	}
 
 	@Transactional(readOnly = true)
@@ -41,10 +43,7 @@ public class TrackRepository extends AbstractRepository {
 
 	@Transactional(readOnly = true)
 	public TrackEntity getTrackById(Long id) {
-		Query q = getSession().createQuery("From TrackEntity track where track.id = :id");
-		q.setParameter("id", id);
-
-		return (TrackEntity) q.uniqueResult();
+		return (TrackEntity) getSession().get(TrackEntity.class, id);
 	}
 
 	@Transactional(readOnly = true)
