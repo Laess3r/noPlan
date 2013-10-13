@@ -89,7 +89,7 @@ angular.module('mytodoApp')
                     $scope.status = 'Unable to delete track data: ' + error.message;
                 });
         }
-        //$scope.getTracks();
+        $scope.getTracks();
 
     })
     ;

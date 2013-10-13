@@ -9,7 +9,7 @@ angular.module('mytodoApp')
         var param = {params:{user:"Stefan"}}
 
         dataFactory.getConferences = function () {
-            return $http.get(urlBase + '/conference/all',param);
+            return $http.get(urlBase + '/conference/all');
         };
 
         dataFactory.getConference = function (id) {
