@@ -1,28 +1,36 @@
 <div class="container">
 
 
-    <h2><i class="icon-road"></i> Tracks</h2>
+    <h2><i class="icon-rocket"></i> Events</h2>
 
     <table class="table">
         <thead>
             <td>ID</td>
-            <td>Conf ID</td>
+            <td>TrackId</td>
             <td>Name</td>
+            <td>Presenter</td>
             <td>Description</td>
+            <td>Starttime</td>
+            <td>Endtime</td>
+            <td>InfoLink</td>
         </thead>
         <tr ng-repeat="item in items">
             <td>{{ item.id }}</td>
-            <td>{{ item.conferenceId }}</td>
+            <td>{{ item.trackid }}</td>
             <td><a href="#/events/{{item.id}}">{{ item.name }}</a></td>
+            <td>{{ item.presenter }}</td>
             <td>{{ item.description }}</td>
+            <td>{{ item.startTime }}</td>
+            <td>{{ item.endTime }}</td>
+            <td><a href="item.infoLink">Info</a> </td>
             <td>
                 <button class="btn" ng-click="open($index)"><i class="icon-edit-sign"></i> Edit</button>
-                <button class="btn" ng-click="deleteTrack(item.id,$index)"><i class="icon-remove"></i></button>
+                <button class="btn" ng-click="deleteConference(item.id,$index)"><i class="icon-remove"></i></button>
             </td>
         </tr>
     </table>
     <button class="btn" ng-click="open()"><i class="icon-plus"></i> Create</button>
-    <button class="btn btn-danger" ng-click="getTracks()"><i class="icon-refresh"></i> Load</button>
+    <button class="btn btn-danger" ng-click="getEvents()"><i class="icon-refresh"></i> Load</button>
     <div class="info">{{ status }}</div>
 
 

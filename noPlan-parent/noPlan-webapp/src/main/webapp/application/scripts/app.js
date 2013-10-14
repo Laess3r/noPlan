@@ -22,6 +22,10 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
             templateUrl: 'views/tracks.html',
             controller: 'TracksCtrl'
         })
+    .when('/events/:id', {
+            templateUrl: 'views/events.html',
+            controller: 'EventsCtrl'
+        })
     .when('/todo', {
         templateUrl: 'views/todo.html',
         controller: 'TodoCtrl'

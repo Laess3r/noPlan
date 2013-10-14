@@ -44,5 +44,21 @@ angular.module('mytodoApp')
             return $http.delete(urlBase + '/track/delete/' + id);
         };
 
+        dataFactory.getEvents = function (id) {
+            return $http.get(urlBase + '/event/allfortrack/'+id);
+        };
+
+        dataFactory.insertEvent = function (id) {
+            return $http.post(urlBase + '/event/create', id);
+        };
+
+        dataFactory.updateEvent = function (id) {
+            return $http.post(urlBase + '/event/update', id)
+        };
+
+        dataFactory.deleteEvent = function (id) {
+            return $http.delete(urlBase + '/event/delete/' + id);
+        };
+
         return dataFactory;
     }]);

@@ -2,8 +2,14 @@
     <h3>Create a new Track</h3>
 </div>
 <div class="modal-body">
-    <div>Name: <input type="text" ng-model="item.name"></div>
-    <div>Description: <input type="text" ng-model="item.description"></div>
+    <div class="row-fluid">
+        <div class="span2">Name:</div>
+        <input class="span8" type="text" ng-model="item.name">
+    </div>
+    <div class="row-fluid">
+        <div class="span2">Description:</div>
+        <textarea class="span8" ng-model="item.description" rows="3"></textarea>
+    </div>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>

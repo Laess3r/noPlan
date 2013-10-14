@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h3>Create a new Conference</h3>
+    <h3>Create a Event</h3>
 </div>
 <div class="modal-body">
     <div class="row-fluid">
@@ -7,16 +7,24 @@
         <input class="span8" type="text" ng-model="item.name">
     </div>
     <div class="row-fluid">
+        <div class="span2">Presenter</div>
+        <input class="span8" type="text" ng-model="item.Presenter">
+    </div>
+    <div class="row-fluid">
         <div class="span2">Description:</div>
         <textarea class="span8" ng-model="item.description" rows="3"></textarea>
     </div>
     <div class="row-fluid">
-        <div class="span2">Startdate:</div>
-        <input class="span8" type="date" ng-model="item.startDate">
+        <div class="span2">Starttime:</div>
+        <input class="span8" type="time" ng-model="item.startTime">
     </div>
     <div class="row-fluid">
-        <div class="span2">Enddate:</div>
-        <input class="span8" type="date" ng-model="item.endDate">
+        <div class="span2">Endtime:</div>
+        <input class="span8" type="time" ng-model="item.endTime">
+    </div>
+    <div class="row-fluid">
+        <div class="span2">Info Link</div>
+        <input class="span8" type="url" ng-model="item.infoLink">
     </div>
 </div>
 <div class="modal-footer">
