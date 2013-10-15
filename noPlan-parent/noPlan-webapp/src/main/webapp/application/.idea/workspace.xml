@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="caedd356-db4d-4f8c-817a-c38ac5e31caf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/controllers/createEvent.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/events.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/controllers/events.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/newEvent.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/app.js" afterPath="$PROJECT_DIR$/scripts/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/services/httpService.js" afterPath="$PROJECT_DIR$/scripts/services/httpService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/services/breadcrumbs.js" afterPath="$PROJECT_DIR$/scripts/services/breadcrumbs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/events.js" afterPath="$PROJECT_DIR$/scripts/controllers/events.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/newConference.html" afterPath="$PROJECT_DIR$/views/newConference.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/newTrack.html" afterPath="$PROJECT_DIR$/views/newTrack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/tracks.html" afterPath="$PROJECT_DIR$/views/tracks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/main.js" afterPath="$PROJECT_DIR$/scripts/controllers/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/menu.html" afterPath="$PROJECT_DIR$/views/menu.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/controllers/menu.js" afterPath="$PROJECT_DIR$/scripts/controllers/menu.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="application.iws" />
@@ -35,55 +31,55 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="breadcrumbs.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/services/breadcrumbs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="23" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="tracks.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/controllers/tracks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="27" selection-start="3248" selection-end="3248" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1530">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="httpService.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/services/httpService.js">
+      <file leaf-file-name="users.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/controllers/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="58" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1050">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newConference.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/newConference.html">
+      <file leaf-file-name="userService.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/services/userService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="10" selection-start="100" selection-end="402" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="480">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="newTrack.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/newTrack.html">
+      <file leaf-file-name="menu.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/controllers/menu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="10" selection-start="397" selection-end="397" vertical-scroll-proportion="0.20807062" vertical-offset="0" max-vertical-offset="793">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newEvent.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/newEvent.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="63" selection-start="828" selection-end="828" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="600">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="createEvent.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/controllers/createEvent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="38" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+            <state line="4" column="63" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
               <folding />
             </state>
           </provider>
@@ -92,34 +88,34 @@
       <file leaf-file-name="events.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/controllers/events.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="39" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1530">
+            <state line="5" column="18" selection-start="156" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="events.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/events.html">
+      <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="29" selection-start="55" selection-end="55" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="645">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="150">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="conferences.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/conferences.html">
+      <file leaf-file-name="menu.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/menu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="16" selection-start="374" selection-end="405" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="555">
+            <state line="26" column="4" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.4779412" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tracks.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/tracks.html">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/controllers/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="34" selection-start="60" selection-end="60" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="525">
+            <state line="12" column="12" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
               <folding />
             </state>
           </provider>
@@ -143,15 +139,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/scripts/controllers/menu.js" />
-        <option value="$PROJECT_DIR$/scripts/controllers/createTrack.js" />
-        <option value="$PROJECT_DIR$/scripts/controllers/tracks.js" />
         <option value="$PROJECT_DIR$/views/main.html" />
         <option value="$PROJECT_DIR$/views/conferences.html" />
-        <option value="$PROJECT_DIR$/views/menu.html" />
         <option value="$PROJECT_DIR$/views/newConference.html" />
-        <option value="$PROJECT_DIR$/scripts/controllers/events.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/scripts/app.js" />
         <option value="$PROJECT_DIR$/scripts/services/httpService.js" />
         <option value="$PROJECT_DIR$/views/newEvent.html" />
@@ -159,6 +149,12 @@
         <option value="$PROJECT_DIR$/views/tracks.html" />
         <option value="$PROJECT_DIR$/scripts/controllers/createEvent.js" />
         <option value="$PROJECT_DIR$/views/newTrack.html" />
+        <option value="$PROJECT_DIR$/scripts/controllers/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/scripts/services/breadcrumbs.js" />
+        <option value="$PROJECT_DIR$/scripts/controllers/events.js" />
+        <option value="$PROJECT_DIR$/scripts/controllers/menu.js" />
+        <option value="$PROJECT_DIR$/views/menu.html" />
       </list>
     </option>
   </component>
@@ -392,7 +388,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19771352" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19771352" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -420,114 +416,106 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/main.html">
+    <entry file="file://$PROJECT_DIR$/views/newConference.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="31" selection-start="55" selection-end="55" vertical-scroll-proportion="-0.625" vertical-offset="0" max-vertical-offset="150">
-          <folding />
-        </state>
+        <state line="11" column="10" selection-start="100" selection-end="402" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="480" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/menu.html">
+    <entry file="file://$PROJECT_DIR$/views/newEvent.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="45" selection-start="816" selection-end="816" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="690">
-          <folding />
-        </state>
+        <state line="22" column="63" selection-start="828" selection-end="828" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="600" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/newTrack.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="10" selection-start="397" selection-end="397" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="330" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="53" selection-start="4759" selection-end="4759" vertical-scroll-proportion="-25.333334" vertical-offset="697" max-vertical-offset="1530">
+        <state line="91" column="54" selection-start="5022" selection-end="5022" vertical-scroll-proportion="0.0" vertical-offset="697" max-vertical-offset="1545">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.js">
+    <entry file="file://$PROJECT_DIR$/scripts/controllers/todo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="31" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/controllers/createConference.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="21" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/controllers/conferences.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1470">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/controllers/tracks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="27" selection-start="3248" selection-end="3248" vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="1530">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/conferences.html">
+    <entry file="file://$PROJECT_DIR$/scripts/controllers/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="16" selection-start="374" selection-end="405" vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="555">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/services/userService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/services/httpService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="58" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="1050">
+        <state line="47" column="58" selection-start="1513" selection-end="1513" vertical-scroll-proportion="0.83928573" vertical-offset="0" max-vertical-offset="1050" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/tracks.html">
+    <entry file="file://$PROJECT_DIR$/scripts/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="34" selection-start="60" selection-end="60" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="525">
+        <state line="12" column="12" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/services/breadcrumbs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="23" selection-start="228" selection-end="228" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="615">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/controllers/events.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="39" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="1530">
+        <state line="5" column="18" selection-start="156" selection-end="208" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1500">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/controllers/createEvent.js">
+    <entry file="file://$PROJECT_DIR$/scripts/controllers/menu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="38" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+        <state line="4" column="63" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/events.html">
+    <entry file="file://$PROJECT_DIR$/views/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="29" selection-start="55" selection-end="55" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="645">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/newConference.html">
+    <entry file="file://$PROJECT_DIR$/views/menu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="10" selection-start="100" selection-end="402" vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="480">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/newEvent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="63" selection-start="828" selection-end="828" vertical-scroll-proportion="-13.75" vertical-offset="0" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/newTrack.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="10" selection-start="397" selection-end="397" vertical-scroll-proportion="0.20807062" vertical-offset="0" max-vertical-offset="793">
+        <state line="26" column="4" selection-start="1176" selection-end="1176" vertical-scroll-proportion="0.4779412" vertical-offset="0" max-vertical-offset="816">
           <folding />
         </state>
       </provider>

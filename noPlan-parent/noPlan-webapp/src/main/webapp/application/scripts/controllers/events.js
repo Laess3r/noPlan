@@ -38,11 +38,9 @@ angular.module('mytodoApp')
 
 
         $scope.getEvents = function() {
-            console.log('getEvents')
             dataFactory.getEvents($scope.trackId)
                 .success(function (data) {
                     $scope.items = data;
-                	console.log(data)
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load event data: ' + error.message;
