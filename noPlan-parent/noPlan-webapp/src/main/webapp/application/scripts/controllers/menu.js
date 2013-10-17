@@ -4,6 +4,8 @@ console.log('init menu');
 angular.module('mytodoApp')
     .controller('NavbarCtrl',function ($scope, $location,$route) {
 
+        $scope.isAdmin = false;
+
         $scope.breadcrumbs = [
 
             ];
@@ -36,6 +38,17 @@ angular.module('mytodoApp')
             }
 
 
+
+        }
+
+
+        $scope.login = function(){
+            $scope.isAdmin = true;
+
+        }
+
+        $scope.logout = function(){
+            $scope.isAdmin = false;
 
         }
 
