@@ -2,8 +2,10 @@
 
 
     <h2><i class="icon-calendar"></i> Conferences</h2>
+    <div class="row search">Search: <input ng-model="searchText"></div>
+    <div class="row">
 
-    <table class="table">
+    <!-- <table class="table">
         <thead>
             <td>ID</td>
             <td>Name</td>
@@ -22,10 +24,34 @@
                 <button class="btn" ng-click="deleteConference(item.id,$index)"><i class="icon-remove"></i></button>
             </td>
         </tr>
-    </table>
+    </table> -->
+    <ul class="thumbnails">
+    <li ng-repeat="item in items | filter:searchText" class="span6">
+        <div class="thumbnail thumbnail-item">
+            <div class="caption">
+                <div class="row pull-right">
+                    <button class="btn" ng-click="open($index)"><i class="icon-2x icon-edit-sign"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-remove"></i></button>
+
+                </div>
+
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
+            <p>
+                <span class="label label-info">From{{ item.startDate }} </span>
+                <span class="label label-info">to {{ item.endDate }}</span>
+            </p>
+            <p>
+                <a class="btn" href="#/tracks/{{item.id}}"><i class="icon-road"></i> Tracks</a>
+            </p>
+            </div>
+        </div>
+    </li>
+    </ul>
+
     <button class="btn" ng-click="open()"><i class="icon-plus"></i> Create</button>
     <button class="btn btn-danger" ng-click="getConferences()"><i class="icon-refresh"></i> Load</button>
     <div class="info">{{ status }}</div>
 
-
+    </div>
 </div>

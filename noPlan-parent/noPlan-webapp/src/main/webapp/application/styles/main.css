@@ -21,6 +21,15 @@ body {
     letter-spacing: -1px;
 }
 
+.search {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.thumbnail-item {
+    background-color: #ffffff;
+}
+
 /*
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
