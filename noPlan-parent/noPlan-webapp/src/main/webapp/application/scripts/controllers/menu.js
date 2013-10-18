@@ -2,7 +2,7 @@
 
 console.log('init menu');
 angular.module('mytodoApp')
-    .controller('NavbarCtrl',function ($scope, $location,$route) {
+    .controller('NavbarCtrl',function ($scope, $location,$route,UserService) {
 
         $scope.isAdmin = false;
 
@@ -44,11 +44,17 @@ angular.module('mytodoApp')
 
         $scope.login = function(){
             $scope.isAdmin = true;
+            UserService.login().then(function(message){
+                console.log("logout")
+                $scope.logout();
+            });
 
         }
 
         $scope.logout = function(){
             $scope.isAdmin = false;
+            UserService.logout();
+
 
         }
 
