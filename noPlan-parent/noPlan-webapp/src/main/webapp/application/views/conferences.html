@@ -26,21 +26,44 @@
         </tr>
     </table> -->
     <ul class="thumbnails">
-    <li ng-repeat="item in items | filter:searchText" class="span6">
+    <li ng-repeat="item in items | filter:searchText" class="span8">
         <div class="thumbnail thumbnail-item">
-            <div class="caption">
+            <div class="caption" ng-controller="editCtrl">
                 <div class="row pull-right">
-                    <button class="btn" ng-click="open($index)"><i class="icon-2x icon-edit-sign"></i></button>
-                    <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-remove"></i></button>
+                    <button ng-show="!editState" class="btn" ng-click="edit($index)"><i class="icon-2x icon-pencil"></i></button>
+                    <button ng-show="editState" class="btn" ng-click="edit($index)"><i class="icon-2x icon-save"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
 
                 </div>
 
-            <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
+            <h3 ng-show="!editState" >{{ item.name }}</h3>
             <p>
-                <span class="label label-info">From{{ item.startDate }} </span>
-                <span class="label label-info">to {{ item.endDate }}</span>
+                <div ng-show="editState" class="span2">Name:</div>
+                <input ng-show="editState"  class="span2" type="text" ng-model="item.name">
             </p>
+            <p ng-show="!editState">{{ item.description }}</p>
+            <div ng-show="editState" class="span2">Description:</div>
+            <textarea ng-show="editState"  ng-model="item.description" rows="3"></textarea>
+            <p>
+                <span ng-show="!editState" class="label label-info">{{item.location}}</span>
+                <div ng-show="editState" class="span2">Location:</div>
+                <input ng-show="editState" type="text" ng-model="item.location">
+            </p>
+            <p>
+                <span ng-show="!editState" class="label label-info">From {{ item.startDate  | date:'yyyy-MM-dd' }} </span>
+                <div ng-show="editState" class="span2">Startdate:</div>
+                <input ng-show="editState" type="date" ng-model="item.startDate">
+            </p>
+             <p>
+                <span ng-show="!editState" class="label label-info">to {{ item.endDate | date:'yyyy-MM-dd' }}</span>
+                <div ng-show="editState" class="span2">Enddate:</div>
+                <input ng-show="editState" type="date" ng-model="item.endDate">
+            </p>
+                <p>
+                    <a ng-show="!editState" href="item.infolink"><spanclass="label label-info">{{item.infolink}}</span></a>
+                    <div ng-show="editState" class="span2">Infolink:</div>
+                    <input ng-show="editState" type="text" ng-model="item.infolink">
+                </p>
             <p>
                 <a class="btn" href="#/tracks/{{item.id}}"><i class="icon-road"></i> Tracks</a>
             </p>

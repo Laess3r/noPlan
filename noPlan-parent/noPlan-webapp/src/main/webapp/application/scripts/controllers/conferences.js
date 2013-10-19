@@ -26,10 +26,12 @@ angular.module('mytodoApp')
 
             modalInstance.result.then(function (item) {
                 if(item.id===undefined){
-                    $scope.insertConference({name:item.name,description:item.description})
+                    $scope.insertConference(item);
+                    //$scope.insertConference({name:item.name,description:item.description})
                 }
                 else{
-                    $scope.updateConference({id:item.id,name:item.name,description:item.description})
+                    $scope.updateConference(item);
+                    //$scope.updateConference({id:item.id,name:item.name,description:item.description})
                 }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
