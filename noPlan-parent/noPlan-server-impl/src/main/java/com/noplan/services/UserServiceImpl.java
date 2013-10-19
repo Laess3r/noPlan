@@ -50,7 +50,9 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO createUser(UserDTO user) {
 
-		// TODO check if username exists
+		if (getUserByUsername(user.getUsername()) != null) {
+			throw new IllegalArgumentException("User " + user.getUsername() + " already exists!");
+		}
 
 		UserEntity userEntity = new UserEntity(user);
 
@@ -87,10 +89,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO createUser(String username, String pw) {
 		UserDTO user = new UserDTO();
-		
+
 		user.setUsername(username);
 		user.setPassword(pw);
-		
+
 		return createUser(user);
 	}
 

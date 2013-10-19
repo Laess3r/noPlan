@@ -17,7 +17,7 @@ import com.noplan.data.UserDTO;
  * @author DaHu4wA (Stefan Huber)
  */
 @Entity
-@Table(name = "TBLUSER", uniqueConstraints = {@UniqueConstraint(columnNames={"USERNAME"})})
+@Table(name = "TBLUSER", uniqueConstraints = { @UniqueConstraint(columnNames = { "USERNAME" }) })
 @SequenceGenerator(name = "SEQ", sequenceName = "SEQTBLUSER")
 public class UserEntity extends AbstractEntity {
 
@@ -26,19 +26,29 @@ public class UserEntity extends AbstractEntity {
 	@Column(name = "ID", nullable = false)
 	private Long id;
 
-	@Column(name = "USERNAME", nullable = false)
+	@Column(name = "USERNAME", nullable = false, length = 40)
 	private String username;
 
+	// TODO encrypt password
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 
-	// TODO isAdmin
+	/**
+	 * This field can only be set via database
+	 */
+	@Column(name = "ISADMINISTRATOR")
+	private Boolean isadministrator;
 
-	// TODO deleted
+	@Column(name = "FIRSTNAME", nullable = false, length = 50)
+	private String firstname;
 
-	// TODO encrypt password
+	@Column(name = "LASTNAME", nullable = false, length = 50)
+	private String lastname;
 
-	// TODO conncect with spring security
+	@Column(name = "EMAIL", nullable = false, length = 100)
+	private String email;
+
+	// TODO permissions
 
 	public UserEntity() {
 
@@ -46,6 +56,33 @@ public class UserEntity extends AbstractEntity {
 
 	public UserEntity(UserDTO dTO) {
 		fromDTO(dTO, false);
+	}
+
+	public UserDTO toDTO() {
+		UserDTO dTo = new UserDTO();
+		dTo.setId(getId());
+		dTo.setUsername(getUsername());
+		dTo.setPassword(getPassword());
+		dTo.setFirstname(getFirstname());
+		dTo.setLastname(getLastname());
+		dTo.setEmail(getEmail());
+		dTo.setIsadministrator(getIsadministrator());
+
+		return dTo;
+	}
+
+	public void fromDTO(UserDTO userDTO, boolean isUpdate) {
+		if (!isUpdate) {
+			setId(userDTO.getId());
+		}
+		setUsername(userDTO.getUsername());
+		setPassword(userDTO.getPassword());
+		setFirstname(userDTO.getFirstname());
+		setLastname(userDTO.getLastname());
+		setEmail(userDTO.getEmail());
+
+		// not implemented for security reasons!
+		// setIsadministrator();
 	}
 
 	public Long getId() {
@@ -72,19 +109,36 @@ public class UserEntity extends AbstractEntity {
 		this.password = password;
 	}
 
-	public UserDTO toDTO() {
-		UserDTO dTo = new UserDTO();
-		dTo.setId(getId());
-		dTo.setUsername(getUsername());
-		dTo.setPassword(getPassword());
-		return dTo;
+	public Boolean getIsadministrator() {
+		return isadministrator;
 	}
 
-	public void fromDTO(UserDTO userDTO, boolean isUpdate) {
-		if (!isUpdate) {
-			setId(userDTO.getId());
-		}
-		setUsername(userDTO.getUsername());
-		setPassword(userDTO.getPassword());
+	public void setIsadministrator(Boolean isadministrator) {
+		this.isadministrator = isadministrator;
 	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 }

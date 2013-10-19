@@ -1,5 +1,7 @@
 package com.noplan.services;
 
+import java.util.Date;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -41,6 +43,9 @@ public class TestDataDummyService extends AbstractRepository {
 		ConferenceDTO conference = new ConferenceDTO();
 		conference.setName(CONFERENCE_NAME);
 		conference.setDescription("This is a cool conference");
+		conference.setLocation("Saalfelden");
+		conference.setStartDate(new Date());
+		conference.setEndDate(new Date());
 
 		conference = conferenceService.createConference(conference);
 
@@ -49,19 +54,18 @@ public class TestDataDummyService extends AbstractRepository {
 		track.setName("Track nr 1");
 
 		track = trackService.createTrack(track);
-		
+
 		EventDTO eventOne = new EventDTO();
 		eventOne.setName("First event");
 		eventOne.setTrackId(track.getId());
-		
+
 		eventOne = eventService.createEvent(eventOne);
 
 		EventDTO eventTwo = new EventDTO();
 		eventTwo.setName("Second event");
 		eventTwo.setTrackId(track.getId());
-		
-		eventTwo = eventService.createEvent(eventTwo);
 
+		eventTwo = eventService.createEvent(eventTwo);
 
 		return "<h1>Successfully created dummy data!</h1>";
 	}

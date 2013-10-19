@@ -1,5 +1,7 @@
 package com.noplan.persistence.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,19 +35,26 @@ public class EventEntity extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TrackEntity track;
 
-	@Column(name = "NAME", nullable = false)
+	@Column(name = "NAME", nullable = false, length = 300)
 	private String name;
 
-	@Column(name = "DESCRIPTION")
+	@Column(name = "DESCRIPTION", length = 3000)
 	private String description;
 
-	// TODO from date
+	@Column(name = "PRESENTER", length = 300)
+	private String presenter;
 
-	// TODO to-date
+	@Column(name = "LOCATION", length = 300)
+	private String location;
 
-	// TODO location
+	@Column(name = "STARTDATE")
+	private Date startdate;
 
-	// TODO other info
+	@Column(name = "ENDDATE")
+	private Date enddate;
+
+	@Column(name = "INFOLINK", length = 300)
+	private String infolink;
 
 	public EventEntity() {
 
@@ -53,6 +62,40 @@ public class EventEntity extends AbstractEntity {
 
 	public EventEntity(EventDTO dTO, TrackEntity trackEntity) {
 		fromDTO(dTO, trackEntity, false);
+	}
+
+	public EventDTO toDTO() {
+		return toDTO(null);
+	}
+
+	public EventDTO toDTO(TrackDTO track) {
+		EventDTO dTO = new EventDTO();
+		dTO.setId(getId());
+		dTO.setName(getName());
+		dTO.setTrackId(getTrack().getId());
+		dTO.setPresenter(getPresenter());
+		dTO.setLocation(getLocation());
+		dTO.setStartdate(getStartdate());
+		dTO.setEnddate(getEnddate());
+		dTO.setInfolink(getInfolink());
+
+		return dTO;
+	}
+
+	public void fromDTO(EventDTO dTO, TrackEntity trackEntity, boolean isUpdate) {
+		if (!isUpdate) {
+			setId(dTO.getId());
+		}
+		if (trackEntity != null) {
+			setTrack(trackEntity);
+		}
+		setName(dTO.getName());
+		setDescription(dTO.getDescription());
+		setPresenter(dTO.getPresenter());
+		setLocation(dTO.getLocation());
+		setStartdate(dTO.getStartdate());
+		setEnddate(dTO.getEnddate());
+		setInfolink(dTO.getInfolink());
 	}
 
 	public Long getId() {
@@ -87,28 +130,44 @@ public class EventEntity extends AbstractEntity {
 		this.description = description;
 	}
 
-	public EventDTO toDTO() {
-		return toDTO(null);
+	public String getPresenter() {
+		return presenter;
 	}
 
-	public EventDTO toDTO(TrackDTO track) {
-		EventDTO dTO = new EventDTO();
-		dTO.setId(getId());
-		dTO.setName(getName());
-		dTO.setTrackId(getTrack().getId());
-
-		return dTO;
+	public void setPresenter(String presenter) {
+		this.presenter = presenter;
 	}
 
-	public void fromDTO(EventDTO dTO, TrackEntity trackEntity, boolean isUpdate) {
-		if (!isUpdate) {
-			setId(dTO.getId());
-		}
-		setName(dTO.getName());
-		setDescription(dTO.getDescription());
-		if (trackEntity != null) {
-			setTrack(trackEntity);
-		}
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public String getInfolink() {
+		return infolink;
+	}
+
+	public void setInfolink(String infolink) {
+		this.infolink = infolink;
 	}
 
 }

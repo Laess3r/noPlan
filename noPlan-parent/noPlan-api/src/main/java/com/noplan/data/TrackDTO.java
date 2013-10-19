@@ -3,6 +3,8 @@ package com.noplan.data;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * A track represents a part of a conference (eg. one day)
+ * 
  * @author DaHu4wA (Stefan Huber)
  */
 @XmlRootElement
@@ -11,6 +13,8 @@ public class TrackDTO {
 	private Long id;
 	private Long conferenceId;
 	private String name;
+	private String resource;
+	private String location;
 	private String description;
 
 	public TrackDTO() {
@@ -47,6 +51,22 @@ public class TrackDTO {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }

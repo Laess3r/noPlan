@@ -5,7 +5,4 @@ package com.noplan.persistence.entity;
  */
 public abstract class AbstractEntity {
 
-//	public abstract DTO_TYPE toDTO();
-	
-//	public abstract void fromDTO(DTO_TYPE dTO, boolean isUpdate);
 }

@@ -1,7 +1,6 @@
 package com.noplan.data;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,8 +12,11 @@ public class ConferenceDTO {
 
 	private Long id;
 	private String name;
+	private String location;
+	private Date startDate;
+	private Date endDate;
+	private String infolink;
 	private String description;
-//	private List<TrackDTO> tracks = new ArrayList<TrackDTO>();
 
 	public Long getId() {
 		return id;
@@ -40,12 +42,36 @@ public class ConferenceDTO {
 		this.description = description;
 	}
 
-//	public List<TrackDTO> getTracks() {
-//		return tracks;
-//	}
-//
-//	public void setTracks(List<TrackDTO> tracks) {
-//		this.tracks = tracks;
-//	}
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public String getInfolink() {
+		return infolink;
+	}
+
+	public void setInfolink(String infolink) {
+		this.infolink = infolink;
+	}
 
 }

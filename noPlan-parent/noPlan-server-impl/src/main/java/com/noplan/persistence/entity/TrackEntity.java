@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import com.noplan.data.TrackDTO;
 
 /**
- * A track represents a part of a conference
+ * A track represents a part of a conference (eg. one day)
  * 
  * @author DaHu4wA (Stefan Huber)
  */
@@ -32,10 +32,16 @@ public class TrackEntity extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private ConferenceEntity conference;
 
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false, length = 200)
 	private String name;
 
-	@Column(name = "DESCRIPTION")
+	@Column(name = "RESOURCE", length = 500)
+	private String resource;
+
+	@Column(name = "LOCATION", length = 300)
+	private String location;
+
+	@Column(name = "DESCRIPTION", length = 2000)
 	private String description;
 
 	public TrackEntity() {
@@ -52,6 +58,8 @@ public class TrackEntity extends AbstractEntity {
 		dTO.setConferenceId(getConference().getId());
 		dTO.setDescription(getDescription());
 		dTO.setName(getName());
+		dTO.setResource(getResource());
+		dTO.setLocation(getLocation());
 
 		return dTO;
 	}
@@ -66,6 +74,8 @@ public class TrackEntity extends AbstractEntity {
 
 		setDescription(dTO.getDescription());
 		setName(dTO.getName());
+		setResource(dTO.getResource());
+		setLocation(dTO.getLocation());
 	}
 
 	public Long getId() {
@@ -100,12 +110,20 @@ public class TrackEntity extends AbstractEntity {
 		this.description = description;
 	}
 
-	// public List<EventEntity> getEvents() {
-	// return events;
-	// }
-	//
-	// public void setEvents(List<EventEntity> events) {
-	// this.events = events;
-	// }
+	public String getResource() {
+		return resource;
+	}
+
+	public void setResource(String resource) {
+		this.resource = resource;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 }
