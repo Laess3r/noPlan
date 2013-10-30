@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/security
+       http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+        <security:authentication-manager id="authenticationManager">
+            <security:authentication-provider>
+                <security:user-service id="userService">
+                    <security:user name="admin" password="admin" authorities="admin, user" />
+                    <security:user name="user" password="user" authorities="user" />
+                </security:user-service>
+            </security:authentication-provider>
+        </security:authentication-manager>
+
+        <security:http
+                realm="NoPlan protected API"
+                use-expressions="true"
+                auto-config="false"
+                create-session="stateless"
+                entry-point-ref="unauthorizedEntryPoint"
+                authentication-manager-ref="authenticationManager">
+            <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
+            <security:intercept-url pattern="/rest/user/**" access="permitAll" />
+            <security:intercept-url method="GET" pattern="/rest/**" access="hasRole('user')" />
+            <security:intercept-url method="PUT" pattern="/rest/**" access="hasRole('admin')" />
+            <security:intercept-url method="POST" pattern="/rest/**" access="hasRole('admin')" />
+            <security:intercept-url method="DELETE" pattern="/rest/**" access="hasRole('admin')" />
+        </security:http>
+
+        <bean id="unauthorizedEntryPoint" class="com.noplan.security.UnauthorizedEntryPoint" />
+
+        <bean class="com.noplan.security.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter">
+            <constructor-arg ref="authenticationManager" />
+<!--             <constructor-arg ref="userService" /> -->
+        </bean>
+
+
+
+        <!-- <security:http use-expressions="true" entry-point-ref="forbiddenEntryPoint">
+                <security:intercept-url method="GET" pattern="/rest/news/**"
+                        access="hasRole('user')" />
+                <security:intercept-url method="PUT" pattern="/rest/news/**"
+                        access="hasRole('admin')" />
+                <security:intercept-url method="POST" pattern="/rest/news/**"
+                        access="hasRole('admin')" />
+                <security:intercept-url method="DELETE"
+                        pattern="/rest/news/**" access="hasRole('admin')" />
+                <security:form-login login-page="/login.html"
+                        default-target-url="/#!/loggedin/" always-use-default-target="true" />
+                <security:logout logout-url="/logout.html" />
+        </security:http> -->
+</beans>

@@ -17,6 +17,13 @@ import com.noplan.data.UserDTO;
  */
 //@Path("/user")
 public interface UserService {
+	
+
+	@Path("authenticate")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	UserDTO authenticate(UserDTO userToAuthenticate);
 
 	@GET
 	@Path("/all")

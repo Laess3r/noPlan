@@ -15,7 +15,7 @@
 
             <ul class="nav pull-right">
 
-                <li ng-show="isAdmin" class="dropdown">
+                <li ng-show="isLoggedIn" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="icon-cog"></i> Admin
                         <b class="caret"></b>
@@ -27,8 +27,8 @@
                         <li><a href="#/conferences"><i class="icon-calendar"></i> Conferences</a> </li>
                     </ul>
                 </li>
-                <li><a ng-show="!isAdmin" href="#" ng-click="login()"><i class="icon-unlock-alt"></i> Login</a> </li>
-                <li><a ng-show="isAdmin" href="#" ng-click="logout()"><i class="icon-unlock-alt"></i> Logout</a> </li>
+                <li><a ng-show="!loggedIn" href="#/login" ng-click="login()"><i class="icon-unlock-alt"></i> Login</a> </li>
+                <li><a ng-show="loggedIn" href="#/logout" ng-click="logout()"><i class="icon-unlock-alt"></i> Logout {{user.username}}</a> </li>
 
             </ul>
             </div>

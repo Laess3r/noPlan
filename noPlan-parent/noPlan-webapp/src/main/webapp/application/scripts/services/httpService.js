@@ -60,5 +60,9 @@ angular.module('mytodoApp')
             return $http.delete(urlBase + '/event/delete/' + id);
         };
 
+        dataFactory.authenticateUser = function (id) {
+            return $http.post(urlBase + '/user/authenticate', id);
+        };
+
         return dataFactory;
     }]);
