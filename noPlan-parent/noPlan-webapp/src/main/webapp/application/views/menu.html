@@ -12,13 +12,13 @@
         <div class="collapse navbar-collapse nav-collapse">
         <ul class="nav navbar-nav">
             <li ng-class="{ active: isActive('/main')}"><a href="#/main"><i class="icon-home"></i> Home</a> </li>
-            <li ng-class="{ active: isActive('/conferences')}"><a href="#/conferences"><i class="icon-calendar"></i> Conferences</a></li>
-            <li ng-class="{ active: isActive('/todo')}"><a href="#/todo">TodmkmkmoApp</a></li>
+            <li ng-show="loggedIn" ng-class="{ active: isActive('/conferences')}"><a href="#/conferences"><i class="icon-calendar"></i> Conferences</a></li>
+            <li ng-class="{ active: isActive('/todo')}"><a href="#/todo">TodoApp</a></li>
         </ul>
 
         <ul class="nav pull-right">
 
-            <li ng-show="isAdmin" class="dropdown">
+            <li ng-show="loggedIn" class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="icon-cog"></i> Admin
                     <b class="caret"></b>
@@ -30,8 +30,8 @@
                     <li><a href="#/conferences"><i class="icon-calendar"></i> Conferences</a> </li>
                 </ul>
             </li>
-            <li><a ng-show="!isAdmin" href="#" ng-click="login()"><i class="icon-unlock-alt"></i> Login</a> </li>
-            <li><a ng-show="isAdmin" href="#" ng-click="logout()"><i class="icon-unlock-alt"></i> Logout</a> </li>
+            <li><a ng-show="!loggedIn" href="#/login"><i class="icon-unlock-alt"></i> Login</a> </li>
+            <li><a ng-show="loggedIn" href="#" ng-click="logout()"><i class="icon-unlock-alt"></i> Logout</a> </li>
 
         </ul>
         </div>

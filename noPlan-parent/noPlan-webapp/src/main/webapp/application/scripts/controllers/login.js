@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mytodoApp')
-.controller('LoginCtrl',function ($scope,$modal,$log,$http,$rootScope,dataFactory) {
+.controller('LoginCtrl',function ($scope,$modal,$log,$http,$rootScope,$location,dataFactory) {
         	
         	$rootScope.loggedIn = false;
         	
@@ -31,5 +31,7 @@ angular.module('mytodoApp')
             	 delete $scope.user;
             	 delete $http.defaults.headers.common['Auth-Token'];
                  $rootScope.loggedIn = false;
+                 $location.path("/main");
+                 
             }
     });

@@ -37,16 +37,17 @@ angular.module('mytodoApp')
 
         }
 
-        $scope.login = function(){
+        $scope.login = function() {
+        	console.log("login");
             $location.path("/login");
         }
 
         $scope.logout = function(){
             delete $rootScope.user;
             delete $http.defaults.headers.common['Auth-Token'];
-            $scope.$apply(function(){
-            	$rootScope.loggedIn = false;
-            });
+           
+            $rootScope.loggedIn = false;
+            
             $location.path("/login");
         }
 
