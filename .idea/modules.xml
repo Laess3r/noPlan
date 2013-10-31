@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/noPlan.iml" filepath="$PROJECT_DIR$/noPlan.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noPlan-parent/noPlan-api/noPlan-api.iml" filepath="$PROJECT_DIR$/noPlan-parent/noPlan-api/noPlan-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noPlan-parent/noPlan-parent.iml" filepath="$PROJECT_DIR$/noPlan-parent/noPlan-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noPlan-parent/noPlan-server-impl/noPlan-server-impl.iml" filepath="$PROJECT_DIR$/noPlan-parent/noPlan-server-impl/noPlan-server-impl.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noPlan-parent/noPlan-webapp/noPlan-webapp.iml" filepath="$PROJECT_DIR$/noPlan-parent/noPlan-webapp/noPlan-webapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/noPlan-parent/noPlan-webui/noPlan-webui.iml" filepath="$PROJECT_DIR$/noPlan-parent/noPlan-webui/noPlan-webui.iml" />
+    </modules>
+  </component>
+</project>
+

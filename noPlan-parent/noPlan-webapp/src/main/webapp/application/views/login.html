@@ -1,0 +1,23 @@
+<div class="container">
+
+	<div ng-show="!loggedIn">
+		<h2><i class="icon-unlock-alt"></i> noPlan Login</h2>
+		<h4 style="color:gray;font-style:italic">Hint: Log in using      admin / admin</h4>
+
+		Username: <input class="span2" type="text" ng-model="user.username">
+		<br> 
+		Password: <input class="span2" type="password" ng-model="user.password"> 
+		<br>
+
+		<button class="btn" ng-show="!loggedIn" ng-click="login(user)">Login</button>
+	</div>
+
+	<div ng-show="loggedIn">
+		<button class="btn" ng-click="logout()">Logout</button>
+	</div>
+
+	<br>
+	<div class="info">
+		<h5 style="color:gray;font-style:italic">{{ status }}</h5>
+	</div>
+</div>
