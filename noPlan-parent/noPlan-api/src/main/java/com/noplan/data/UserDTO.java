@@ -1,5 +1,7 @@
 package com.noplan.data;
 
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -16,8 +18,17 @@ public class UserDTO {
 	private String email;
 	private Boolean isadministrator;
 
+	private Map<String, Boolean> roles;
+	private String token;
+
 	public UserDTO() {
 
+	}
+
+	public UserDTO(String userName, Map<String, Boolean> roles, String token) {
+		this.username = userName;
+		this.roles = roles;
+		this.token = token;
 	}
 
 	public Long getId() {
@@ -70,6 +81,22 @@ public class UserDTO {
 
 	public Boolean getIsadministrator() {
 		return isadministrator;
+	}
+	
+	public Map<String, Boolean> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Map<String, Boolean> roles) {
+		this.roles = roles;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
 	}
 
 	/**

@@ -2,13 +2,20 @@
 
 console.log('init edit');
 angular.module('mytodoApp')
-    .controller('editCtrl',function ($scope,$modal,$log,dataFactory) {
-        console.log('init EditCtrl');
+    .controller('editConference',function ($scope,$modal,$log,dataFactory) {
+        console.log('init EditCtrl',$scope.item.id);
         $scope.editState = false;
+
+        if($scope.item.id === undefined){
+            $scope.editState=true;
+        }
+
 
         $scope.edit = function($index){
             $scope.editState = ! $scope.editState;
             console.log("edit",$scope.editState, $scope);
+
+
 
 
 
@@ -22,6 +29,13 @@ angular.module('mytodoApp')
                     $scope.updateConference(item);
                     //$scope.updateConference({id:item.id,name:item.name,description:item.description})
                 }
+
+            }
+
+            else {
+
+                $scope.item.startDate= new Date($scope.item.startDate).toJSON().slice(0,10);
+                $scope.item.endDate= new Date($scope.item.endDate).toJSON().slice(0,10);
 
             }
 

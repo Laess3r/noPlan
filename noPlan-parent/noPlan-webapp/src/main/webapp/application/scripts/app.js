@@ -2,9 +2,9 @@
 
 console.log('init app');
 angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
-  .config(function ($routeProvider) {
+  .config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     console.log('routeProvider');
-    var baseUrl="application/"
+    var baseUrl="application/";
     $routeProvider
     .when('/main', {
             templateUrl: 'views/main.html',
@@ -30,9 +30,45 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
         templateUrl: 'views/todo.html',
         controller: 'TodoCtrl'
     })
+    .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginCtrl'
+        })
 
     .otherwise({
         redirectTo: 'views/main.html',
         controller: 'MainCtrl'
-    });
   });
+  
+  var interceptor = function ($rootScope, $q, $location) {
+
+                        function success(response) {
+                            return response;
+                        }
+
+                        function error(response) {
+                                
+                            var status = response.status;
+                            var config = response.config;
+                            var method = config.method;
+                            var url = config.url;
+
+                            if (status == 401) {
+                                    $location.path( "/login" );
+                            } else {
+                                    $rootScope.error = method + " on " + url + " failed with status " + status;
+                            }
+                            
+                            return $q.reject(response);
+                        }
+ 
+                        return function (promise) {
+                            return promise.then(success, error);
+                        };
+                    };
+                    $httpProvider.responseInterceptors.push(interceptor);
+  }]);
+
+
+
+

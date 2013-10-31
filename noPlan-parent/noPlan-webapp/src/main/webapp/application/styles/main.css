@@ -30,6 +30,10 @@ body {
     background-color: #ffffff;
 }
 
+.form input.ng-invalid.ng-dirty {
+        background-color: #FA787E;
+      }
+
 /*
 Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
