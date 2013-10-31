@@ -6,6 +6,22 @@ angular.module('mytodoApp')
         console.log('init ConferenceCtrl');
 
         $scope.items = [];
+
+        $scope.add = function() {
+            var item= {
+                    name:"",
+                    description:"",
+                    startDate:"",
+                    endDate:"",
+                    location:"",
+                    infolink:""
+
+            };
+
+            $scope.items.push(item);
+
+
+        }
         $scope.open = function (index) {
             console.log("index",index);
 
@@ -79,6 +95,10 @@ angular.module('mytodoApp')
         }
 
         $scope.deleteConference = function(id,index) {
+            if(id === undefined){
+               $scope.items.splice(index,1);
+               return; 
+            }
             dataFactory.deleteConference(id)
                 .success(function (data) {
                     $scope.items.splice(index,1);

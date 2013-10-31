@@ -6,35 +6,20 @@ angular.module('mytodoApp')
         console.log('init TrackCtrl',$routeParams);
         $scope.conferenceId = $routeParams.id;
         $scope.items = [];
-        $scope.open = function (index) {
 
-            var modalInstance = $modal.open({
-                templateUrl: 'views/newTrack.html',
-                controller: ModalTrackCtrl,
-                resolve: {
-                    items: function () {
-                        return $scope.items;
-                    },
-                    item: function () {
-                        return $scope.items[index];
-                    }
-                }
-            });
+        $scope.add = function() {
+            var item= {
+                name:"",
+                description:"",
+                location:"",
+                resource:""
+            };
 
-            modalInstance.result.then(function (item) {
-                console.log(item);
-                //$scope.items.push(item);
-                if(item.id===undefined){
-                    $scope.insertTrack({name:item.name,description:item.description})
-                }
-                else{
-                    $scope.updateTrack({id:item.id,name:item.name,description:item.description})
-                }
+            $scope.items.push(item);
 
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
+
+        }
+
 
 
         $scope.getTracks = function() {

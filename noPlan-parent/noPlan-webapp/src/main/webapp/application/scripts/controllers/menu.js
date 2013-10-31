@@ -2,10 +2,8 @@
 
 console.log('init menu');
 angular.module('mytodoApp')
-    .controller('NavbarCtrl',function ($scope, $location,$route,UserService) {
-
-        $scope.isAdmin = false;
-
+    .controller('NavbarCtrl',function ($scope, $location,$route,$rootScope,$http) {
+    	
         $scope.breadcrumbs = [
 
             ];
@@ -37,25 +35,19 @@ angular.module('mytodoApp')
 
             }
 
-
-
         }
 
-
         $scope.login = function(){
-            $scope.isAdmin = true;
-            UserService.login().then(function(message){
-                console.log("logout")
-                $scope.logout();
-            });
-
+            $location.path("/login");
         }
 
         $scope.logout = function(){
-            $scope.isAdmin = false;
-            UserService.logout();
-
-
+            delete $rootScope.user;
+            delete $http.defaults.headers.common['Auth-Token'];
+            $scope.$apply(function(){
+            	$rootScope.loggedIn = false;
+            });
+            $location.path("/login");
         }
 
 
@@ -67,17 +59,6 @@ angular.module('mytodoApp')
         $scope.isActive = function (viewLocation){
           return viewLocation === $location.path();
 
-
-
-
-
         };
-
-
-
-
-
-
-
 
     });
