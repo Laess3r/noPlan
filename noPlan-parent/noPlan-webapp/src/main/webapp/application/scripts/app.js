@@ -68,7 +68,10 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
                     };
                     $httpProvider.responseInterceptors.push(interceptor);
   }]);
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> fa1f669584a3ee3237b8c497a9453442ebef9807
