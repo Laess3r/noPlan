@@ -3,10 +3,10 @@
 console.log('init edit');
 angular.module('mytodoApp')
     .controller('editTrack',function ($scope,$modal,$log,dataFactory) {
-        console.log('init EditCtrl',$scope.item.id);
+        console.log('init EditCtrl',$scope.track.id);
         $scope.editState = false;
 
-        if($scope.item.id === undefined){
+        if($scope.track.id === undefined){
             $scope.editState=true;
         }
 
@@ -20,22 +20,22 @@ angular.module('mytodoApp')
 
 
             if(!$scope.editState){
-                var item=$scope.items[$index];
-                if(item.id===undefined){
-                    $scope.insertTrack(item);
-                    //$scope.insertConference({name:item.name,description:item.description})
+                var track=$scope.tracks[$index];
+                if(track.id===undefined){
+                    $scope.insertTrack(track);
+                    //$scope.insertConference({name:track.name,description:track.description})
                 }
                 else{
-                    $scope.updateTrack(item);
-                    //$scope.updateConference({id:item.id,name:item.name,description:item.description})
+                    $scope.updateTrack(track);
+                    //$scope.updateConference({id:track.id,name:track.name,description:track.description})
                 }
 
             }
 
             /*else {
 
-                $scope.item.startDate= new Date($scope.item.startDate).toJSON().slice(0,10);
-                $scope.item.endDate= new Date($scope.item.endDate).toJSON().slice(0,10);
+                $scope.track.startDate= new Date($scope.track.startDate).toJSON().slice(0,10);
+                $scope.track.endDate= new Date($scope.track.endDate).toJSON().slice(0,10);
 
             } */
 

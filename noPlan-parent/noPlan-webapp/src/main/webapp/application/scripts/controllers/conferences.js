@@ -5,10 +5,10 @@ angular.module('mytodoApp')
     .controller('ConferencesCtrl',function ($scope,$modal,$log,dataFactory) {
         console.log('init ConferenceCtrl');
 
-        $scope.items = [];
+        $scope.conferences = [];
 
         $scope.add = function() {
-            var item= {
+            var conference= {
                     name:"",
                     description:"",
                     startDate:"",
@@ -18,7 +18,7 @@ angular.module('mytodoApp')
 
             };
 
-            $scope.items.push(item);
+            $scope.conferences.push(conference);
 
 
         }
@@ -31,23 +31,23 @@ angular.module('mytodoApp')
                 templateUrl: 'views/newConference.html',
                 controller: ModalConferenceCtrl,
                 resolve: {
-                    items: function () {
-                        return $scope.items;
+                    conferences: function () {
+                        return $scope.conferences;
                     },
-                    item: function () {
-                        return $scope.items[index];
+                    conference: function () {
+                        return $scope.conferences[index];
                     }
                 }
             });
 
-            modalInstance.result.then(function (item) {
-                if(item.id===undefined){
-                    $scope.insertConference(item);
-                    //$scope.insertConference({name:item.name,description:item.description})
+            modalInstance.result.then(function (conference) {
+                if(conference.id===undefined){
+                    $scope.insertConference(conference);
+                    //$scope.insertConference({name:conference.name,description:conference.description})
                 }
                 else{
-                    $scope.updateConference(item);
-                    //$scope.updateConference({id:item.id,name:item.name,description:item.description})
+                    $scope.updateConference(conference);
+                    //$scope.updateConference({id:conference.id,name:conference.name,description:conference.description})
                 }
             }, function () {
                 $log.info('Modal dismissed at: ' + new Date());
@@ -58,7 +58,7 @@ angular.module('mytodoApp')
         $scope.getConferences = function() {
             dataFactory.getConferences()
                 .success(function (data) {
-                    $scope.items = data;
+                    $scope.conferences = data;
                 	console.log(data)
                 })
                 .error(function (error) {
@@ -69,7 +69,7 @@ angular.module('mytodoApp')
         $scope.insertConference = function(data) {
             dataFactory.insertConference(data)
                 .success(function (data) {
-                    $scope.items.push(data);
+                    $scope.conferences.push(data);
                     console.log("create",data)
                 })
                 .error(function (error) {
@@ -80,10 +80,10 @@ angular.module('mytodoApp')
         $scope.updateConference = function(data) {
             dataFactory.updateConference(data)
                 .success(function (data) {
-                    var len = $scope.items.length;
+                    var len = $scope.conferences.length;
                     for(var i=0;i<len;i++){
-                        if(data.id===$scope.items[i].id){
-                            $scope.items[i]=data;
+                        if(data.id===$scope.conferences[i].id){
+                            $scope.conferences[i]=data;
                             break;
                         }
                     }
@@ -96,12 +96,12 @@ angular.module('mytodoApp')
 
         $scope.deleteConference = function(id,index) {
             if(id === undefined){
-               $scope.items.splice(index,1);
+               $scope.conferences.splice(index,1);
                return; 
             }
             dataFactory.deleteConference(id)
                 .success(function (data) {
-                    $scope.items.splice(index,1);
+                    $scope.conferences.splice(index,1);
                     console.log("Delete",data,'@',index);
                 })
                 .error(function (error) {

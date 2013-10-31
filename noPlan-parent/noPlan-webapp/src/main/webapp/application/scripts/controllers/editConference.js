@@ -3,10 +3,10 @@
 console.log('init edit');
 angular.module('mytodoApp')
     .controller('editConference',function ($scope,$modal,$log,dataFactory) {
-        console.log('init EditCtrl',$scope.item.id);
+        console.log('init EditCtrl',$scope.conference.id);
         $scope.editState = false;
 
-        if($scope.item.id === undefined){
+        if($scope.conference.id === undefined){
             $scope.editState=true;
         }
 
@@ -20,22 +20,22 @@ angular.module('mytodoApp')
 
 
             if(!$scope.editState){
-                var item=$scope.items[$index];
-                if(item.id===undefined){
-                    $scope.insertConference(item);
-                    //$scope.insertConference({name:item.name,description:item.description})
+                var conference=$scope.conferences[$index];
+                if(conference.id===undefined){
+                    $scope.insertConference(conference);
+                    //$scope.insertConference({name:conference.name,description:conference.description})
                 }
                 else{
-                    $scope.updateConference(item);
-                    //$scope.updateConference({id:item.id,name:item.name,description:item.description})
+                    $scope.updateConference(conference);
+                    //$scope.updateConference({id:conference.id,name:conference.name,description:conference.description})
                 }
 
             }
 
             else {
 
-                $scope.item.startDate= new Date($scope.item.startDate).toJSON().slice(0,10);
-                $scope.item.endDate= new Date($scope.item.endDate).toJSON().slice(0,10);
+                $scope.conference.startDate= new Date($scope.conference.startDate).toJSON().slice(0,10);
+                $scope.conference.endDate= new Date($scope.conference.endDate).toJSON().slice(0,10);
 
             }
 

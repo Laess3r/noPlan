@@ -13,61 +13,61 @@
             <td>Startdate</td>
             <td>Enddate</td>
         </thead>
-        <tr ng-repeat="item in items">
-            <td>{{ item.id }}</td>
-            <td><a href="#/tracks/{{item.id}}">{{ item.name }}</a></td>
-            <td>{{ item.description }}</td>
-            <td>{{ item.startDate }}</td>
-            <td>{{ item.endDate }}</td>
+        <tr ng-repeat="conference in conferences">
+            <td>{{ conference.id }}</td>
+            <td><a href="#/tracks/{{conference.id}}">{{ conference.name }}</a></td>
+            <td>{{ conference.description }}</td>
+            <td>{{ conference.startDate }}</td>
+            <td>{{ conference.endDate }}</td>
             <td>
                 <button class="btn" ng-click="open($index)"><i class="icon-edit-sign"></i> Edit</button>
-                <button class="btn" ng-click="deleteConference(item.id,$index)"><i class="icon-remove"></i></button>
+                <button class="btn" ng-click="deleteConference(conference.id,$index)"><i class="icon-remove"></i></button>
             </td>
         </tr>
     </table> -->
     <!--<div class="thumbnails">
-    <div ng-repeat="item in items | filter:searchText" class="span8">
-        <div class="thumbnail thumbnail-item">
+    <div ng-repeat="conference in conferences | filter:searchText" class="span8">
+        <div class="thumbnail thumbnail-conference">
             <div class="caption" ng-controller="editCtrl">
                 <div class="pull-right">
                     <button ng-show="!editState" class="btn" ng-click="edit($index)"><i class="icon-2x icon-pencil"></i></button>
                     <button ng-show="editState" class="btn" ng-click="edit($index)"><i class="icon-2x icon-save"></i></button>
-                    <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteConference(conference.id,$index)"><i class="icon-2x icon-trash"></i></button>
 
                 </div>
 
-            <h3 ng-show="!editState" >{{ item.name }}</h3>
+            <h3 ng-show="!editState" >{{ conference.name }}</h3>
             <div ng-show="editState"class="input-group">
                 <span class="input-group-addon">Name</span>
-                <input class="form-control" type="text" ng-model="item.name">
+                <input class="form-control" type="text" ng-model="conference.name">
             </div>
-            <div class="well well-sm" ng-show="!editState">{{ item.description }}</div>
+            <div class="well well-sm" ng-show="!editState">{{ conference.description }}</div>
             <div ng-show="editState" class="input-group">
             <span  class="input-group-addon">Description</span>
-            <textarea class="form-control" ng-model="item.description" rows="3"></textarea>
+            <textarea class="form-control" ng-model="conference.description" rows="3"></textarea>
             </div>
             <p>
-                <span ng-show="!editState" class="label label-info">{{item.location}}</span>
+                <span ng-show="!editState" class="label label-info">{{conference.location}}</span>
                 <div ng-show="editState" class="span2">Location:</div>
-                <input ng-show="editState" class="form-control" type="text" ng-model="item.location">
+                <input ng-show="editState" class="form-control" type="text" ng-model="conference.location">
             </p>
             <p>
-                <span ng-show="!editState" class="label label-info">From {{ item.startDate  | date:'yyyy-MM-dd' }} </span>
+                <span ng-show="!editState" class="label label-info">From {{ conference.startDate  | date:'yyyy-MM-dd' }} </span>
                 <div ng-show="editState" class="span2">Startdate:</div>
-                <input ng-show="editState" class="form-control" type="date" ng-model="item.startDate">
+                <input ng-show="editState" class="form-control" type="date" ng-model="conference.startDate">
             </p>
              <p>
-                <span ng-show="!editState" class="label label-info">to {{ item.endDate | date:'yyyy-MM-dd' }}</span>
+                <span ng-show="!editState" class="label label-info">to {{ conference.endDate | date:'yyyy-MM-dd' }}</span>
                 <div ng-show="editState" class="span2">Enddate:</div>
-                <input ng-show="editState" class="form-control" type="date" ng-model="item.endDate">
+                <input ng-show="editState" class="form-control" type="date" ng-model="conference.endDate">
             </p>
                 <p>
-                    <a ng-show="!editState" href="item.infolink"><spanclass="label label-info">{{item.infolink}}</span></a>
+                    <a ng-show="!editState" href="conference.infolink"><spanclass="label label-info">{{conference.infolink}}</span></a>
                     <div ng-show="editState" class="span2">Infolink:</div>
-                    <input ng-show="editState" class="form-control" type="text" ng-model="item.infolink">
+                    <input ng-show="editState" class="form-control" type="text" ng-model="conference.infolink">
                 </p>
             <p>
-                <a class="btn" href="#/tracks/{{item.id}}"><i class="icon-road"></i> Tracks</a>
+                <a class="btn" href="#/tracks/{{conference.id}}"><i class="icon-road"></i> Tracks</a>
             </p>
             </div>
         </div>
@@ -75,12 +75,12 @@
     </div>-->
 
     <div class="thumbnails">
-    <div ng-repeat="item in items | filter:searchText" class="panel panel-primary" ng-controller="editConference">
+    <div ng-repeat="conference in conferences | filter:searchText" class="panel panel-primary" ng-controller="editConference">
         
             <div class="panel-heading">
                 <div class="title">
                 <i class="icon-calendar"></i>
-                {{item.name}}
+                {{conference.name}}
                
                 </div>
             </div>
@@ -88,58 +88,58 @@
                 <form name="form" class="form">
                     <div class="form-group">
                         <label class="control-label">Name</label>
-                        <input class="form-control" type="text" placeholder="insert Name" ng-model="item.name" required>
+                        <input class="form-control" type="text" placeholder="insert Name" ng-model="conference.name" required>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Description</label>
-                        <textarea class="form-control" ng-model="item.description" rows="3" required></textarea>
+                        <textarea class="form-control" ng-model="conference.description" rows="3" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Location</label>
-                        <input class="form-control" type="text" placeholder="insert Location" ng-model="item.location" required>
+                        <input class="form-control" type="text" placeholder="insert Location" ng-model="conference.location" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Startdate</label>
-                        <input class="form-control" type="date" placeholder="insert Date" ng-model="item.startDate" required>
+                        <input class="form-control" type="date" placeholder="insert Date" ng-model="conference.startDate" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Enddate</label>
-                        <input class="form-control" type="date" placeholder="insert Date" ng-model="item.endDate" required>
+                        <input class="form-control" type="date" placeholder="insert Date" ng-model="conference.endDate" required>
                     </div>
                      <div class="form-group">
                         <label class="control-label">Infolink</label>
-                        <input class="form-control" type="url" placeholder="insert Link" ng-model="item.infolink">
+                        <input class="form-control" type="url" placeholder="insert Link" ng-model="conference.infolink">
                     </div>
 
                      <div class="btn-group">
                 <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-2x icon-save"></i></button>
-                <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                <button class="btn btn-danger" ng-click="deleteConference(conference.id,$index)"><i class="icon-2x icon-trash"></i></button>
                 </div>
 
                 </form>
             </div>
             <div ng-show="!editState"class="panel-body"> 
                
-                <div class="well well-sm" ng-show="!editState">{{ item.description }}</div>
+                <div class="well well-sm" ng-show="!editState">{{ conference.description }}</div>
                 <p>
-                    <span class="label label-primary">{{item.location}}</span>
+                    <span class="label label-primary">{{conference.location}}</span>
                 </p>
                 <p>
-                    <span class="label label-primary">From {{ item.startDate  | date:'yyyy-MM-dd' }} </span>
+                    <span class="label label-primary">From {{ conference.startDate  | date:'yyyy-MM-dd' }} </span>
                 </p>
                  <p>
-                    <span class="label label-primary">to {{ item.endDate | date:'yyyy-MM-dd' }}</span>
+                    <span class="label label-primary">to {{ conference.endDate | date:'yyyy-MM-dd' }}</span>
                 </p>
                     <p>
-                        <a href="{{item.infolink}}"><span class="label label-primary">{{item.infolink}}</span></a>
+                        <a href="{{conference.infolink}}"><span class="label label-primary">{{conference.infolink}}</span></a>
                     </p>
                 <p>
-                    <a class="btn" href="#/tracks/{{item.id}}"><i class="icon-road"></i> Tracks</a>
+                    <a class="btn" href="#/tracks/{{conference.id}}"><i class="icon-road"></i> Tracks</a>
                 </p>
                  <div class="btn-group">
-                <button class="btn" ng-click="edit($index)"><i class="icon-2x icon-pencil"></i></button>
-                <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
+                <button class="btn btn-danger" ng-click="deleteConference(conference.id,$index)"><i class="icon-trash"></i></button>
                 </div>
             </div>
             

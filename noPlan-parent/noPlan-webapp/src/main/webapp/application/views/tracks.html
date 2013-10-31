@@ -4,12 +4,12 @@
     <h2><i class="icon-road"></i> Tracks</h2>
 
     <div class="thumbnails">
-        <div ng-repeat="item in items | filter:searchText" class="panel panel-primary" ng-controller="editTrack">
+        <div ng-repeat="track in tracks | filter:searchText" class="panel panel-primary" ng-controller="editTrack">
 
             <div class="panel-heading">
                 <div class="title">
                     <i class="icon-road"></i>
-                    {{item.name}}
+                    {{track.name}}
 
                 </div>
             </div>
@@ -17,42 +17,45 @@
                 <form name="form" class="form">
                     <div class="form-group">
                         <label class="control-label">Name</label>
-                        <input class="form-control" type="text" placeholder="insert Name" ng-model="item.name" required>
+                        <input class="form-control" type="text" placeholder="insert Name" ng-model="track.name" required>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Description</label>
-                        <textarea class="form-control" ng-model="item.description" rows="3" required></textarea>
+                        <textarea class="form-control" ng-model="track.description" rows="3" required></textarea>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Location</label>
-                        <input class="form-control" type="text" placeholder="insert Location" ng-model="item.location" required>
+                        <input class="form-control" type="text" placeholder="insert Location" ng-model="track.location" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Recourse</label>
-                        <input class="form-control" type="text" placeholder="insert Date" ng-model="item.resource" required>
+                        <input class="form-control" type="text" placeholder="insert Date" ng-model="track.resource" required>
                     </div>
                     <div class="btn-group">
-                        <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-2x icon-save"></i></button>
-                        <button class="btn btn-danger" ng-click="deleteConference(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                        <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-save"></i></button>
+                        <button class="btn btn-danger" ng-click="deleteConference(track.id,$index)"><i class="icon-trash"></i></button>
                     </div>
 
                 </form>
             </div>
             <div ng-show="!editState"class="panel-body">
 
-                <div class="well well-sm" ng-show="!editState">{{ item.description }}</div>
+                <div class="well well-sm" ng-show="!editState">{{ track.description }}</div>
                 <p>
-                    <span class="label label-primary">{{item.location}}</span>
+                    <span class="label label-primary">{{track.location}}</span>
                 </p>
                 <p>
-                    <span class="label label-primary">{{item.resource}}</span>
+                    <span class="label label-primary">{{track.resource}}</span>
                 </p>
 
                 <div class="btn-group">
                     <button class="btn" ng-click="edit($index)"><i class="icon-2x icon-pencil"></i></button>
-                    <button class="btn btn-danger" ng-click="deleteTrack(item.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteTrack(track.id,$index)"><i class="icon-2x icon-trash"></i></button>
                 </div>
+                <ng-include src="'views/event.html'"></ng-include>
+
+
             </div>
 
             <div class="panel-footer">
@@ -62,38 +65,7 @@
     </div>
     <button class="btn" ng-click="add()"><i class="icon-plus"></i> Create</button>
     <button class="btn btn-danger" ng-click="getTracks()"><i class="icon-refresh"></i> Load</button>
-    <div class="info">{{ status }}</div>
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                            Collapsible Group Item #1
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                            Collapsible Group Item #2
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
 

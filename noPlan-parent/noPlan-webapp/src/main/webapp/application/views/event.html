@@ -1,0 +1,14 @@
+<div ng-controller="EventsCtrl">
+<h2 >Events for track {{trackId}}</h2>
+<div class="row">
+    <div ng-repeat="event in events" class="col-6 col-sm-6 col-lg-4">
+        <h4>{{event.name}}</h4>
+        <p>{{event.description}}</p>
+        <p>{{event.presenter}}</p>
+        <p>{{event.startdate}}</p>
+        <p>{{event.enddate}}</p>
+        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    </div><!--/span-->
+</div><!--/row-->
+<button class="btn" ng-click="addEvent()"><i class="icon-plus"></i> Create</button>
+</div>

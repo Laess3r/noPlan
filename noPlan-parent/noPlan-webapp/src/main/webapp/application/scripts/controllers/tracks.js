@@ -5,17 +5,17 @@ angular.module('mytodoApp')
     .controller('TracksCtrl',function ($routeParams,$scope,$modal,$log,dataFactory) {
         console.log('init TrackCtrl',$routeParams);
         $scope.conferenceId = $routeParams.id;
-        $scope.items = [];
+        $scope.tracks = [];
 
         $scope.add = function() {
-            var item= {
+            var track= {
                 name:"",
                 description:"",
                 location:"",
                 resource:""
             };
 
-            $scope.items.push(item);
+            $scope.tracks.push(track);
 
 
         }
@@ -26,7 +26,7 @@ angular.module('mytodoApp')
             console.log('getTracks')
             dataFactory.getTracks($scope.conferenceId)
                 .success(function (data) {
-                    $scope.items = data;
+                    $scope.tracks = data;
                 	console.log(data)
                 })
                 .error(function (error) {
@@ -38,7 +38,7 @@ angular.module('mytodoApp')
             data.conferenceId=$scope.conferenceId;
             dataFactory.insertTrack(data)
                 .success(function (data) {
-                    $scope.items.push(data);
+                    $scope.tracks.push(data);
                     console.log(data)
                 })
                 .error(function (error) {
@@ -50,10 +50,10 @@ angular.module('mytodoApp')
             data.conferenceId=$scope.conferenceId;
             dataFactory.updateTrack(data)
                 .success(function (data) {
-                    var len = $scope.items.length;
+                    var len = $scope.tracks.length;
                     for(var i=0;i<len;i++){
-                        if(data.id===$scope.items[i].id){
-                            $scope.items[i]=data;
+                        if(data.id===$scope.tracks[i].id){
+                            $scope.tracks[i]=data;
                             break;
                         }
                     }
@@ -67,7 +67,7 @@ angular.module('mytodoApp')
         $scope.deleteTrack = function(id,index) {
             dataFactory.deleteTrack(id)
                 .success(function (data) {
-                    $scope.items.splice(index,1);
+                    $scope.tracks.splice(index,1);
                     console.log("Delete",data,'@',index);
                 })
                 .error(function (error) {
