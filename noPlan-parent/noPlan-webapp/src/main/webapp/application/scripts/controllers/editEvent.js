@@ -2,7 +2,7 @@
 
 console.log('init edit');
 angular.module('mytodoApp')
-    .controller('editevent',function ($scope,$modal,$log,dataFactory) {
+    .controller('editEvent',function ($scope,$modal,$log,dataFactory) {
         console.log('init EditCtrl',$scope.event.id);
         $scope.editState = false;
 
@@ -22,11 +22,11 @@ angular.module('mytodoApp')
             if(!$scope.editState){
                 var event=$scope.events[$index];
                 if(event.id===undefined){
-                    $scope.insertevent(event);
+                    $scope.insertEvent(event);
                     //$scope.insertConference({name:event.name,description:event.description})
                 }
                 else{
-                    $scope.updateevent(event);
+                    $scope.updateEvent(event);
                     //$scope.updateConference({id:event.id,name:event.name,description:event.description})
                 }
 

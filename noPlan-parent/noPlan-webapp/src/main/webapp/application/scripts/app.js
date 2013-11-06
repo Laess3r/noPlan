@@ -67,4 +67,28 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
                         };
                     };
                     $httpProvider.responseInterceptors.push(interceptor);
-  }]);
+  }]).run(function($rootScope,$location,$http,dataFactory){
+        console.log("Run App");
+        var user={
+            username: "Admin",
+            password: "admin"
+        };
+        dataFactory.authenticateUser(user)
+            .success(function (user) {
+                //$scope.status = 'Success! '+user.username+' is now logged in! (Token: "'+user.token+ '" )';
+                $rootScope.user = user;
+                //$scope.user = user;
+
+                $http.defaults.headers.common['Auth-Token'] = user.token;
+
+                $rootScope.loggedIn = true;
+                console.log("logged in")
+                //$location.path("/main");
+
+            })
+            .error(function (error) {
+                //$scope.status = 'Login failed:' + error.message;
+                $rootScope.loggedIn = false;
+            });
+
+    });

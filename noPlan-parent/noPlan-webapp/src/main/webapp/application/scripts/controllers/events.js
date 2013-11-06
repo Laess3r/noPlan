@@ -11,11 +11,11 @@ angular.module('mytodoApp')
         $scope.events = [];
 
         $scope.addEvent = function() {
+            console.log("Add Event")
             var track= {
                 name:"Name",
                 description:"Desc",
-                location:"",
-                resource:""
+                location:""
             };
 
             $scope.events.push(track);

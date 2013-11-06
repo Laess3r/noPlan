@@ -2,7 +2,7 @@
 
 angular.module('mytodoApp')
 .controller('LoginCtrl',function ($scope,$modal,$log,$http,$rootScope,$location,dataFactory) {
-        	
+        	console.log("login Controller");
         	$rootScope.loggedIn = false;
         	
             $scope.login = function(user) {

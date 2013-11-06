@@ -1,14 +1,62 @@
 <div ng-controller="EventsCtrl">
-<h2 >Events for track {{trackId}}</h2>
+<h2 >Events</h2>
 <div class="row">
-    <div ng-repeat="event in events" class="col-6 col-sm-6 col-lg-4">
-        <h4>{{event.name}}</h4>
-        <p>{{event.description}}</p>
-        <p>{{event.presenter}}</p>
-        <p>{{event.startdate}}</p>
-        <p>{{event.enddate}}</p>
-        <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-    </div><!--/span-->
-</div><!--/row-->
+    <div ng-repeat="event in events "class="col-6 col-sm-6 col-lg-4" ng-controller="editEvent">
+
+        <div class="thumbnail">
+            <div class="caption">
+                <h3>
+                    <i class="icon-rocket"></i>
+                    {{event.name}}
+                </h3>
+                <div ng-show="editState"class="panel-body">
+                    <form name="form" class="form">
+                        <div class="form-group">
+                            <label class="control-label">Name</label>
+                            <input class="form-control" type="text" placeholder="insert Name" ng-model="event.name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea class="form-control" ng-model="event.description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Presenter</label>
+                            <input class="form-control" type="text" placeholder="Presenter" ng-model="event.presenter" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">From</label>
+                            <input class="form-control" type="date" placeholder="insert Time" ng-model="event.startdate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">to</label>
+                            <input class="form-control" type="date" placeholder="insert Time" ng-model="event.enddate" required>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-save"></i></button>
+                            <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>
+                        </div>
+
+                    </form>
+                </div>
+                <div ng-show="!editState"class="panel-body">
+
+                    <div class="well well-sm" ng-show="!editState">{{event.description}}</div>
+                    <p>
+                        <span class="label label-primary">{{event.presenter}}</span>
+                    </p>
+                    <p>
+                        <span class="label label-primary">{{event.startdate}} to {{event.enddate}}</span>
+                    </p>
+
+                    <div class="btn-group">
+                        <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
+                        <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <button class="btn" ng-click="addEvent()"><i class="icon-plus"></i> Create</button>
 </div>

@@ -30,6 +30,11 @@ body {
     background-color: #ffffff;
 }
 
+.thumbnail {
+    background-color: #e2e2e2;
+
+}
+
 .form input.ng-invalid.ng-dirty {
         background-color: #FA787E;
       }
