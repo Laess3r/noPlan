@@ -64,9 +64,5 @@ angular.module('mytodoApp')
             return $http.post(urlBase + '/user/authenticate', id);
         };
 
-        dataFactory.checkSession = function (id) {
-            return $http.get(urlBase + '/info/checksession');
-        }
-
         return dataFactory;
     }]);
