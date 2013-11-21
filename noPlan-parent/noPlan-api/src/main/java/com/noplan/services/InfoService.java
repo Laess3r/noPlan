@@ -17,7 +17,7 @@ public interface InfoService {
 	 */
 	@GET
 	@Path("/checksession")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
 	String isSessionValid();
 
 }
