@@ -10,10 +10,13 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.noplan.UserRoles;
 import com.noplan.data.ConferenceDTO;
 import com.noplan.data.EventDTO;
 import com.noplan.data.TrackDTO;
+import com.noplan.data.UserDTO;
 import com.noplan.persistence.repositories.AbstractRepository;
+import com.noplan.persistence.repositories.UserRepository;
 
 /**
  * Service to create some dummy data for testing!
@@ -34,6 +37,36 @@ public class TestDataDummyService extends AbstractRepository {
 
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@GET
+	@Path("/createadmin")
+	@Produces(MediaType.TEXT_HTML)
+	public String createAdminUser() {
+		
+		if(userService.getUserByUsername("admin") != null){
+			return "admin already exists";
+		}
+		
+		UserDTO admin = new UserDTO();
+		admin.setFirstname("Administrator");
+		admin.setLastname("Chief");
+		admin.setUsername("admin");
+		admin.setPassword("admin");
+		admin.setEnabled(true);
+		admin.setEmail("admin@admin.com");
+		
+		admin = userService.createUser(admin);
+		
+		userRepository.addRoleToUser(admin.getId(), UserRoles.ADMIN_ROLE);
+		
+		return "admin created";
+	}
 
 	@GET
 	@Path("/all")

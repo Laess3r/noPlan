@@ -36,8 +36,8 @@ public class UserEntity extends AbstractEntity {
 	/**
 	 * This field can only be set via database
 	 */
-	@Column(name = "ISADMINISTRATOR")
-	private Boolean isadministrator;
+	@Column(name = "ENABLED")
+	private Boolean enabled;
 
 	@Column(name = "FIRSTNAME", nullable = false, length = 50)
 	private String firstname;
@@ -66,7 +66,7 @@ public class UserEntity extends AbstractEntity {
 		dTo.setFirstname(getFirstname());
 		dTo.setLastname(getLastname());
 		dTo.setEmail(getEmail());
-		dTo.setIsadministrator(getIsadministrator());
+		dTo.setEnabled(getEnabled());
 
 		return dTo;
 	}
@@ -80,9 +80,7 @@ public class UserEntity extends AbstractEntity {
 		setFirstname(userDTO.getFirstname());
 		setLastname(userDTO.getLastname());
 		setEmail(userDTO.getEmail());
-
-		// not implemented for security reasons!
-		// setIsadministrator();
+		setEnabled(userDTO.getEnabled());
 	}
 
 	public Long getId() {
@@ -109,12 +107,12 @@ public class UserEntity extends AbstractEntity {
 		this.password = password;
 	}
 
-	public Boolean getIsadministrator() {
-		return isadministrator;
+	public Boolean getEnabled() {
+		return enabled;
 	}
 
-	public void setIsadministrator(Boolean isadministrator) {
-		this.isadministrator = isadministrator;
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getFirstname() {

@@ -21,6 +21,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 		<property name="annotatedClasses">
 			<list>
 				<value>com.noplan.persistence.entity.UserEntity</value>
+				<value>com.noplan.persistence.entity.UserRoleEntity</value>
 				<value>com.noplan.persistence.entity.ConferenceEntity</value>
 				<value>com.noplan.persistence.entity.TrackEntity</value>
 				<value>com.noplan.persistence.entity.EventEntity</value>

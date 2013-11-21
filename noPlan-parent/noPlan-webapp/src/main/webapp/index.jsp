@@ -30,14 +30,14 @@
 	<h2>* User related data</h2>
 
 	<div>
-		<a href="/noPlan-webapp/rest/user/createold/test/1234">
-			<h3>Create user name="test" pw="1234" (old way, via get.. will be removed soon)</h3>
+		<a href="/noPlan-webapp/rest/testdata/createadmin">
+			<h3>Create user admin/admin with role "admin"</h3>
 		</a>
 	</div>
 
 	<div>
-		<a href="/noPlan-webapp/rest/user/name/test">
-			<h3>Try loading user with name "test"</h3>
+		<a href="/noPlan-webapp/rest/user/name/admin">
+			<h3>Try loading user with name "admin"</h3>
 		</a>
 	</div>
 

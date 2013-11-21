@@ -9,10 +9,22 @@
 
         <security:authentication-manager id="authenticationManager">
             <security:authentication-provider>
-                <security:user-service id="userService">
-                    <security:user name="admin" password="admin" authorities="admin, user" />
-                    <security:user name="user" password="user" authorities="user" />
-                </security:user-service>
+            
+			<security:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="
+ 				      select username,password,enabled  
+ 				      from TBLUSER where username=?" 
+		
+				authorities-by-username-query="
+				      select u.username, ur.authority from TBLUSER u, TBLUSERROLE ur 
+				      where u.ID = ur.FK_USER and u.username =?" />
+
+<!-- 			<security:password-encoder hash="sha" /> -->
+			
+			 
+<!-- ShaPasswordEncoder.encodePassword(..) -->
+			
+
             </security:authentication-provider>
         </security:authentication-manager>
 
@@ -25,10 +37,11 @@
                 authentication-manager-ref="authenticationManager">
             <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
             <security:intercept-url pattern="/rest/user/**" access="permitAll" />
-            <security:intercept-url method="GET" pattern="/rest/**" access="hasRole('user')" />
-            <security:intercept-url method="PUT" pattern="/rest/**" access="hasRole('admin')" />
-            <security:intercept-url method="POST" pattern="/rest/**" access="hasRole('admin')" />
-            <security:intercept-url method="DELETE" pattern="/rest/**" access="hasRole('admin')" />
+            <security:intercept-url pattern="/rest/testdata/**" access="permitAll" />
+            <security:intercept-url method="GET" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" /> <!-- access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />-->
+            <security:intercept-url method="PUT" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
+            <security:intercept-url method="POST" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
+            <security:intercept-url method="DELETE" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
         </security:http>
 
         <bean id="unauthorizedEntryPoint" class="com.noplan.security.UnauthorizedEntryPoint" />
