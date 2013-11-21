@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init app');
-angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
+angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule','ngCookies'])
   .config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     console.log('routeProvider');
     var baseUrl="application/";
@@ -67,9 +67,10 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
                         };
                     };
                     $httpProvider.responseInterceptors.push(interceptor);
-  }]).run(function($rootScope,$location,$http,dataFactory){
+  }]).run(function($rootScope,$location,$http,$cookies, dataFactory){
         console.log("Run App");
         var user={
+<<<<<<< HEAD
             username: "Admin",
             password: "admin"
         };
@@ -90,5 +91,30 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule'])
 //                //$scope.status = 'Login failed:' + error.message;
 //                $rootScope.loggedIn = false;
 //            });
+=======
+                    };
+        if($cookies.token !== undefined){
+            $rootScope.token=$cookies.token;
+
+            $http.defaults.headers.common['Auth-Token'] = $cookies.token;
+            dataFactory.checkSession()
+                .success(function () {
+                    console.log('Success! '+user.username+' is now logged in! (Token: "'+user.token+ '" )');
+                    user.username = $rootScope.token.split(':')[0];
+                    $rootScope.user = user;
+                    //$scope.user = user;
+
+                    $rootScope.loggedIn = true;
+                    console.log("logged in")
+                    //$location.path("/main");
+
+                })
+                .error(function (error) {
+                    console.log('Login failed:' + error.message);
+                    $rootScope.loggedIn = false;
+                    $location.path("/login");
+                });
+        }
+>>>>>>> 71f95501dd98309d1dc9821458d1b414d7832d86
 
     });
