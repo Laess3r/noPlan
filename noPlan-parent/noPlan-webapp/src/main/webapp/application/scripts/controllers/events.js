@@ -2,7 +2,7 @@
 
 console.log('init event');
 angular.module('mytodoApp')
-    .controller('EventsCtrl',function ($routeParams,$scope,$modal,$log,dataFactory) {
+    .controller('EventsCtrl',function ($routeParams,$scope,$log,dataFactory) {
         $scope.trackId=$scope.track.id;
 
         console.log('init EventCtrl',$scope);

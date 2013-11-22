@@ -2,7 +2,7 @@
 
 console.log('init track');
 angular.module('mytodoApp')
-    .controller('TracksCtrl',function ($routeParams,$scope,$modal,$log,dataFactory) {
+    .controller('TracksCtrl',function ($routeParams,$scope,$log,dataFactory) {
         console.log('init TrackCtrl',$routeParams);
         $scope.conferenceId = $routeParams.id;
         $scope.tracks = [];

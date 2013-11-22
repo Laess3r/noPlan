@@ -2,7 +2,7 @@
 
 console.log('init menu');
 angular.module('mytodoApp')
-    .controller('NavbarCtrl',function ($scope, $location,$route,$rootScope,$http) {
+    .controller('NavbarCtrl',function ($scope, $location,$route,$rootScope,$http,$cookies,dataFactory) {
     	
         $scope.breadcrumbs = [
 
@@ -61,5 +61,8 @@ angular.module('mytodoApp')
           return viewLocation === $location.path();
 
         };
+
+
+
 
     });

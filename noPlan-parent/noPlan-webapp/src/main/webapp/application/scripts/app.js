@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init app');
-angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule','ngCookies'])
+angular.module('mytodoApp', ['ui','LocalStorageModule','ngCookies'])
   .config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     console.log('routeProvider');
     var baseUrl="application/";
@@ -68,15 +68,30 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule','ngCookies
                     };
                     $httpProvider.responseInterceptors.push(interceptor);
   }]).run(function($rootScope,$location,$http,$cookies, dataFactory){
+
+
         console.log("Run App");
+
         var user={
-                    };
+        };
         if($cookies.token !== undefined){
             $rootScope.token=$cookies.token;
 
             $http.defaults.headers.common['Auth-Token'] = $cookies.token;
+            dataFactory.getConferences()
+                .success(function (data) {
+                    console.log('Success!');
+
+
+                })
+                .error(function (error) {
+                    console.log('Login failed:' + error.message);
+
+                });
+
+
             dataFactory.checkSession()
-                .success(function () {
+                .success(function (data) {
                     console.log('Success! '+user.username+' is now logged in! (Token: "'+user.token+ '" )');
                     user.username = $rootScope.token.split(':')[0];
                     $rootScope.user = user;
@@ -93,5 +108,6 @@ angular.module('mytodoApp', ['ui','ui.bootstrap','LocalStorageModule','ngCookies
                     $location.path("/login");
                 });
         }
+
 
     });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mytodoApp')
-.controller('LoginCtrl',function ($scope,$modal,$log,$http,$rootScope,$location,dataFactory) {
+.controller('LoginCtrl',function ($scope,$log,$http,$rootScope,$cookies,$location,dataFactory) {
         	console.log("login Controller");
         	$rootScope.loggedIn = false;
         	
@@ -13,6 +13,8 @@ angular.module('mytodoApp')
                         $scope.user = user;
 
                         $http.defaults.headers.common['Auth-Token'] = user.token;
+                        console.log("token",user.token);
+                        $cookies.token=user.token;
                         
                         $rootScope.loggedIn = true;
                         
@@ -34,4 +36,8 @@ angular.module('mytodoApp')
                  $location.path("/main");
                  
             }
+
+
+
+
     });

@@ -2,7 +2,7 @@
 
 console.log('init conference');
 angular.module('mytodoApp')
-    .controller('ConferencesCtrl',function ($scope,$modal,$log,dataFactory) {
+    .controller('ConferencesCtrl',function ($scope,$log,dataFactory) {
         console.log('init ConferenceCtrl');
 
         $scope.conferences = [];
@@ -22,37 +22,7 @@ angular.module('mytodoApp')
 
 
         }
-        $scope.open = function (index) {
-            console.log("index",index);
 
-
-
-            var modalInstance = $modal.open({
-                templateUrl: 'views/newConference.html',
-                controller: ModalConferenceCtrl,
-                resolve: {
-                    conferences: function () {
-                        return $scope.conferences;
-                    },
-                    conference: function () {
-                        return $scope.conferences[index];
-                    }
-                }
-            });
-
-            modalInstance.result.then(function (conference) {
-                if(conference.id===undefined){
-                    $scope.insertConference(conference);
-                    //$scope.insertConference({name:conference.name,description:conference.description})
-                }
-                else{
-                    $scope.updateConference(conference);
-                    //$scope.updateConference({id:conference.id,name:conference.name,description:conference.description})
-                }
-            }, function () {
-                $log.info('Modal dismissed at: ' + new Date());
-            });
-        };
 
 
         $scope.getConferences = function() {

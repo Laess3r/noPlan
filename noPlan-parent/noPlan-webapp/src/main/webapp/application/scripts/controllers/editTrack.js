@@ -2,7 +2,7 @@
 
 console.log('init edit');
 angular.module('mytodoApp')
-    .controller('editTrack',function ($scope,$modal,$log,dataFactory) {
+    .controller('editTrack',function ($scope,$log,dataFactory) {
         console.log('init EditCtrl',$scope.track.id);
         $scope.editState = false;
 
