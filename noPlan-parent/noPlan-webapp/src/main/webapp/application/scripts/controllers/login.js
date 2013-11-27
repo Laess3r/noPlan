@@ -4,6 +4,7 @@ angular.module('mytodoApp')
 .controller('LoginCtrl',function ($scope,$log,$http,$rootScope,$cookies,$location,dataFactory) {
         	console.log("login Controller");
         	$rootScope.loggedIn = false;
+            $scope.remember=false;
         	
             $scope.login = function(user) {
                 dataFactory.authenticateUser(user)
@@ -14,8 +15,13 @@ angular.module('mytodoApp')
 
                         $http.defaults.headers.common['Auth-Token'] = user.token;
                         console.log("token",user.token);
-                        $cookies.token=user.token;
-                        
+                        if($scope.remember){
+                            $cookies.token=user.token;
+                        }
+
+                        else{
+                            $cookies.token=undefined;
+                        }
                         $rootScope.loggedIn = true;
                         
                         $location.path("/main");
