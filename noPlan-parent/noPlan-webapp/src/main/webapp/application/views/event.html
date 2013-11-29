@@ -26,16 +26,16 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Day</label>
-                            <select ng-model="color" ng-options="day.date for day in time"></select><br>
+                            <select ng-model="times" ng-options="day.date for day in time"></select><br>
                         </div>
-
-                        <div class="form-group">
-                            <label class="control-label">From</label>
-                            <input class="form-control" type="date" placeholder="insert Time" ng-model="event.startdate" required>
+						<div class="form-group">
+                            <label class="control-label">from</label>
+                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched.start" required>
                         </div>
+                        
                         <div class="form-group">
                             <label class="control-label">to</label>
-                            <input class="form-control" type="date" placeholder="insert Time" ng-model="event.enddate" required>
+                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched.end" required>
                         </div>
                         <div class="btn-group">
                             <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-save"></i></button>

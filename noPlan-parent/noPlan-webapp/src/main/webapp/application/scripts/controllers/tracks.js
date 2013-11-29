@@ -86,7 +86,7 @@ angular.module('mytodoApp')
         	   while (currentDate <= stopDate) {
         		   console.log(currentDate);
         	        $scope.time.push( {date:currentDate.toUTCString()} );
-        	        currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate()+1);        	   }
+        	        currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate ()+1);        	   }
             })
             .error(function (error) {
                 $scope.status = 'Unable to load conference data: ' + error.message;

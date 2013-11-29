@@ -4,6 +4,8 @@ console.log('init event');
 angular.module('mytodoApp')
     .controller('EventsCtrl',function ($routeParams,$scope,$log,dataFactory) {
         $scope.trackId=$scope.track.id;
+        $scope.sched = {};
+        $scope.times = {};
 
         console.log('init EventCtrl',$scope);
         $scope.days =[
@@ -15,6 +17,31 @@ angular.module('mytodoApp')
 
         $scope.events = [];
 
+        var setTimes = function(data){
+        	console.log("setTimes", data);
+            var date = new Date(data.startDate)
+            console.log(date);
+            $scope.sched.start = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
+            date = new Date(data.endDate)
+            $scope.sched.end = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
+        }
+
+        $scope.getTimes = function(data){
+            var date = new Date(data.startdate);
+            var time = $scope.sched.start.split(':');
+            date.setHours(parseInt(time[0]))
+            date.setMinutes(parseInt(time[1]));
+            data.startdate = date;
+            
+            date = new Date(data.enddate);
+            time = $scope.sched.end.split(':');
+            date.setHours(parseInt(time[0]));
+            date.setMinutes(parseInt(time[1]));
+            data.enddate = date;
+            console.log(date);
+            return data;
+            
+        }
         $scope.addEvent = function() {
             console.log("Add Event")
             var track= {
@@ -33,7 +60,9 @@ angular.module('mytodoApp')
         $scope.getEvents = function() {
             dataFactory.getEvents($scope.trackId)
                 .success(function (data) {
+                	console.log(data);
                     $scope.events = data;
+                    setTimes(data);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load event data: ' + error.message;
@@ -42,9 +71,13 @@ angular.module('mytodoApp')
 
         $scope.insertEvent = function(data) {
             data.trackId=$scope.trackId;
+            console.log(data);
+            $scope.getTimes(data);
+            console.log(data);
             dataFactory.insertEvent(data)
                 .success(function (data) {
                     $scope.events.push(data);
+                    setTimes(data);
                     console.log(data)
                 })
                 .error(function (error) {
@@ -54,12 +87,17 @@ angular.module('mytodoApp')
 
         $scope.updateEvent = function(data) {
             data.trackId=$scope.trackId;
+            console.log(data);
+            $scope.getTimes(data);
+            console.log(data);
             dataFactory.updateEvent(data)
                 .success(function (data) {
                     var len = $scope.events.length;
                     for(var i=0;i<len;i++){
                         if(data.id===$scope.events[i].id){
                             $scope.events[i]=data;
+                            setTimes(data);
+
                             break;
                         }
                     }
@@ -83,6 +121,8 @@ angular.module('mytodoApp')
         
         
         $scope.getEvents();
+
+
         
 
     })
