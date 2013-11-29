@@ -5,11 +5,24 @@ angular.module('mytodoApp')
     .controller('editEvent',function ($scope,$log,dataFactory) {
         console.log('init EditCtrl',$scope.event.id);
         $scope.editState = false;
+        $scope.times = {};
 
         if($scope.event.id === undefined){
             $scope.editState=true;
         }
 
+        var tmpdate =  new Date($scope.event.startdate);
+        for(var i=0;i<$scope.time.length;i++){
+        	var d = new Date($scope.time[i].date);
+        	if(d.getDate()===tmpdate.getDate()){
+        		$scope.times.date = $scope.time[i].date;
+        		break;
+        	}
+        	
+        	
+        	
+        }
+        
         $scope.$watch('times', function() {
         	 console.log($scope.event);
         	 $scope.event.startdate = $scope.event.enddate = new Date($scope.times.date);

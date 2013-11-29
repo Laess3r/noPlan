@@ -26,7 +26,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Day</label>
-                            <select ng-model="times" ng-options="day.date for day in time"></select><br>
+                            <select class="form-control" ng-model="times" ng-options="day.date for day in time" reqired></select><br>
                         </div>
 						<div class="form-group">
                             <label class="control-label">from</label>
@@ -51,7 +51,7 @@
                         <span class="label label-primary">{{event.presenter}}</span>
                     </p>
                     <p>
-                        <span class="label label-primary">{{event.startdate}} to {{event.enddate}}</span>
+                        <span class="label label-primary">From {{sched.start}} to {{sched.end}}</span>
                     </p>
 
                     <div class="btn-group">

@@ -18,12 +18,13 @@ angular.module('mytodoApp')
         $scope.events = [];
 
         var setTimes = function(data){
-        	console.log("setTimes", data);
-            var date = new Date(data.startDate)
+        	console.log("setTimes", data.startdate);
+            var date = new Date(data.startdate)
             console.log(date);
             $scope.sched.start = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
-            date = new Date(data.endDate)
+            date = new Date(data.enddate)
             $scope.sched.end = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
+           
         }
 
         $scope.getTimes = function(data){
@@ -60,9 +61,15 @@ angular.module('mytodoApp')
         $scope.getEvents = function() {
             dataFactory.getEvents($scope.trackId)
                 .success(function (data) {
+                	
+                	for(var item=0;item<data.length;item++){
+                		console.log(data[item].startdate);
+                		setTimes(data[item]);
+                		console.log(new Date(data[item].startdate));
+                	}
                 	console.log(data);
                     $scope.events = data;
-                    setTimes(data);
+                    
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to load event data: ' + error.message;
