@@ -78,6 +78,7 @@ public class EventEntity extends AbstractEntity {
 		dTO.setStartdate(getStartdate());
 		dTO.setEnddate(getEnddate());
 		dTO.setInfolink(getInfolink());
+		dTO.setDescription(getDescription());
 
 		return dTO;
 	}
