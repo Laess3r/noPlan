@@ -6,7 +6,12 @@ angular.module('mytodoApp')
         $scope.trackId=$scope.track.id;
 
         console.log('init EventCtrl',$scope);
+        $scope.days =[
+            {date:"A"},
+            {date:"B"},
+            {date:"C"}
 
+        ]
 
         $scope.events = [];
 
@@ -75,7 +80,10 @@ angular.module('mytodoApp')
                     $scope.status = 'Unable to delete event data: ' + error.message;
                 });
         }
+        
+        
         $scope.getEvents();
+        
 
     })
     ;
