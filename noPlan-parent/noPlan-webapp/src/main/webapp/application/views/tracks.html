@@ -2,8 +2,69 @@
 
 
     <h2><i class="icon-road"></i> Tracks</h2>
-
-    <div class="thumbnails">
+    <div class="panel-group" id="accordion">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+	          Calendar
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in">
+	      <div class="panel-body">
+          <div class="calendar" ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+	      </div>
+	    </div>
+	  </div>
+	  
+	   <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" data-target="#gantt">
+	          Gantt
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="gantt" class="panel-collapse collapse in">
+	      <div class="panel-body">
+	      <small>Gantt chart for Angular.js by Marco Schweighauser (2013) | MIT License</small>
+	      <gantt 	first-day-of-week="firstDay"
+		           load-data="loadData = fn"
+		           remove-data="removeData = fn"
+		           clear-data="clearData = fn"
+		           sort-mode="mode"
+		           view-scale="scale"
+		           view-scale-factor="scale === 'day' ? 2 : 3"
+		           weekend-days="weekendDays"
+		           show-weekends="showWeekends"
+		           max-height="maxHeight"
+		           on-gantt-ready="addSamples()"
+		           on-row-added="rowEvent(event)"
+		           on-row-clicked="rowEvent(event)"
+		           on-row-updated="rowEvent(event)"
+		           on-scroll="scrollEvent(event)"
+		           on-task-clicked="taskEvent(event)">
+	      </gantt>
+	      </div>
+	    </div>
+	  </div>
+	 
+ 
+  
+  
+  <div class="panel panel-default" ng-repeat="track in tracks" ng-controller="editTrack">
+	    <div class="panel-heading">
+	      <h4 class="panel-title">
+	        <a data-toggle="collapse"  data-target="#{{track.id}}">
+	          {{track.name}}
+	           
+	        </a>
+	      </h4>
+	    </div>
+	    <div id="{{track.id}}" class="panel-collapse collapse in">
+	      <div class="panel-body">
+    <!-- <div class="thumbnails">
         <div ng-repeat="track in tracks | filter:searchText" class="panel panel-primary" ng-controller="editTrack">
 
             <div class="panel-heading">
@@ -12,7 +73,9 @@
                     {{track.name}}
 
                 </div>
-            </div>
+            </div>  -->
+            
+            
             <div ng-show="editState"class="panel-body">
                 <form name="form" class="form">
                     <div class="form-group">
@@ -50,24 +113,27 @@
                 </p>
 
                 <div class="btn-group">
-                    <button class="btn" ng-click="edit($index)"><i class="icon-2x icon-pencil"></i></button>
-                    <button class="btn btn-danger" ng-click="deleteTrack(track.id,$index)"><i class="icon-2x icon-trash"></i></button>
+                    <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
+                    <button class="btn btn-danger" ng-click="deleteTrack(track.id,$index)"><i class="icon-trash"></i></button>
                 </div>
                 <ng-include src="'views/event.html'"></ng-include>
 
 
             </div>
 
-            <div class="panel-footer">
+            
+    
+    
 
-
-        </div>
-    </div>
-    <button class="btn" ng-click="add()"><i class="icon-plus"></i> Create</button>
+ </div>
+ </div>
+</div>
+ </div>
+ 
+ <button class="btn" ng-click="add()"><i class="icon-plus"></i> Create</button>
     <button class="btn btn-danger" ng-click="getTracks()"><i class="icon-refresh"></i> Load</button>
 
 
 
-
-
 </div>
+

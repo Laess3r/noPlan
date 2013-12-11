@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init app');
-angular.module('mytodoApp', ['ngRoute','ui.bootstrap.datetimepicker','LocalStorageModule','ngCookies'])
+angular.module('mytodoApp', ['ngRoute','ui.calendar','gantt','LocalStorageModule','ngCookies'])
   .config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     console.log('routeProvider');
     var baseUrl="application/";

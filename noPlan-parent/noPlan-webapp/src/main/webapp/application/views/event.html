@@ -1,7 +1,7 @@
 <div ng-controller="EventsCtrl">
 <h2 >Events</h2>
 <div class="row">
-    <div ng-repeat="event in events "class="col-6 col-sm-6 col-lg-4" ng-controller="editEvent">
+    <div ng-repeat="event in events "class="col-12 col-sm-12 col-lg-12" ng-controller="editEvent">
 
         <div class="thumbnail">
             <div class="caption">
@@ -51,7 +51,7 @@
                         <span class="label label-primary">{{event.presenter}}</span>
                     </p>
                     <p>
-                        <span class="label label-primary">From {{sched.start}} to {{sched.end}}</span>
+                        <span class="label label-primary">{{event.startdate | date:'yyyy-MM-dd'}} from {{sched.start}} to {{sched.end}}</span>
                     </p>
 
                     <div class="btn-group">

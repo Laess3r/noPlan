@@ -21,9 +21,9 @@ angular.module('mytodoApp')
         	console.log("setTimes", data.startdate);
             var date = new Date(data.startdate)
             console.log(date);
-            $scope.sched.start = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
+            $scope.sched.start = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
             date = new Date(data.enddate)
-            $scope.sched.end = parseInt(date.getHours()) +":"+ parseInt(date.getMinutes());
+            $scope.sched.end = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
            
         }
 
@@ -61,11 +61,18 @@ angular.module('mytodoApp')
         $scope.getEvents = function() {
             dataFactory.getEvents($scope.trackId)
                 .success(function (data) {
-                	
                 	for(var item=0;item<data.length;item++){
                 		console.log(data[item].startdate);
+                		$scope.addEventToCal(data[item]);
+                		$scope.loadData([{
+        					id : $scope.trackId,
+        					tasks : data[item],
+        					}]);
+                						
+                		
                 		setTimes(data[item]);
                 		console.log(new Date(data[item].startdate));
+                		
                 	}
                 	console.log(data);
                     $scope.events = data;
@@ -86,6 +93,7 @@ angular.module('mytodoApp')
                     $scope.events.push(data);
                     setTimes(data);
                     console.log(data)
+                    $scope.addEventToCal(data);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create event data: ' + error.message;
@@ -100,6 +108,7 @@ angular.module('mytodoApp')
             dataFactory.updateEvent(data)
                 .success(function (data) {
                     var len = $scope.events.length;
+                    $scope.replacEventToCal(data)
                     for(var i=0;i<len;i++){
                         if(data.id===$scope.events[i].id){
                             $scope.events[i]=data;
