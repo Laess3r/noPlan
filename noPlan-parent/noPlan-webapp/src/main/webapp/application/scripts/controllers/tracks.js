@@ -16,7 +16,7 @@ angular.module('mytodoApp')
         
         
         $scope.eventRender = function(event, element) {
-        	console.log("RenderEvent")
+        	console.log("RenderEvent",event);
         	element.find('.fc-event-inner').append('<div class"calPres" >' + event.presenter + '</div>');
         	element.find('.fc-event-inner').append('<div class"calDesc" >' + event.description + '</div>');
            
@@ -29,15 +29,16 @@ angular.module('mytodoApp')
             height: 450,
             editable: false,
             firstHour: 6,
+            contentHeight: 800,
             header:{
               left: 'month agendaWeek agendaDay',
               center: 'title',
               right: 'today prev,next'
             },
             dayClick: $scope.alertEventOnClick,
-            eventDrop: $scope.alertOnDrop,
-            eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender
+            //eventResize: $scope.resize,
+            //eventDrop: $scope.drop,
+            eventRender: $scope.eventRender,
           }
           
         };
@@ -126,6 +127,7 @@ angular.module('mytodoApp')
         	        $scope.time.push( {date:currentDate.toUTCString()} );
         	        currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate ()+1);        	   
         	        }
+        	   		$scope.time.splice(0, 1);
         	   		var d= new Date($scope.time[0].date);
         	   		$scope.myCalendar.fullCalendar('gotoDate',d.getFullYear(),d.getMonth(),d.getDate());
             })
@@ -170,9 +172,23 @@ angular.module('mytodoApp')
             }
         }
         
-       
+        $('#collapseOne').on('shown.bs.collapse', function () {
+        	console.log("render")
+        	$scope.myCalendar.fullCalendar('render');
+        })
         
+        $scope.renderCalendar = function(){
+        	console.log("render")
+        	$scope.myCalendar.fullCalendar('render');
+        }
         
+        $scope.drop = function(event){
+        	console.log("Drop",event);
+        }
+        
+        $scope.resize = function(event){
+        	console.log("Resize",event);
+        }
         $scope.getTracks();
         $scope.getConferenceData();
         

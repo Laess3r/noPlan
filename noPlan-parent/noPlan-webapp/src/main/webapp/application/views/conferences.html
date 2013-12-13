@@ -78,11 +78,11 @@
     <div ng-repeat="conference in conferences | filter:searchText" class="panel panel-primary" ng-controller="editConference">
         
             <div class="panel-heading">
-                <div class="title">
+                <h4>
                 <i class="icon-calendar"></i>
                 {{conference.name}}
                
-                </div>
+                </h4>
             </div>
             <div ng-show="editState"class="panel-body"> 
                 <form name="form" class="form">
@@ -120,24 +120,15 @@
                 </form>
             </div>
             <div ng-show="!editState"class="panel-body"> 
+            
+            	<p><strong>Location:</strong> {{conference.location}}</p>
+				<p><strong>From:</strong> {{ conference.startDate  | date:'yyyy-MM-dd' }} <strong>to</strong> {{ conference.endDate | date:'yyyy-MM-dd' }}</p>
+				<p><strong>Description:</strong> {{ conference.description }}</p>
+				<p ng-show=conference.infolink><strong>Infolink:</strong> <a href={{conference.infolink}} >{{conference.infolink}}</a> </p>
                
-                <div class="well well-sm">{{ conference.description }}</div>
-                <p>
-                    <span class="label label-primary">{{conference.location}}</span>
-                </p>
-                <p>
-                    <span class="label label-primary">From {{ conference.startDate  | date:'yyyy-MM-dd' }} </span>
-                </p>
-                 <p>
-                    <span class="label label-primary">to {{ conference.endDate | date:'yyyy-MM-dd' }}</span>
-                </p>
-                    <p>
-                        <a href="{{conference.infolink}}"><span class="label label-primary">{{conference.infolink}}</span></a>
-                    </p>
-                <p>
-                    <a class="btn" href="#/tracks/{{conference.id}}"><i class="icon-road"></i> Tracks</a>
-                </p>
-                 <div class="btn-group">
+               
+                <h4><a class="btn" href="#/tracks/{{conference.id}}"><i class="icon-road"></i> Go to Tracks</a></h4>
+                <div class="btn-group">
                 <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
                 <button class="btn btn-danger" ng-click="deleteConference(conference.id,$index)"><i class="icon-trash"></i></button>
                 </div>

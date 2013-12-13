@@ -15,7 +15,7 @@ angular.module('mytodoApp')
         for(var i=0;i<$scope.time.length;i++){
         	var d = new Date($scope.time[i].date);
         	if(d.getDate()===tmpdate.getDate()){
-        		$scope.times.date = $scope.time[i].date;
+        		$scope.times = $scope.time[i];
         		break;
         	}
         	

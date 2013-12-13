@@ -37,6 +37,10 @@
                             <label class="control-label">to</label>
                             <input class="form-control" type="time" placeholder="insert Time" ng-model="sched.end" required>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label">Infolink</label>
+                            <input class="form-control" type="text" placeholder="Infolink" ng-model="event.infolink">
+                        </div>
                         <div class="btn-group">
                             <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-save"></i></button>
                             <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>
@@ -45,15 +49,16 @@
                     </form>
                 </div>
                 <div ng-show="!editState"class="panel-body">
-
-                    <div class="well well-sm" ng-show="!editState">{{event.description}}</div>
-                    <p>
-                        <span class="label label-primary">{{event.presenter}}</span>
-                    </p>
-                    <p>
-                        <span class="label label-primary">{{event.startdate | date:'yyyy-MM-dd'}} from {{sched.start}} to {{sched.end}}</span>
-                    </p>
-
+                
+                	
+						<p><strong>Presenter:</strong> {{event.presenter}}</p>
+						<p><strong>Date:</strong> {{event.startdate | date:'yyyy-MM-dd'}} <strong>from</strong> {{sched.start}} <strong>to</strong> {{sched.end}}</p>
+						<p>
+						<strong>Description:</strong> {{ event.description }}
+					</p>
+					<p ng-show=event.infolink><strong>Infolink:</strong> <a href={{event.infolink}}>{{event.infolink}}</a> </p>
+				
+					
                     <div class="btn-group">
                         <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
                         <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>

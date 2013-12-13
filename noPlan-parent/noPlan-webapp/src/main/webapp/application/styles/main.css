@@ -31,13 +31,34 @@ body {
 }
 
 .thumbnail {
-    background-color: #e2e2e2;
+    background-color: #FCFAFA;
+    border: 1px solid #dddddd;
 
 }
 
+.panel-primary > .panel-heading {
+	color: #000000;
+	background-color: #dddddd;
+	border-color: #dddddd;
+}
+
+.panel-primary {
+	border-color: #dddddd;
+}
 .form input.ng-invalid.ng-dirty {
         background-color: #FA787E;
       }
+      
+.bs-callout {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #eee;
+}
+
+.bs-callout-info {
+  background-color: #f4f8fa;
+  border-color: #bce8f1;
+}
 
 /*
 Max width before this PARTICULAR table gets nasty

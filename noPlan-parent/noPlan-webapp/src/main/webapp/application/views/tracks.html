@@ -6,12 +6,12 @@
 	  <div class="panel panel-default">
 	    <div class="panel-heading">
 	      <h4 class="panel-title">
-	        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+	        <a data-toggle="collapse" data-target="#collapseOne">
 	          Calendar
 	        </a>
 	      </h4>
 	    </div>
-	    <div id="collapseOne" class="panel-collapse collapse in">
+	    <div id="collapseOne" class="panel-collapse collapse ">
 	      <div class="panel-body">
           <div class="calendar" ng-model="eventSources" calendar="myCalendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
 	      </div>
@@ -19,14 +19,14 @@
 	  </div>
 	  
 	   <div class="panel panel-default">
-	    <div class="panel-heading">
-	      <h4 class="panel-title">
-	        <a data-toggle="collapse" data-parent="#accordion" data-target="#gantt">
+	    <div class="panel-heading" >
+	      <h4 class="panel-title" >
+	        <a data-toggle="collapse" data-target="#gantt">
 	          Gantt
 	        </a>
 	      </h4>
 	    </div>
-	    <div id="gantt" class="panel-collapse collapse in">
+	    <div id="gantt" class="panel-collapse collapse ">
 	      <div class="panel-body">
 	      <small>Gantt chart for Angular.js by Marco Schweighauser (2013) | MIT License</small>
 	      <gantt 	first-day-of-week="firstDay"
@@ -103,14 +103,14 @@
                 </form>
             </div>
             <div ng-show="!editState"class="panel-body">
-
-                <div class="well well-sm" ng-show="!editState">{{ track.description }}</div>
-                <p>
-                    <span class="label label-primary">{{track.location}}</span>
-                </p>
-                <p>
-                    <span class="label label-primary">{{track.resource}}</span>
-                </p>
+				
+				<p></i> <strong>Resource:</strong> {{track.resource}}</p>
+				<p>
+				<strong>Description:</strong> {{ track.description }}
+				</p>
+				
+				
+			
 
                 <div class="btn-group">
                     <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
