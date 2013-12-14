@@ -8,7 +8,7 @@ import org.springframework.security.crypto.codec.Hex;
 
 public class TokenUtils {
 
-	private static final String TOKEN_SALT = "WeH@v€n0?Pl@n!";
+	private static final String TOKEN_SALT = "HeHaveNoPlan";
 
 	public static String createToken(UserDetails userDetails) {
 
