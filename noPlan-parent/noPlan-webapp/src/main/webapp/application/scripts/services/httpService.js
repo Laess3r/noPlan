@@ -3,7 +3,7 @@ angular.module('mytodoApp')
     .factory('dataFactory', ['$http', function($http) {
         console.log("init dataFactory");
 
-        var urlBase = '/noPlan-webapp/rest';
+        var urlBase = '/rest';
         var dataFactory = {};
 
         var param = {params:{user:"Stefan"}}
