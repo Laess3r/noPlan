@@ -18,7 +18,8 @@
 
                         <div class="form-group">
                             <label class="control-label">Description</label>
-                            <textarea class="form-control" ng-model="event.description" rows="3" required></textarea>
+                            <!--<textarea class="form-control" ng-model="event.description" rows="3" required></textarea>-->
+                            <div text-angular ng-model="event.description"></div> 
                         </div>
                         <div class="form-group">
                             <label class="control-label">Presenter</label>
@@ -30,12 +31,12 @@
                         </div>
 						<div class="form-group">
                             <label class="control-label">from</label>
-                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched.start" required>
+                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched[event.id].start" required>
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label">to</label>
-                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched.end" required>
+                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched[event.id].end" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Infolink</label>
@@ -50,11 +51,12 @@
                 </div>
                 <div ng-show="!editState"class="panel-body">
                 
-                	
+                		<p>{{sched[event.id].start}}</p>
 						<p><strong>Presenter:</strong> {{event.presenter}}</p>
-						<p><strong>Date:</strong> {{event.startdate | date:'yyyy-MM-dd'}} <strong>from</strong> {{sched.start}} <strong>to</strong> {{sched.end}}</p>
+						<p><strong>Date:</strong> {{event.startdate | date:'yyyy-MM-dd'}} <strong>from</strong> {{ sched[event.id].start}} <strong>to</strong> {{sched[event.id].end}}</p>
 						<p>
-						<strong>Description:</strong> {{ event.description }}
+						<strong>Description:</strong> 
+						<div ng-bind-html="event.description"></div>
 					</p>
 					<p ng-show=event.infolink><strong>Infolink:</strong> <a href={{event.infolink}}>{{event.infolink}}</a> </p>
 				

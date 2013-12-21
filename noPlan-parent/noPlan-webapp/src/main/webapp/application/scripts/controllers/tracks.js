@@ -3,7 +3,6 @@
 console.log('init track');
 angular.module('mytodoApp')
     .controller('TracksCtrl',function ($routeParams,$scope,$log,dataFactory) {
-        console.log('init TrackCtrl',$routeParams);
         var date = new Date();
 		var d = date.getDate();
 		var m = date.getMonth();
@@ -12,11 +11,10 @@ angular.module('mytodoApp')
         $scope.conferenceId = $routeParams.id;
         $scope.tracks = [];
         $scope.confevents = [];
-        console.log(date);
+        
         
         
         $scope.eventRender = function(event, element) {
-        	console.log("RenderEvent",event);
         	element.find('.fc-event-inner').append('<div class"calPres" >' + event.presenter + '</div>');
         	element.find('.fc-event-inner').append('<div class"calDesc" >' + event.description + '</div>');
            
@@ -61,7 +59,6 @@ angular.module('mytodoApp')
 
 
         $scope.getTracks = function() {
-            console.log('getTracks')
             dataFactory.getTracks($scope.conferenceId)
                 .success(function (data) {
                     $scope.tracks = data;
@@ -78,7 +75,6 @@ angular.module('mytodoApp')
             dataFactory.insertTrack(data)
                 .success(function (data) {
                     $scope.tracks.push(data);
-                    console.log(data)
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create track data: ' + error.message;
@@ -107,7 +103,6 @@ angular.module('mytodoApp')
             dataFactory.deleteTrack(id)
                 .success(function (data) {
                     $scope.tracks.splice(index,1);
-                    console.log("Delete",data,'@',index);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to delete track data: ' + error.message;
@@ -123,13 +118,13 @@ angular.module('mytodoApp')
             	$scope.time = [];
             	
         	   while (currentDate <= stopDate) {
-        		   console.log(currentDate);
         	        $scope.time.push( {date:currentDate.toUTCString()} );
         	        currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate ()+1);        	   
         	        }
         	   		$scope.time.splice(0, 1);
         	   		var d= new Date($scope.time[0].date);
         	   		$scope.myCalendar.fullCalendar('gotoDate',d.getFullYear(),d.getMonth(),d.getDate());
+        	   		$scope.fromDate = $scope.time[0].date;
             })
             .error(function (error) {
                 $scope.status = 'Unable to load conference data: ' + error.message;
@@ -140,7 +135,6 @@ angular.module('mytodoApp')
         
         
         $scope.addEventToCal = function(data) {
-            console.log("addEventToCal",new Date(data.startdate));
             
         	$scope.confevents.push({
         	  id: data.id,
@@ -154,7 +148,6 @@ angular.module('mytodoApp')
         }
         
         $scope.replacEventToCal = function(data) {
-            console.log("addEventToCal",new Date(data.startdate));
             var len=$scope.confevents.length;
             for(var i=0;i<len;i++){
             	
@@ -173,21 +166,17 @@ angular.module('mytodoApp')
         }
         
         $('#collapseOne').on('shown.bs.collapse', function () {
-        	console.log("render")
         	$scope.myCalendar.fullCalendar('render');
         })
         
         $scope.renderCalendar = function(){
-        	console.log("render")
         	$scope.myCalendar.fullCalendar('render');
         }
         
         $scope.drop = function(event){
-        	console.log("Drop",event);
         }
         
         $scope.resize = function(event){
-        	console.log("Resize",event);
         }
         $scope.getTracks();
         $scope.getConferenceData();
@@ -207,18 +196,23 @@ angular.module('mytodoApp')
         $scope.weekendDays = [0,6];
         $scope.maxHeight = 0;
         $scope.showWeekends = true;
+        
 
         $scope.addSamples = function () {
-        	console.log("tracks", $scope.tracks)
-        	var data1 = [
-            // Order is optional. If not specified it will be assigned automatically
-            {"id": "2f85dbeb-0845-404e-934e-218bf39750c0", "description": "Milestones", "order": 0, "tasks": [
-                // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
-                {"id": "f55549b5-e449-4b0c-9f4b-8b33381f7d76", "subject": "Kickoff", "color": "#93C47D", "from": new Date(2013,10,28,8,0,0), "to": new Date(2013,10,28,12,0,0), "data": "Can contain any custom data or object"},
-                {"id": "c112ee80-82fc-49ba-b8de-f8efba41b5b4", "subject": "Go-live", "color": "#93C47D", "from": new Date(2013,10,28,16,0,0), "to": new Date(2013,10,28,17,0,0)}
-            ], "data": "Can contain any custom data or object"}
-        	];
-        	$scope.loadData(data1);
+//        	var data1 = [
+//            // Order is optional. If not specified it will be assigned automatically
+//            {"id": "1", "description": "Track 1","tasks": [
+//                // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
+//                {"id": "3", "subject": "Event 1", "color": "#93C47D", "from": new Date(2013,10,28,8,0,0), "to": new Date(2013,10,28,16,0,0)},
+//                {"id": "4", "subject": "Event 2", "color": "#93C47D", "from": new Date(2013,10,29,12,0,0), "to": new Date(2013,10,29,17,0,0)}
+//            ]},
+//            {"id": "2", "description": "Track 2","tasks": [
+//	              // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
+//	              {"id": "4", "subject": "Event 3", "color": "red", "from": new Date(2013,10,28,8,0,0), "to": new Date(2013,10,28,12,0,0)},
+//	              {"id": "5", "subject": "Event 4", "color": "red", "from": new Date(2013,10,28,13,0,0), "to": new Date(2013,10,28,17,0,0)}
+//	          ]}
+//        	];
+//        	$scope.loadData(data1);
         };
 
         $scope.removeSomeSamples = function () {

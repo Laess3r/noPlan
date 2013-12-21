@@ -2,6 +2,7 @@
 
 
     <h2><i class="icon-road"></i> Tracks</h2>
+     <div class="row search">Search: <input ng-model="searchText"></div>
     <div class="panel-group" id="accordion">
 	  <div class="panel panel-default">
 	    <div class="panel-heading">
@@ -26,10 +27,10 @@
 	        </a>
 	      </h4>
 	    </div>
-	    <div id="gantt" class="panel-collapse collapse ">
+	    <div id="gantt" class="panel-collapse collapse in">
 	      <div class="panel-body">
-	      <small>Gantt chart for Angular.js by Marco Schweighauser (2013) | MIT License</small>
-	      <gantt 	first-day-of-week="firstDay"
+	      <gantt   first-day-of-week="firstDay"
+	      		   from-date="fromDate"
 		           load-data="loadData = fn"
 		           remove-data="removeData = fn"
 		           clear-data="clearData = fn"
@@ -38,6 +39,7 @@
 		           view-scale-factor="scale === 'day' ? 2 : 3"
 		           weekend-days="weekendDays"
 		           show-weekends="showWeekends"
+		           show-non-work-hours="false"
 		           max-height="maxHeight"
 		           on-gantt-ready="addSamples()"
 		           on-row-added="rowEvent(event)"
@@ -53,7 +55,7 @@
  
   
   
-  <div class="panel panel-default" ng-repeat="track in tracks" ng-controller="editTrack">
+  <div class="panel panel-default" ng-repeat="track in tracks | filter:searchText" ng-controller="editTrack">
 	    <div class="panel-heading">
 	      <h4 class="panel-title">
 	        <a data-toggle="collapse"  data-target="#{{track.id}}">
@@ -85,7 +87,8 @@
 
                     <div class="form-group">
                         <label class="control-label">Description</label>
-                        <textarea class="form-control" ng-model="track.description" rows="3" required></textarea>
+                        <!-- <textarea class="form-control" ng-model="track.description" rows="3" required></textarea> -->
+                        <div text-angular ng-model="track.description"></div> 
                     </div>
                     <div class="form-group">
                         <label class="control-label">Location</label>
@@ -106,7 +109,8 @@
 				
 				<p></i> <strong>Resource:</strong> {{track.resource}}</p>
 				<p>
-				<strong>Description:</strong> {{ track.description }}
+				<strong>Description:</strong>
+				<div ng-bind-html="track.description"></div>
 				</p>
 				
 				

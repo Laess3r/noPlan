@@ -1,13 +1,14 @@
 'use strict';
 
-console.log('init event');
 angular.module('mytodoApp')
     .controller('EventsCtrl',function ($routeParams,$scope,$log,dataFactory) {
         $scope.trackId=$scope.track.id;
+        $scope.trackName = $scope.track.name;
         $scope.sched = {};
         $scope.times = {};
+        $scope.schedarray = [];
+       
 
-        console.log('init EventCtrl',$scope);
         $scope.days =[
             {date:"A"},
             {date:"B"},
@@ -17,34 +18,34 @@ angular.module('mytodoApp')
 
         $scope.events = [];
 
-        var setTimes = function(data){
-        	console.log("setTimes", data.startdate);
+        var setTimes = function(data,index){
             var date = new Date(data.startdate)
-            console.log(date);
-            $scope.sched.start = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
+            var obj = {};
+            obj.start = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
             date = new Date(data.enddate)
-            $scope.sched.end = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
-           
+            obj.end = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
+            //data.sched=obj;
+            $scope.sched[data.id]=obj;
         }
 
-        $scope.getTimes = function(data){
+        $scope.getTimes = function(data,index){
             var date = new Date(data.startdate);
-            var time = $scope.sched.start.split(':');
+            var obj = $scope.sched[data.id]
+            var time = obj.start.split(':');
             date.setHours(parseInt(time[0]))
             date.setMinutes(parseInt(time[1]));
             data.startdate = date;
+            //data.sched=obj;
             
             date = new Date(data.enddate);
-            time = $scope.sched.end.split(':');
+            time = obj.end.split(':');
             date.setHours(parseInt(time[0]));
             date.setMinutes(parseInt(time[1]));
             data.enddate = date;
-            console.log(date);
             return data;
             
         }
         $scope.addEvent = function() {
-            console.log("Add Event")
             var track= {
                 name:"Name",
                 description:"Desc",
@@ -62,19 +63,13 @@ angular.module('mytodoApp')
             dataFactory.getEvents($scope.trackId)
                 .success(function (data) {
                 	for(var item=0;item<data.length;item++){
-                		console.log(data[item].startdate);
                 		$scope.addEventToCal(data[item]);
-                		$scope.loadData([{
-        					id : $scope.trackId,
-        					tasks : data[item],
-        					}]);
-                						
                 		
+                						
+                		$scope.insertGanttEvent($scope.trackId, data[item]);
                 		setTimes(data[item]);
-                		console.log(new Date(data[item].startdate));
                 		
                 	}
-                	console.log(data);
                     $scope.events = data;
                     
                 })
@@ -85,14 +80,12 @@ angular.module('mytodoApp')
 
         $scope.insertEvent = function(data) {
             data.trackId=$scope.trackId;
-            console.log(data);
             $scope.getTimes(data);
-            console.log(data);
             dataFactory.insertEvent(data)
                 .success(function (data) {
                     $scope.events.push(data);
+                    $scope.insertGanttEvent($scope.trackId, data);
                     setTimes(data);
-                    console.log(data)
                     $scope.addEventToCal(data);
                 })
                 .error(function (error) {
@@ -102,9 +95,7 @@ angular.module('mytodoApp')
 
         $scope.updateEvent = function(data) {
             data.trackId=$scope.trackId;
-            console.log(data);
             $scope.getTimes(data);
-            console.log(data);
             dataFactory.updateEvent(data)
                 .success(function (data) {
                     var len = $scope.events.length;
@@ -112,6 +103,7 @@ angular.module('mytodoApp')
                     for(var i=0;i<len;i++){
                         if(data.id===$scope.events[i].id){
                             $scope.events[i]=data;
+                            $scope.insertGanttEvent($scope.trackId, data);
                             setTimes(data);
 
                             break;
@@ -128,13 +120,38 @@ angular.module('mytodoApp')
             dataFactory.deleteEvent(id)
                 .success(function (data) {
                     $scope.events.splice(index,1);
-                    console.log("Delete",data,'@',index);
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to delete event data: ' + error.message;
                 });
         }
+        //{"id": "1", "description": "Track 1", "order": 0, "tasks": [
+                // Dates can be specified as string, timestamp or javascript date object. The data attribute can be used to attach a custom object
+        //        {"id": "3", "subject": "Event 1", "color": "#93C47D", "from": new Date(2013,10,28,8,0,0), "to": new Date(2013,10,28,16,0,0), "data": "Can contain any custom data or object"},
+        //        {"id": "4", "subject": "Event 2", "color": "#93C47D", "from": new Date(2013,10,29,12,0,0), "to": new Date(2013,10,29,17,0,0)}
+        //    ], "data": "Can contain any custom data or object"},
         
+        
+        
+        $scope.insertGanttEvent = function (trackid,data){
+        	console.log("insertGantt",trackid,data)
+        	var gdata = {};
+        	gdata.id = trackid;
+        	gdata.description = $scope.trackName;
+        	gdata.order = trackid;
+        	gdata.tasks = [];
+        	var evdata = {};
+        	evdata.id = data.id;
+        	evdata.subject = data.name;
+        	evdata.from = data.startdate;
+        	evdata.to  = data.enddate;
+        	evdata.color = "#33CC66";
+        	gdata.tasks.push(evdata);
+        	console.log(gdata);
+        	
+        	$scope.loadData([gdata]);
+        	
+        };
         
         $scope.getEvents();
 

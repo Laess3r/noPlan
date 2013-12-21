@@ -4,6 +4,14 @@ body {
     color: #333;
 }
 
+.ta-editor {
+  min-height: 300px;
+  height: auto;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 100%;
+}
+
 .hero-unit {
     margin: 50px auto 0 auto;
     width: 300px;

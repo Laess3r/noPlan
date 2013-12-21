@@ -1,9 +1,7 @@
 'use strict';
 
-console.log('init edit');
 angular.module('mytodoApp')
     .controller('editEvent',function ($scope,$log,dataFactory) {
-        console.log('init EditCtrl',$scope.event.id);
         $scope.editState = false;
         $scope.times = {};
 
@@ -26,12 +24,10 @@ angular.module('mytodoApp')
         $scope.$watch('times', function() {
         	 console.log($scope.event);
         	 $scope.event.startdate = $scope.event.enddate = new Date($scope.times.date);
-        	 console.log($scope.event);
         	}); // initialize the watch
 
         $scope.edit = function($index){
             $scope.editState = ! $scope.editState;
-            console.log("edit",$scope.editState, $scope);
 
 
 

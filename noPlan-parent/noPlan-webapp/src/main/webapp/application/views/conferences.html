@@ -93,7 +93,8 @@
 
                     <div class="form-group">
                         <label class="control-label">Description</label>
-                        <textarea class="form-control" ng-model="conference.description" rows="3" required></textarea>
+<!--                         <textarea class="form-control" ng-model="conference.description" rows="3" required></textarea> -->
+                        <div text-angular ng-model="conference.description"></div> 
                     </div>
                     <div class="form-group">
                         <label class="control-label">Location</label>
@@ -123,7 +124,9 @@
             
             	<p><strong>Location:</strong> {{conference.location}}</p>
 				<p><strong>From:</strong> {{ conference.startDate  | date:'yyyy-MM-dd' }} <strong>to</strong> {{ conference.endDate | date:'yyyy-MM-dd' }}</p>
-				<p><strong>Description:</strong> {{ conference.description }}</p>
+				<p><strong>Description:</strong>
+				<div ng-bind-html="conference.description"></div>
+				</p>
 				<p ng-show=conference.infolink><strong>Infolink:</strong> <a href={{conference.infolink}} >{{conference.infolink}}</a> </p>
                
                
