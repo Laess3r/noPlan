@@ -6,7 +6,7 @@
 		<property name="dialect">org.hibernate.dialect.H2Dialect</property>
 
 		<property name="c3p0.min_size">3</property>
-		<property name="c3p0.max_size">5</property>
+		<property name="c3p0.max_size">20</property>
 		<property name="c3p0.timeout">1800</property>
 
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
@@ -14,8 +14,11 @@
 		<property name="cache.use_minimal_puts">false</property>
 		<property name="max_fetch_depth">3</property>
 
+		<!-- Turn this on to enable hibernate Logging -->
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
+<!-- 		<property name="show_sql">false</property> -->
+<!-- 		<property name="format_sql">false</property> -->
 
 		<property name="hbm2ddl.auto">update</property>
 

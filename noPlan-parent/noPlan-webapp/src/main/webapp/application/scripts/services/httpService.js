@@ -2,11 +2,9 @@
 angular.module('mytodoApp')
     .factory('dataFactory', ['$http', function($http) {
         console.log("init dataFactory");
-
         var urlBase = '/rest';
+        //var urlBase = '/noPlan-webapp/rest';
         var dataFactory = {};
-
-        var param = {params:{user:"Stefan"}}
 
         dataFactory.getConferences = function () {
             return $http.get(urlBase + '/conference/all');
@@ -64,6 +62,26 @@ angular.module('mytodoApp')
             return $http.post(urlBase + '/user/authenticate', id);
         };
 
+        dataFactory.getAllUsers = function () {
+            return $http.get(urlBase + '/user/all');
+        };
+        
+        dataFactory.getUserByName = function (username) {
+            return $http.get(urlBase + '/user/name/' + name);
+        };
+        
+        dataFactory.getUserById = function (id) {
+            return $http.get(urlBase + '/user/' + id);
+        };
+        
+        dataFactory.createUser = function (userDTO) {
+            return $http.post(urlBase + '/user/create', userDTO);
+        };
+        
+        dataFactory.updateUser = function (userDTO) {
+            return $http.post(urlBase + '/user/update', userDTO);
+        };
+        
         dataFactory.checkSession = function (id) {
             return $http.get(urlBase + '/info/checksession');
         }

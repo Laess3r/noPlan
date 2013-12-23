@@ -40,11 +40,6 @@ public interface UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	UserDTO getUserByUsername(@PathParam("name") String username);
 	
-	@GET
-	@Path("/createold/{name}/{pw}")
-	@Produces(MediaType.APPLICATION_JSON)
-	UserDTO createUser(@PathParam("name") String username, @PathParam("pw") String pw);
-
 	@POST
 	@Path("/create")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
-	
+
 	@Override
 	public UserDTO authenticate(UserDTO userToLogin) {
 
@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 		}
 
 		UserEntity userEntity = new UserEntity(user);
-
+		userEntity.setId(null);
 		userRepository.saveUser(userEntity);
 
 		return userEntity.toDTO();
@@ -123,17 +123,6 @@ public class UserServiceImpl implements UserService {
 		userRepository.updateUser(entity);
 
 		return entity.toDTO();
-	}
-
-	@Deprecated
-	@Override
-	public UserDTO createUser(String username, String pw) {
-		UserDTO user = new UserDTO();
-
-		user.setUsername(username);
-		user.setPassword(pw);
-
-		return createUser(user);
 	}
 
 }
