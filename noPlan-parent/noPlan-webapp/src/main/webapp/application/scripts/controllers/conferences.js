@@ -39,8 +39,13 @@ angular.module('mytodoApp')
         $scope.insertConference = function(data) {
             dataFactory.insertConference(data)
                 .success(function (data) {
-                    $scope.conferences.push(data);
-                    console.log("create",data)
+                	var len = $scope.conferences.length;
+                    for(var i=0;i<len;i++){
+                        if($scope.conferences[i].id === undefined){
+                            $scope.conferences[i]=data;
+                            break;
+                        }
+                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create customer data: ' + error.message;

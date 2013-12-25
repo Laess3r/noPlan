@@ -31,12 +31,12 @@
                         </div>
 						<div class="form-group">
                             <label class="control-label">from</label>
-                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched[event.id].start" required>
+                            <input class="form-control" type="time" ng-model="sched[event.id].start" required>
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label">to</label>
-                            <input class="form-control" type="time" placeholder="insert Time" ng-model="sched[event.id].end" required>
+                            <input class="form-control" type="time" ng-model="sched[event.id].end" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Infolink</label>
@@ -50,8 +50,6 @@
                     </form>
                 </div>
                 <div ng-show="!editState"class="panel-body">
-                
-                		<p>{{sched[event.id].start}}</p>
 						<p><strong>Presenter:</strong> {{event.presenter}}</p>
 						<p><strong>Date:</strong> {{event.startdate | date:'yyyy-MM-dd'}} <strong>from</strong> {{ sched[event.id].start}} <strong>to</strong> {{sched[event.id].end}}</p>
 						<p>

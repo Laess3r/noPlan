@@ -7,6 +7,8 @@ angular.module('mytodoApp')
 
         if($scope.event.id === undefined){
             $scope.editState=true;
+            $scope.event.id="tmp";
+            $scope.sched["tmp"]={start:"00:00",end:"00:00"};
         }
 
         var tmpdate =  new Date($scope.event.startdate);
@@ -21,8 +23,9 @@ angular.module('mytodoApp')
         	
         }
         
-        $scope.$watch('times', function() {
-        	 console.log($scope.event);
+       $scope.$watch('times', function() {
+        	// console.log("watch",$scope.times);
+        	 
         	 $scope.event.startdate = $scope.event.enddate = new Date($scope.times.date);
         	}); // initialize the watch
 
@@ -35,7 +38,8 @@ angular.module('mytodoApp')
 
             if(!$scope.editState){
                 var event=$scope.events[$index];
-                if(event.id===undefined){
+                if(event.id===undefined || event.id==="tmp"){
+                	
                     $scope.insertEvent(event);
                     //$scope.insertConference({name:event.name,description:event.description})
                 }

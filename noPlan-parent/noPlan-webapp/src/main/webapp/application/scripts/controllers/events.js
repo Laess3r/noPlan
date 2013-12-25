@@ -81,12 +81,22 @@ angular.module('mytodoApp')
         $scope.insertEvent = function(data) {
             data.trackId=$scope.trackId;
             $scope.getTimes(data);
+            delete data.id;
             dataFactory.insertEvent(data)
                 .success(function (data) {
-                    $scope.events.push(data);
-                    $scope.insertGanttEvent($scope.trackId, data);
-                    setTimes(data);
-                    $scope.addEventToCal(data);
+                    var len = $scope.events.length;
+                    $scope.replacEventToCal(data)
+                    for(var i=0;i<len;i++){
+                        if($scope.events[i].id === undefined){
+                            $scope.events[i]=data;
+                            $scope.insertGanttEvent($scope.trackId, data);
+                            $scope.addEventToCal(data);
+                            setTimes(data);
+                            break;
+                        }
+                    }
+                    
+                    
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create event data: ' + error.message;

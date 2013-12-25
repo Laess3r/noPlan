@@ -15,8 +15,15 @@ angular.module('mytodoApp')
         
         
         $scope.eventRender = function(event, element) {
-        	element.find('.fc-event-inner').append('<div class"calPres" >' + event.presenter + '</div>');
-        	element.find('.fc-event-inner').append('<div class"calDesc" >' + event.description + '</div>');
+        	element.find('.fc-event-inner').append('<div class"calPres" >' + event.presenter ? event.presenter : "" + '</div>');
+        	element.find('.fc-event-inner').append('<div class"calDesc" >' + event.description ? event.description : "" + '</div>');
+        	//element.attr('title', event.description);
+        	element.qtip({ // Grab some elements to apply the tooltip to
+        	    content: {
+        	    	titel: event.title,
+        	        text: event.description,
+        	    }
+        	});
            
         };
         
@@ -74,7 +81,13 @@ angular.module('mytodoApp')
             data.conferenceId=$scope.conferenceId;
             dataFactory.insertTrack(data)
                 .success(function (data) {
-                    $scope.tracks.push(data);
+                    var len = $scope.tracks.length;
+                    for(var i=0;i<len;i++){
+                        if($scope.tracks[i].id === undefined){
+                            $scope.tracks[i]=data;
+                            break;
+                        }
+                    }
                 })
                 .error(function (error) {
                     $scope.status = 'Unable to create track data: ' + error.message;
@@ -121,7 +134,7 @@ angular.module('mytodoApp')
         	        $scope.time.push( {date:currentDate.toUTCString()} );
         	        currentDate = new Date(currentDate.getFullYear(),currentDate.getMonth(),currentDate.getDate ()+1);        	   
         	        }
-        	   		$scope.time.splice(0, 1);
+        	   		//$scope.time.splice(0, 1);
         	   		var d= new Date($scope.time[0].date);
         	   		$scope.myCalendar.fullCalendar('gotoDate',d.getFullYear(),d.getMonth(),d.getDate());
         	   		$scope.fromDate = $scope.time[0].date;
