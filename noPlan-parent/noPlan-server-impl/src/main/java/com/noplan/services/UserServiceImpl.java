@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Path;
+import javax.xml.ws.http.HTTPException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,9 +19,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+import com.noplan.UserRoles;
 import com.noplan.data.UserDTO;
 import com.noplan.persistence.entity.UserEntity;
+import com.noplan.persistence.entity.UserRoleEntity;
 import com.noplan.persistence.repositories.UserRepository;
 import com.noplan.security.TokenUtils;
 
@@ -41,6 +46,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	@Qualifier("authenticationManager")
 	private AuthenticationManager authManager;
+
+	@Override
+	public UserDTO createUserPublic(UserDTO user) {
+		return createUser(user, false);
+	}
 
 	@Override
 	public UserDTO authenticate(UserDTO userToLogin) {
@@ -89,6 +99,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO createUser(UserDTO user) {
+		return createUser(user, true);
+	}
+
+	private UserDTO createUser(UserDTO user, boolean calledFromBackend) {
 
 		if (getUserByUsername(user.getUsername()) != null) {
 			throw new IllegalArgumentException("User " + user.getUsername() + " already exists!");
@@ -97,6 +111,13 @@ public class UserServiceImpl implements UserService {
 		UserEntity userEntity = new UserEntity(user);
 		userEntity.setId(null);
 		userRepository.saveUser(userEntity);
+
+		userRepository.addRoleToUser(userEntity.getId(), UserRoles.USER_ROLE);
+
+		if (calledFromBackend) {
+			// TODO admin user flag
+
+		}
 
 		return userEntity.toDTO();
 	}
@@ -117,18 +138,25 @@ public class UserServiceImpl implements UserService {
 	public UserDTO updateUser(UserDTO user) {
 		UserEntity entity = userRepository.getUserById(user.getId());
 
-		// map the changes into the entity
 		entity.fromDTO(user, true);
 
 		userRepository.updateUser(entity);
+
+		// TODO admin user flag
 
 		return entity.toDTO();
 	}
 
 	@Override
 	public void deleteUserById(Long userId) {
+
+		List<UserRoleEntity> roles = userRepository.getRolesForUser(userId);
+		for (UserRoleEntity userRoleEntity : roles) {
+			userRepository.removeRoleFromUser(userId, userRoleEntity.getAuthority());
+		}
+
 		userRepository.deleteUser(userId);
-		
+
 	}
 
 }

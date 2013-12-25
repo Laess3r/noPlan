@@ -41,15 +41,9 @@ angular
 					};
 
 					$scope.createUser = function(user) {
-						dataFactory.createUser(user).success(function(user) {
+						dataFactory.createUser(user).success(function(data) {
 
-							var len = $scope.users.length;
-							for (var i = 0; i < len; i++) {
-								if (user.id === undefined) {
-									$scope.users[i] = user;
-									break;
-								}
-							}
+							$scope.users[$scope.users.length - 1] = data;
 
 						}).error(function(user) {
 							alert('Unable to create user: ', user.message);

@@ -19,13 +19,22 @@ import com.noplan.data.UserDTO;
 //@Path("/user")
 public interface UserService {
 	
-
+	// PUBLIC unauthorized methods
+	
 	@Path("authenticate")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	UserDTO authenticate(UserDTO userToAuthenticate);
+	
+	@POST
+	@Path("/createpublic")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	UserDTO createUserPublic(UserDTO user);
 
+	// PROTECTED methods for user maintenance
+	
 	@GET
 	@Path("/all")
 	@Produces(MediaType.APPLICATION_JSON)

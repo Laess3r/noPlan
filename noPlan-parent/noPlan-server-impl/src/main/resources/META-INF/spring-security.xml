@@ -1,69 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-        <security:authentication-manager id="authenticationManager">
-            <security:authentication-provider>
-            
-			<security:jdbc-user-service data-source-ref="dataSource"
+	<security:authentication-manager id="authenticationManager">
+		<security:authentication-provider>
+
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
 				users-by-username-query="
  				      select username,password,enabled  
- 				      from TBLUSER where username=?" 
-		
+ 				      from TBLUSER where username=?"
+
 				authorities-by-username-query="
 				      select u.username, ur.authority from TBLUSER u, TBLUSERROLE ur 
 				      where u.ID = ur.FK_USER and u.username =?" />
 
-<!-- 			<security:password-encoder hash="sha" /> -->
-			
-			 
-<!-- ShaPasswordEncoder.encodePassword(..) -->
-			
-
-            </security:authentication-provider>
-        </security:authentication-manager>
-
-        <security:http
-                realm="NoPlan protected API"
-                use-expressions="true"
-                auto-config="false"
-                create-session="stateless"
-                entry-point-ref="unauthorizedEntryPoint"
-                authentication-manager-ref="authenticationManager">
-            <security:custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER" />
-            <security:intercept-url pattern="/rest/user/**" access="permitAll" />
-            <security:intercept-url pattern="/rest/testdata/**" access="permitAll" />
-            <security:intercept-url method="GET" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" /> <!-- access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />-->
-            <security:intercept-url method="PUT" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
-            <security:intercept-url method="POST" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
-            <security:intercept-url method="DELETE" pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
-        </security:http>
-
-        <bean id="unauthorizedEntryPoint" class="com.noplan.security.UnauthorizedEntryPoint" />
-
-        <bean class="com.noplan.security.AuthenticationTokenProcessingFilter" id="authenticationTokenProcessingFilter">
-            <constructor-arg ref="authenticationManager" />
-<!--             <constructor-arg ref="userService" /> -->
-        </bean>
+			<!-- <security:password-encoder hash="sha" /> -->
 
 
+			<!-- ShaPasswordEncoder.encodePassword(..) -->
 
-        <!-- <security:http use-expressions="true" entry-point-ref="forbiddenEntryPoint">
-                <security:intercept-url method="GET" pattern="/rest/news/**"
-                        access="hasRole('user')" />
-                <security:intercept-url method="PUT" pattern="/rest/news/**"
-                        access="hasRole('admin')" />
-                <security:intercept-url method="POST" pattern="/rest/news/**"
-                        access="hasRole('admin')" />
-                <security:intercept-url method="DELETE"
-                        pattern="/rest/news/**" access="hasRole('admin')" />
-                <security:form-login login-page="/login.html"
-                        default-target-url="/#!/loggedin/" always-use-default-target="true" />
-                <security:logout logout-url="/logout.html" />
-        </security:http> -->
+
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<security:http realm="NoPlan protected API"
+		use-expressions="true" auto-config="false" create-session="stateless"
+		entry-point-ref="unauthorizedEntryPoint" authentication-manager-ref="authenticationManager">
+		<security:custom-filter ref="authenticationTokenProcessingFilter"
+			position="FORM_LOGIN_FILTER" />
+
+		<!-- User authentication -->
+		<security:intercept-url pattern="/rest/user/authenticate/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/rest/user/createpublic/**"
+			access="permitAll" />
+
+		<!-- Test data creation -->
+		<security:intercept-url pattern="/rest/testdata/**"
+			access="permitAll" />
+
+		<!-- Admin mode -->
+		<security:intercept-url method="GET" pattern="/rest/**"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url method="PUT" pattern="/rest/**"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url method="POST" pattern="/rest/**"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url method="DELETE"
+			pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
+
+		<!-- User events -->
+		<security:intercept-url method="GET"
+			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="PUT"
+			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="POST"
+			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="DELETE"
+			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="GET"
+			pattern="/rest/info/checksession/**" access="hasRole('ROLE_USER')" />
+	</security:http>
+
+	<bean id="unauthorizedEntryPoint" class="com.noplan.security.UnauthorizedEntryPoint" />
+
+	<bean class="com.noplan.security.AuthenticationTokenProcessingFilter"
+		id="authenticationTokenProcessingFilter">
+		<constructor-arg ref="authenticationManager" />
+	</bean>
+
 </beans>

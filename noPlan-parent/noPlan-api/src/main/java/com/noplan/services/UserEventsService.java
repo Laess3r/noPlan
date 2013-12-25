@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import com.noplan.data.ConferenceDTO;
 import com.noplan.data.EventDTO;
 import com.noplan.data.TrackDTO;
+import com.noplan.data.UserDTO;
 
 /**
  * @author DaHu4wA (Stefan Huber)
@@ -44,5 +45,7 @@ public interface UserEventsService {
 	@Path("/removeevents")
 	@Consumes(MediaType.APPLICATION_JSON)
 	void removeEvents(List<Long> eventIds);
+
+	UserDTO getLoggedInUserDTO();
 
 }

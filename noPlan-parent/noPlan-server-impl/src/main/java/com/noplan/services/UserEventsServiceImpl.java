@@ -17,6 +17,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import com.noplan.data.ConferenceDTO;
 import com.noplan.data.EventDTO;
 import com.noplan.data.TrackDTO;
+import com.noplan.data.UserDTO;
 import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.EventEntity;
 import com.noplan.persistence.entity.TrackEntity;
@@ -149,6 +150,15 @@ public class UserEventsServiceImpl implements UserEventsService {
 
 			mappingRepository.removeMappings(user, event);
 		}
+	}
+
+	@Override
+	public UserDTO getLoggedInUserDTO() {
+		UserEntity user = getLoggedInUser();
+		if (user == null) {
+			return null;
+		}
+		return user.toDTO();
 	}
 
 	/**
