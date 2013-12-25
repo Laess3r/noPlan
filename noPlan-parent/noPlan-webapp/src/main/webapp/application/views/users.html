@@ -2,7 +2,8 @@
 	<h2>
 		<i class="icon-user"></i> Users
 	</h2>
-	<i>This is the global user maintenance</i> <br> <br>
+	<i>This is the global noPlan user maintenance</i>
+	TODO: Permissions <br> <br>
 
 	<div class="row search">
 		<input ng-model="filterText" class="form-control" placeholder="Table Filter"
@@ -13,14 +14,8 @@
 		<button class="btn" ng-click="addUser()">
 			<i class="icon-plus"></i> Add User
 		</button>
-		<button ng-show="!editMode" class="btn" ng-click="editUser($index)">
-			<i class="icon-pencil"></i> Edit Mode
-		</button>
-		<button ng-show="editMode" class="btn btn-primary" ng-click="save()" ng-disabled="form.$invalid">
-			<i class="icon-save"></i> Save Changes
-		</button>
-		<button ng-show="editMode" class="btn btn-warning" ng-click="discard()">
-			<i class="icon-trash"></i> Discard Changes
+		<button class="btn" ng-click="getAllUsers()">
+			<i class="icon-refresh"></i> Refresh
 		</button>
 	</div>
 
@@ -32,34 +27,53 @@
 			<th>Firstname</th>
 			<th>Lastname</th>
 			<th>Email</th>
-			<th ng-show="editMode">Delete</th>
+			<th>Delete</th>
+			<th ng-show="!isEditMode($index)">Edit</th>
+			<th ng-show="isEditMode($index)">Save</th>
 		</tr>
 
 		<tr ng-repeat="user in users | filter:filterText" class="user-row">
 
-			<td ng-show="!editMode"><input class="checkbox" type="checkbox" checked="{{user.enabled}}" disabled /></td>
-			<td ng-show="editMode"><input class="checkbox" type="checkbox" checked="{{user.enabled}}" /></td>
+			<td ng-show="!isEditMode($index)"><input class="checkbox" type="checkbox" checked="{{user.enabled}}" disabled /></td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="checkbox" ng-model="user.enabled"></td>
 
-			<td ng-show="!editMode">{{user.username}}</td>
-			<td ng-show="editMode"><input class="form-control" type="input" value="{{user.username}}" placeholder="Username" /></td>
+			<td ng-show="!isEditMode($index)">{{user.username}}</td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="text" placeholder="Username"
+				ng-model="user.username" required></td>
 
-			<td ng-show="!editMode"><i>****</i></td>
-			<td ng-show="editMode"><input class="form-control" type="input" value="{{user.password}}" placeholder="Password" /></td>
+			<td ng-show="!isEditMode($index)"><i>****</i></td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="password" placeholder="Password"
+				ng-model="user.password" required></td>
 
-			<td ng-show="!editMode">{{user.firstname}}</td>
-			<td ng-show="editMode"><input class="form-control" type="input" value="{{user.firstname}}"
-				placeholder="First Name" /></td>
+			<td ng-show="!isEditMode($index)">{{user.firstname}}</td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="text" placeholder="Firstname"
+				ng-model="user.firstname"></td>
 
-			<td ng-show="!editMode">{{user.lastname}}</td>
-			<td ng-show="editMode"><input class="form-control" type="input" value="{{user.lastname}}"
-				placeholder="Last Name" /></td>
+			<td ng-show="!isEditMode($index)">{{user.lastname}}</td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="text" placeholder="Lastname"
+				ng-model="user.lastname"></td>
 
-			<td ng-show="!editMode">{{user.email}}</td>
-			<td ng-show="editMode"><input class="form-control" type="input" value="{{user.email}}" placeholder="E-Mail" /></td>
-
-			<td ng-show="editMode"><button class="btn btn-warning" ng-click="deleteUser($index)">
+			<td ng-show="!isEditMode($index)">{{user.email}}</td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="text" placeholder="E-Mail"
+				ng-model="user.email"></td>
+			<td>
+				<button class="btn" ng-click="deleteUser($index)">
 					<i class="icon-trash"></i>
-				</button></td>
+				</button>
+			</td>
+
+			<td ng-show="!isEditMode($index)">
+				<button ng-show="!isEditMode($index)" class="btn" ng-click="editUser($index)">
+					<i class="icon-pencil"></i>
+				</button>
+			</td>
+
+			<td ng-show="isEditMode($index)">
+				<button class="btn btn-primary" ng-click="save($index)" ng-disabled="form.$invalid">
+					<i class="icon-save"></i>
+				</button>
+			</td>
+
 		</tr>
 
 	</table>

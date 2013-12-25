@@ -3,7 +3,7 @@ angular.module('mytodoApp')
     .factory('dataFactory', ['$http', function($http) {
         console.log("init dataFactory");
         var urlBase = '/rest';
-        //var urlBase = '/noPlan-webapp/rest';
+//        var urlBase = '/noPlan-webapp/rest';
         var dataFactory = {};
 
         dataFactory.getConferences = function () {
@@ -82,8 +82,17 @@ angular.module('mytodoApp')
             return $http.post(urlBase + '/user/update', userDTO);
         };
         
+        dataFactory.deleteUser = function (id) {
+            return $http.delete(urlBase + '/user/delete/' + id);
+        };
+        
         dataFactory.checkSession = function (id) {
             return $http.get(urlBase + '/info/checksession');
         }
         return dataFactory;
+        
+        dataFactory.addUserEvents = function (ids) {
+            return $http.post(urlBase + '/userevents/addevents', ids);
+        };
+        
     }]);

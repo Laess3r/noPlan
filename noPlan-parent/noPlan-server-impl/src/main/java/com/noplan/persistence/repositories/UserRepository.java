@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.UserEntity;
 import com.noplan.persistence.entity.UserRoleEntity;
 
@@ -114,4 +115,12 @@ public class UserRepository extends AbstractRepository {
 		throw new IllegalArgumentException("User " + usr.getUsername() + " does not have role " + role);
 	}
 
+	@Transactional(readOnly = false)
+	public void deleteUser(Long id) {
+		UserEntity entity = getUserById(id);
+
+		// TODO check if user events exist!
+
+		delete(entity);
+	}
 }

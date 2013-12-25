@@ -1,63 +1,129 @@
 'use strict';
 
-console.log('init users');
-angular.module('mytodoApp').controller(
-		'UserCtrl',
-		function($scope, $location, dataFactory) {
-			console.log('init UserCtrl');
+angular
+		.module('mytodoApp')
+		.controller(
+				'UserCtrl',
+				function($scope, $location, dataFactory) {
 
-			$scope.editMode = false;
-			$scope.users = [];
+					$scope.isEditMode = function($index) {
+						return $scope.editRow == $index;
+					};
 
-			$scope.addUser = function() {
-				$scope.editMode = true;
-				console.log("Edit mode when adding user:", $scope.editMode);
+					$scope.editRow = -1;
 
-				var user = {
-					enabled : "true",
-					username : "",
-					password : "",
-					firstname : "",
-					lastname : "",
-					email : ""
-				};
-				$scope.users.push(user);
-			};
+					$scope.users = [];
 
-			$scope.save = function() {
+					$scope.addUser = function() {
 
-//				$scope.editMode = false;
-				alert("TODO!");
+						var user = {
+							enabled : "true",
+							username : "",
+							password : "",
+							firstname : "",
+							lastname : "",
+							email : ""
+						};
+						$scope.users.push(user);
 
-			};
+						$scope.editRow = $scope.users.length - 1;
+					};
 
-			$scope.discard = function() {
-				$scope.editMode = false;
-			};
+					$scope.save = function($index) {
+						var user = $scope.users[$index];
 
-			$scope.editUser = function($index) {
-				$scope.editMode = !$scope.editMode;
-				console
-						.log("New Edit mode for index:", $index,
-								$scope.editMode);
-			};
+						if (user.id === undefined) {
+							$scope.createUser($scope.users[$index]);
+						} else {
+							$scope.updateUser($scope.users[$index]);
+						}
+						$scope.editRow = -1;
+					};
 
-			$scope.deleteUser = function($index) {
-				console.log("removing index", $index);
-				if ($scope.users[$index].id === undefined) {
-					$scope.users.splice($index, 1);
-					return;
-				}
+					$scope.createUser = function(user) {
+						dataFactory.createUser(user).success(function(user) {
 
-				alert("Do you really want to delete? Because you can't ;-)");
-			};
+							var len = $scope.users.length;
+							for (var i = 0; i < len; i++) {
+								if (user.id === undefined) {
+									$scope.users[i] = user;
+									break;
+								}
+							}
 
-			dataFactory.getAllUsers().success(function(data) {
-				$scope.users = data;
-				console.log(data.length, "Users loaded successfully!");
-			}).error(
-					function(error) {
-						$scope.status = 'Unable to load customer data: '
-								+ error.message;
-					});
-		});
+						}).error(function(user) {
+							alert('Unable to create user: ', user.message);
+						});
+					};
+
+					$scope.updateUser = function(user) {
+						dataFactory.updateUser(user).success(function(user) {
+
+							var len = $scope.users.length;
+							for (var i = 0; i < len; i++) {
+								if (user.id === $scope.users[i].id) {
+									$scope.users[i] = user;
+									break;
+								}
+							}
+
+						}).error(function(user) {
+							alert('Unable to update user: ', user.message);
+						});
+					};
+
+					$scope.discard = function() {
+						var len = $scope.users.length;
+						for (var i = 0; i < len; i++) {
+							if ($scope.users[i].id === undefined) {
+								$scope.users.splice(i, 1);
+							}
+						}
+						$scope.editRow = -1;
+					};
+
+					$scope.editUser = function($index) {
+						if ($scope.editRow == $index) {
+							$scope.editRow = -1;
+						} else {
+							$scope.discard();
+							$scope.editRow = $index;
+						}
+					};
+
+					$scope.deleteUser = function($index) {
+						if ($scope.users[$index].id === undefined) {
+							$scope.users.splice($index, 1);
+							return;
+						}
+
+						var answer = confirm("Do you really want to delete user \""
+								+ $scope.users[$index].username + "\"?");
+						if (answer) {
+							dataFactory
+									.deleteUser($scope.users[$index].id)
+									.success(function(data) {
+										$scope.users.splice($index, 1);
+									})
+									.error(
+											function(error) {
+												alert('Unable to delete user! Maybe it is referenced by other data?\n Server message:'
+														+ error.message);
+											});
+							$scope.editRow = -1;
+						}
+					};
+
+					$scope.getAllUsers = function() {
+
+						dataFactory.getAllUsers().success(function(data) {
+							$scope.users = data;
+						}).error(
+								function(error) {
+									alert('Unable to load customer data: '
+											+ error.message);
+								});
+					};
+
+					$scope.getAllUsers();
+				});

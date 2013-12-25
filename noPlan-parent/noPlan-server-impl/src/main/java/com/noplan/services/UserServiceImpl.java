@@ -125,4 +125,10 @@ public class UserServiceImpl implements UserService {
 		return entity.toDTO();
 	}
 
+	@Override
+	public void deleteUserById(Long userId) {
+		userRepository.deleteUser(userId);
+		
+	}
+
 }
