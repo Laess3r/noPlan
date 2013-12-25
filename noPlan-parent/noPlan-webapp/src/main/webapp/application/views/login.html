@@ -4,8 +4,8 @@
 		<div class="row ">
 			<div class="center span4 well">
 				<h2>Please Log In</h2>
-				<div ng-show="status" class="alert alert-danger">
-					<a class="close" data-dismiss="alert">x</a><strong>Incorrect Username or Password!</strong>
+				<div ng-show="error" class="alert alert-danger">
+					<a class="close" data-dismiss="alert">x</a><strong>Error during login! Did you enter incorrect Username or Password?</strong>
 				</div>
 				<form class="form-signin">
 					<input type="text" id="username" class="form-control" ng-model="user.username" placeholder="Username" /> <input

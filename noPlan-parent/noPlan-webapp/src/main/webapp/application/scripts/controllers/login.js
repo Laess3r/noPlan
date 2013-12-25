@@ -9,6 +9,7 @@ angular
 					console.log("login Controller");
 					$rootScope.loggedIn = false;
 					$scope.remember = true;
+					$scope.error = false;
 
 					$scope.login = function(user) {
 						dataFactory
@@ -30,9 +31,10 @@ angular
 
 											else {
 												$cookies.token = undefined;
-												console.log('DELETING TOKEN!');
+												console.log('Saving no token!');
 											}
 											$rootScope.loggedIn = true;
+											$scope.error = false;
 
 											$location.path("/main");
 
@@ -41,6 +43,7 @@ angular
 											$scope.status = 'Login failed:'
 													+ error.message;
 											$rootScope.loggedIn = false;
+											$scope.error = true;
 										});
 					}
 
