@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -168,9 +169,10 @@ public class UserEventsServiceImpl implements UserEventsService {
 		SecurityContext context = SecurityContextHolder.getContext();
 
 		if (context != null && context.getAuthentication() != null && context.getAuthentication().getPrincipal() != null) {
-			Object username = context.getAuthentication().getPrincipal();
-			if (username instanceof String) {
-				return userRepository.getUserByUsername((String) username);
+			Object user = context.getAuthentication().getPrincipal();
+			if (user instanceof User) {
+				String username = ((User) user).getUsername();
+				return userRepository.getUserByUsername(username);
 			}
 			return null;
 		}

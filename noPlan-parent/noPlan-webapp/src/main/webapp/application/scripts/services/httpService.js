@@ -93,10 +93,10 @@ angular.module('mytodoApp')
         dataFactory.checkSession = function (id) {
             return $http.get(urlBase + '/info/checksession');
         }
-        return dataFactory;
         
         dataFactory.addUserEvents = function (ids) {
             return $http.post(urlBase + '/userevents/addevents', ids);
         };
         
+        return dataFactory;
     }]);
