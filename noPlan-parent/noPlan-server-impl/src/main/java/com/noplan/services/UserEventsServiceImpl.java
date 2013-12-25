@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
+import com.noplan.UserRoles;
 import com.noplan.data.ConferenceDTO;
 import com.noplan.data.EventDTO;
 import com.noplan.data.TrackDTO;
@@ -142,7 +143,7 @@ public class UserEventsServiceImpl implements UserEventsService {
 		if (user == null) {
 			return null;
 		}
-		return user.toDTO();
+		return user.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
 	}
 
 	/**

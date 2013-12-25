@@ -17,6 +17,7 @@ public class UserDTO {
 	private String lastname;
 	private String email;
 	private Boolean enabled;
+	private Boolean isadmin;
 
 	private Map<String, Boolean> roles;
 	private String token;
@@ -82,7 +83,7 @@ public class UserDTO {
 	public Boolean getEnabled() {
 		return enabled;
 	}
-	
+
 	public Map<String, Boolean> getRoles() {
 		return roles;
 	}
@@ -100,7 +101,15 @@ public class UserDTO {
 	}
 
 	public void setEnabled(Boolean enabled) {
-		 this.enabled = enabled;
+		this.enabled = enabled;
+	}
+
+	public Boolean getIsadmin() {
+		return isadmin;
+	}
+
+	public void setIsadmin(Boolean isadmin) {
+		this.isadmin = isadmin;
 	}
 
 }

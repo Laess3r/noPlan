@@ -22,7 +22,8 @@ angular
 							password : "",
 							firstname : "",
 							lastname : "",
-							email : ""
+							email : "",
+							isadmin : "false"
 						};
 						$scope.users.push(user);
 

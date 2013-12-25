@@ -6,11 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.Path;
-import javax.xml.ws.http.HTTPException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 
 import com.noplan.UserRoles;
 import com.noplan.data.UserDTO;
@@ -83,7 +80,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
-		return user.toDTO();
+		return user.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
 	}
 
 	@Override
@@ -94,7 +91,7 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 
-		return user.toDTO();
+		return user.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
 	}
 
 	@Override
@@ -115,11 +112,20 @@ public class UserServiceImpl implements UserService {
 		userRepository.addRoleToUser(userEntity.getId(), UserRoles.USER_ROLE);
 
 		if (calledFromBackend) {
-			// TODO admin user flag
-
+			correctAdminRoles(user, userEntity);
 		}
 
-		return userEntity.toDTO();
+		return userEntity.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
+	}
+
+	private void correctAdminRoles(UserDTO user, UserEntity userEntity) {
+		boolean hasAdminRole = userRepository.hasRole(userEntity.getId(), UserRoles.ADMIN_ROLE);
+
+		if (hasAdminRole && !user.getIsadmin()) {
+			userRepository.removeRoleFromUser(userEntity.getId(), UserRoles.ADMIN_ROLE);
+		} else if (!hasAdminRole && user.getIsadmin()) {
+			userRepository.addRoleToUser(userEntity.getId(), UserRoles.ADMIN_ROLE);
+		}
 	}
 
 	@Override
@@ -128,7 +134,9 @@ public class UserServiceImpl implements UserService {
 		List<UserDTO> result = new ArrayList<UserDTO>();
 
 		for (UserEntity user : userRepository.getAllUsers()) {
-			result.add(user.toDTO());
+			UserDTO dto = user.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
+			dto.setIsadmin((userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE)));
+			result.add(dto);
 		}
 
 		return result;
@@ -142,9 +150,9 @@ public class UserServiceImpl implements UserService {
 
 		userRepository.updateUser(entity);
 
-		// TODO admin user flag
+		correctAdminRoles(user, entity);
 
-		return entity.toDTO();
+		return entity.toDTO(userRepository.hasRole(user.getId(), UserRoles.ADMIN_ROLE));
 	}
 
 	@Override

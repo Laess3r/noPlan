@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.noplan.UserRoles;
 import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.UserEntity;
 import com.noplan.persistence.entity.UserRoleEntity;
@@ -69,6 +70,16 @@ public class UserRepository extends AbstractRepository {
 		criteria.add(Restrictions.eq("userId.id", userId));
 
 		return criteria.list();
+	}
+
+	@Transactional(readOnly = true)
+	public boolean hasRole(Long userId, String rolename) {
+		for (UserRoleEntity role : getRolesForUser(userId)) {
+			if (role.getAuthority().equals(rolename)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Transactional(readOnly = false)

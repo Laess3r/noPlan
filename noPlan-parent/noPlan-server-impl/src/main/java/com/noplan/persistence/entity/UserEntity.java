@@ -58,7 +58,7 @@ public class UserEntity extends AbstractEntity {
 		fromDTO(dTO, false);
 	}
 
-	public UserDTO toDTO() {
+	public UserDTO toDTO(boolean isAdmin) {
 		UserDTO dTo = new UserDTO();
 		dTo.setId(getId());
 		dTo.setUsername(getUsername());
@@ -67,7 +67,8 @@ public class UserEntity extends AbstractEntity {
 		dTo.setLastname(getLastname());
 		dTo.setEmail(getEmail());
 		dTo.setEnabled(getEnabled());
-
+		dTo.setIsadmin(isAdmin);
+		
 		return dTo;
 	}
 

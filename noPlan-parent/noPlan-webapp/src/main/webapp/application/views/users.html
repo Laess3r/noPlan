@@ -2,8 +2,8 @@
 	<h2>
 		<i class="icon-user"></i> Users
 	</h2>
-	<i>This is the global noPlan user maintenance</i>
-	TODO: Permissions <br> <br>
+	<i>This is the global noPlan user maintenance</i><br>
+	<br>
 
 	<div class="row search">
 		<input ng-model="filterText" class="form-control" placeholder="Table Filter"
@@ -27,6 +27,7 @@
 			<th>Firstname</th>
 			<th>Lastname</th>
 			<th>Email</th>
+			<th>is Admin</th>
 			<th>Delete</th>
 			<th ng-show="!isEditMode($index)">Edit</th>
 			<th ng-show="isEditMode($index)">Save</th>
@@ -34,7 +35,7 @@
 
 		<tr ng-repeat="user in users | filter:filterText" class="user-row">
 
-			<td ng-show="!isEditMode($index)"><input class="checkbox" type="checkbox" checked="{{user.enabled}}" disabled /></td>
+			<td ng-show="!isEditMode($index)"><input class="checkbox" type="checkbox" ng-model="user.enabled" disabled /></td>
 			<td ng-show="isEditMode($index)"><input class="form-control" type="checkbox" ng-model="user.enabled"></td>
 
 			<td ng-show="!isEditMode($index)">{{user.username}}</td>
@@ -56,6 +57,10 @@
 			<td ng-show="!isEditMode($index)">{{user.email}}</td>
 			<td ng-show="isEditMode($index)"><input class="form-control" type="text" placeholder="E-Mail"
 				ng-model="user.email"></td>
+
+			<td ng-show="!isEditMode($index)"><input class="checkbox" type="checkbox" ng-model="user.isadmin" disabled /></td>
+			<td ng-show="isEditMode($index)"><input class="form-control" type="checkbox" ng-model="user.isadmin"></td>
+
 			<td>
 				<button class="btn" ng-click="deleteUser($index)">
 					<i class="icon-trash"></i>
