@@ -90,7 +90,7 @@ angular.module('mytodoApp')
             return $http.delete(urlBase + '/user/delete/' + id);
         };
         
-        dataFactory.checkSession = function (id) {
+        dataFactory.checkSession = function () {
             return $http.get(urlBase + '/info/checksession');
         }
         
