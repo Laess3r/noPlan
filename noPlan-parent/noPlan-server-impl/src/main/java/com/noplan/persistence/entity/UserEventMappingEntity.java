@@ -34,6 +34,9 @@ public class UserEventMappingEntity extends AbstractEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private EventEntity event;
 
+	public UserEventMappingEntity() {
+	}
+
 	public UserEventMappingEntity(UserEntity user, EventEntity event) {
 		this.user = user;
 		this.event = event;
@@ -53,6 +56,14 @@ public class UserEventMappingEntity extends AbstractEntity {
 
 	public void setEvent(EventEntity event) {
 		this.event = event;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

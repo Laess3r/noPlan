@@ -1,12 +1,17 @@
 package com.noplan.persistence.repositories;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.EventEntity;
+import com.noplan.persistence.entity.TrackEntity;
 import com.noplan.persistence.entity.UserEntity;
 import com.noplan.persistence.entity.UserEventMappingEntity;
 
@@ -23,6 +28,40 @@ public class UserEventMappingRepository extends AbstractRepository {
 		q.setParameter("user", user);
 
 		return q.list();
+	}
+
+	@Transactional(readOnly = true)
+	public Map<Long, ConferenceEntity> getConferenceEntitiesForUser(UserEntity user) {
+		Map<Long, ConferenceEntity> conferences = new HashMap<Long, ConferenceEntity>();
+		for (UserEventMappingEntity mapping : getMappingsForUser(user)) {
+			ConferenceEntity conf = mapping.getEvent().getTrack().getConference();
+
+			conferences.put(conf.getId(), conf);
+		}
+		return conferences;
+	}
+
+	@Transactional(readOnly = true)
+	public Map<Long, TrackEntity> getTrackEntitiesForUser(long conferenceId, UserEntity user) {
+		Map<Long, TrackEntity> conferences = new HashMap<Long, TrackEntity>();
+		for (UserEventMappingEntity mapping : getMappingsForUser(user)) {
+			TrackEntity track = mapping.getEvent().getTrack();
+			if (track.getConference().getId() == conferenceId) {
+				conferences.put(track.getId(), track);
+			}
+		}
+		return conferences;
+	}
+
+	@Transactional(readOnly = true)
+	public List<EventEntity> getEventEntitiesForUser(long trackId, UserEntity user) {
+		List<EventEntity> events = new ArrayList<EventEntity>();
+		for (UserEventMappingEntity mapping : getMappingsForUser(user)) {
+			if (mapping.getEvent().getTrack().getId() == trackId) {
+				events.add(mapping.getEvent());
+			}
+		}
+		return events;
 	}
 
 	@SuppressWarnings("unchecked")

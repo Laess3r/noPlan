@@ -2,8 +2,8 @@
 angular.module('mytodoApp')
     .factory('dataFactory', ['$http', function($http) {
         console.log("init dataFactory");
-//        var urlBase = '/rest';
-        var urlBase = '/noPlan-webapp/rest';
+        var urlBase = '/rest';
+//        var urlBase = '/noPlan-webapp/rest';
         var dataFactory = {};
 
         dataFactory.getConferences = function () {
@@ -96,6 +96,10 @@ angular.module('mytodoApp')
         
         dataFactory.addUserEvents = function (ids) {
             return $http.post(urlBase + '/userevents/addevents', ids);
+        };
+        
+        dataFactory.getUserConferences = function () {
+            return $http.get(urlBase + '/userevents/getconferences');
         };
         
         return dataFactory;

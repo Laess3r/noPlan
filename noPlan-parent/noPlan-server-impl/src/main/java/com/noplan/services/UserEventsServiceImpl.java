@@ -1,7 +1,6 @@
 package com.noplan.services;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +12,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 
 import com.noplan.data.ConferenceDTO;
@@ -54,6 +54,7 @@ public class UserEventsServiceImpl implements UserEventsService {
 		return result;
 	}
 
+	@Transactional(readOnly = true)
 	public List<ConferenceEntity> getConferencesEntitiesForUser() {
 
 		UserEntity user = getLoggedInUser();
@@ -61,12 +62,7 @@ public class UserEventsServiceImpl implements UserEventsService {
 			throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "No user is logged in!");
 		}
 
-		Map<Long, ConferenceEntity> conferences = new HashMap<Long, ConferenceEntity>();
-		for (UserEventMappingEntity mapping : mappingRepository.getMappingsForUser(user)) {
-			ConferenceEntity conf = mapping.getEvent().getTrack().getConference();
-
-			conferences.put(conf.getId(), conf);
-		}
+		Map<Long, ConferenceEntity> conferences = mappingRepository.getConferenceEntitiesForUser(user);
 
 		return new ArrayList<ConferenceEntity>(conferences.values());
 	}
@@ -87,13 +83,7 @@ public class UserEventsServiceImpl implements UserEventsService {
 			throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "No user is logged in!");
 		}
 
-		Map<Long, TrackEntity> conferences = new HashMap<Long, TrackEntity>();
-		for (UserEventMappingEntity mapping : mappingRepository.getMappingsForUser(user)) {
-			TrackEntity track = mapping.getEvent().getTrack();
-			if (track.getConference().getId() == conferenceId) {
-				conferences.put(track.getId(), track);
-			}
-		}
+		Map<Long, TrackEntity> conferences = mappingRepository.getTrackEntitiesForUser(conferenceId, user);
 
 		return new ArrayList<TrackEntity>(conferences.values());
 	}
@@ -114,14 +104,7 @@ public class UserEventsServiceImpl implements UserEventsService {
 			throw new HttpClientErrorException(HttpStatus.FORBIDDEN, "No user is logged in!");
 		}
 
-		List<EventEntity> events = new ArrayList<EventEntity>();
-		for (UserEventMappingEntity mapping : mappingRepository.getMappingsForUser(user)) {
-			if (mapping.getEvent().getTrack().getId() == trackId) {
-				events.add(mapping.getEvent());
-			}
-		}
-
-		return events;
+		return mappingRepository.getEventEntitiesForUser(trackId, user);
 	}
 
 	@Override
