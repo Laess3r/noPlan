@@ -155,8 +155,13 @@ angular.module('mytodoApp')
         	evdata.color = "#33CC66";
         	gdata.tasks.push(evdata);
         	console.log(gdata);
-        	
-//        	$scope.loadData([gdata]); // FIXME @Martin: da fliegt ein Fehler: "TypeError: Cannot read property 'date' of null"
+
+        	try{
+        		$scope.loadData([gdata]); // FIXME @Martin: da fliegt ein Fehler: "TypeError: Cannot read property 'date' of null"
+        	}
+        	catch(e){
+        		console.log("!!! ERROR WHILE LOADING DATA INTO GANTT CHART: \n", e.stack);
+        	}
         	
         };
         
