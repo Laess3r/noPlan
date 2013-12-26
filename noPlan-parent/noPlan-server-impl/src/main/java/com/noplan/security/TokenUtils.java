@@ -8,12 +8,12 @@ import org.springframework.security.crypto.codec.Hex;
 
 public class TokenUtils {
 
+	private static final int EXPIRE_HOURS = 12;
 	private static final String TOKEN_SALT = "HeHaveNoPlan";
 
 	public static String createToken(UserDetails userDetails) {
 
-		/* 24 Hours */
-		long expires = System.currentTimeMillis() + 1000L * 60 * 60 * 24;
+		long expires = System.currentTimeMillis() + 1000L * 60 * 60 * EXPIRE_HOURS;
 
 		StringBuilder tokenBuilder = new StringBuilder();
 		tokenBuilder.append(userDetails.getUsername());

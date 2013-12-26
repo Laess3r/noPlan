@@ -18,12 +18,12 @@ angular.module('mytodoApp')
 
         $scope.events = [];
 
-        var setTimes = function(data,index){
-            var date = new Date(data.startdate)
+        var setTimes = function(data){
+            var date = new Date(data.startdate);
             var obj = {};
-            obj.start = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
+            obj.start = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes();
             date = new Date(data.enddate)
-            obj.end = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes()
+            obj.end = (date.getHours() < 10 ? "0" : "" ) + date.getHours() +":"+ (date.getMinutes() < 10 ? "0" : "" ) + date.getMinutes();
             //data.sched=obj;
             $scope.sched[data.id]=obj;
         }
@@ -64,11 +64,8 @@ angular.module('mytodoApp')
                 .success(function (data) {
                 	for(var item=0;item<data.length;item++){
                 		$scope.addEventToCal(data[item]);
-                		
-                						
                 		$scope.insertGanttEvent($scope.trackId, data[item]);
                 		setTimes(data[item]);
-                		
                 	}
                     $scope.events = data;
                     
@@ -159,14 +156,11 @@ angular.module('mytodoApp')
         	gdata.tasks.push(evdata);
         	console.log(gdata);
         	
-        	$scope.loadData([gdata]);
+//        	$scope.loadData([gdata]); // FIXME @Martin: da fliegt ein Fehler: "TypeError: Cannot read property 'date' of null"
         	
         };
         
         $scope.getEvents();
-
-
-        
 
     })
     ;
