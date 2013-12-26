@@ -122,6 +122,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	private void correctAdminRoles(UserDTO user, UserEntity userEntity) {
+		
+		if(user.getIsadmin() == null){
+			return;
+		}
+		
 		boolean hasAdminRole = userRepository.hasRole(userEntity.getId(), UserRoles.ADMIN_ROLE);
 
 		if (hasAdminRole && !user.getIsadmin()) {
