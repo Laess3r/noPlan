@@ -21,6 +21,12 @@ import com.noplan.persistence.entity.UserEventMappingEntity;
 @Service
 public class UserEventMappingRepository extends AbstractRepository {
 
+	@Transactional(readOnly = false)
+	public void deleteAllMappingsForUser(UserEntity user) {
+		List<UserEventMappingEntity> allMappingsForUser = getMappingsForUser(user);
+		removeMappings(allMappingsForUser);
+	}
+
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public List<UserEventMappingEntity> getMappingsForUser(UserEntity user) {

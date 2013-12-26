@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 import com.noplan.UserRoles;
 import com.noplan.data.UserDTO;
 import com.noplan.persistence.entity.UserEntity;
-import com.noplan.persistence.entity.UserRoleEntity;
+import com.noplan.persistence.repositories.UserEventMappingRepository;
 import com.noplan.persistence.repositories.UserRepository;
 import com.noplan.security.TokenUtils;
 
@@ -39,6 +39,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDetailsService userService;
+
+	@Autowired
+	private UserEventMappingRepository userEventMappingRepository;
 
 	@Autowired
 	@Qualifier("authenticationManager")
@@ -158,12 +161,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUserById(Long userId) {
 
-		List<UserRoleEntity> roles = userRepository.getRolesForUser(userId);
-		for (UserRoleEntity userRoleEntity : roles) {
-			userRepository.removeRoleFromUser(userId, userRoleEntity.getAuthority());
-		}
+		UserEntity userEntity = userRepository.getUserById(userId);
 
-		userRepository.deleteUser(userId);
+		userRepository.deleteAllRolesForUser(userId);
+
+		userEventMappingRepository.deleteAllMappingsForUser(userEntity);
+
+		userRepository.deleteUser(userEntity);
 
 	}
 

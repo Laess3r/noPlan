@@ -92,8 +92,8 @@ angular
 							return;
 						}
 
-						var answer = confirm("Do you really want to delete user \""
-								+ $scope.users[$index].username + "\"?");
+						var answer = confirm("Do you really want to delete \""
+								+ $scope.users[$index].username + "\" and ALL data related to this user?");
 						if (answer) {
 							dataFactory
 									.deleteUser($scope.users[$index].id)

@@ -8,8 +8,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.noplan.UserRoles;
-import com.noplan.persistence.entity.ConferenceEntity;
 import com.noplan.persistence.entity.UserEntity;
 import com.noplan.persistence.entity.UserRoleEntity;
 
@@ -51,11 +49,6 @@ public class UserRepository extends AbstractRepository {
 	@Transactional(readOnly = false)
 	public void updateUser(UserEntity user) {
 		update(user);
-	}
-
-	@Transactional(readOnly = false)
-	public void deleteUser(UserEntity user) {
-		delete(user);
 	}
 
 	@Transactional(readOnly = false)
@@ -127,11 +120,16 @@ public class UserRepository extends AbstractRepository {
 	}
 
 	@Transactional(readOnly = false)
-	public void deleteUser(Long id) {
-		UserEntity entity = getUserById(id);
-
-		// TODO check if user events exist!
-
-		delete(entity);
+	public void deleteUser(UserEntity user) {
+		delete(user);
 	}
+
+	@Transactional(readOnly = false)
+	public void deleteAllRolesForUser(Long userId) {
+		List<UserRoleEntity> roles = getRolesForUser(userId);
+		for (UserRoleEntity userRoleEntity : roles) {
+			removeRoleFromUser(userId, userRoleEntity.getAuthority());
+		}
+	}
+
 }
