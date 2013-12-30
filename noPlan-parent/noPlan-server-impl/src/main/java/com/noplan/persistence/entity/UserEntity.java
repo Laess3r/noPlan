@@ -29,7 +29,6 @@ public class UserEntity extends AbstractEntity {
 	@Column(name = "USERNAME", nullable = false, length = 40)
 	private String username;
 
-	// TODO encrypt password
 	@Column(name = "PASSWORD", nullable = false)
 	private String password;
 

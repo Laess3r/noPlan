@@ -45,7 +45,7 @@ public class AuthenticationTokenProcessingFilter extends GenericFilterBean {
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails.getUsername(),
 						userDetails.getPassword());
 				authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails((HttpServletRequest) request));
-				SecurityContextHolder.getContext().setAuthentication(this.authManager.authenticate(authentication));
+				SecurityContextHolder.getContext().setAuthentication(authManager.authenticate(authentication));
 			}
 		}
 

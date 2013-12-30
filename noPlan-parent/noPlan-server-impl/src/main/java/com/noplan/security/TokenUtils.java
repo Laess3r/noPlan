@@ -9,7 +9,6 @@ import org.springframework.security.crypto.codec.Hex;
 public class TokenUtils {
 
 	private static final int EXPIRE_HOURS = 12;
-	private static final String TOKEN_SALT = "HeHaveNoPlan";
 
 	public static String createToken(UserDetails userDetails) {
 
@@ -34,7 +33,7 @@ public class TokenUtils {
 		signatureBuilder.append(":");
 		signatureBuilder.append(userDetails.getPassword());
 		signatureBuilder.append(":");
-		signatureBuilder.append(TOKEN_SALT);
+		signatureBuilder.append(SaltUtils.TOKEN_SALT);
 
 		MessageDigest digest;
 		try {

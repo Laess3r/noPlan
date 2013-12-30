@@ -32,7 +32,7 @@ angular.module('mytodoApp')
                 	console.log(data)
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to load customer data: ' + error.message;
+                    $scope.status = 'Unable to load conference data: ' + error.message;
                 });
         }
 
@@ -48,7 +48,7 @@ angular.module('mytodoApp')
                     }
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to create customer data: ' + error.message;
+                    $scope.status = 'Unable to create conference data: ' + error.message;
                 });
         }
 
@@ -65,7 +65,7 @@ angular.module('mytodoApp')
 
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to update customer data: ' + error.message;
+                    $scope.status = 'Unable to update conference data: ' + error.message;
                 });
         }
 
@@ -80,7 +80,7 @@ angular.module('mytodoApp')
                     console.log("Delete",data,'@',index);
                 })
                 .error(function (error) {
-                    $scope.status = 'Unable to delete customer data: ' + error.message;
+                    $scope.status = 'Unable to delete conference data: ' + error.message;
                 });
         }
         $scope.getConferences();

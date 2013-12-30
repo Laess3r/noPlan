@@ -6,6 +6,10 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+
 	<security:authentication-manager id="authenticationManager">
 		<security:authentication-provider>
 
@@ -18,12 +22,6 @@
 				authorities-by-username-query="
 				      select u.username, ur.authority from TBLUSER u, TBLUSERROLE ur 
 				      where u.ID = ur.FK_USER and u.username =?" />
-
-			<!-- <security:password-encoder hash="sha" /> -->
-
-
-			<!-- ShaPasswordEncoder.encodePassword(..) -->
-
 
 		</security:authentication-provider>
 	</security:authentication-manager>
@@ -44,8 +42,8 @@
 		<security:intercept-url pattern="/rest/testdata/**"
 			access="permitAll" />
 
-		<!-- Admin mode -->
-		<security:intercept-url method="GET" pattern="/rest/**"
+		<!-- Admin maintenances -->
+		<security:intercept-url method="GET" pattern="/rest/user/**"
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url method="PUT" pattern="/rest/**"
 			access="hasRole('ROLE_ADMIN')" />
@@ -54,17 +52,22 @@
 		<security:intercept-url method="DELETE"
 			pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
 
+		<!-- Loading of conferences and related data -->
+		<security:intercept-url method="GET" pattern="/rest/**"
+			access="hasRole('ROLE_USER')" />
+
 		<!-- User events -->
 		<security:intercept-url method="GET"
 			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
-		<security:intercept-url method="PUT"
-			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
 		<security:intercept-url method="POST"
-			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
-		<security:intercept-url method="DELETE"
-			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+			pattern="/rest/userevents/addevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="POST"
+			pattern="/rest/userevents/removeevents/**" access="hasRole('ROLE_USER')" />
+
+		<!-- Session handling -->
 		<security:intercept-url method="GET"
 			pattern="/rest/info/checksession/**" access="hasRole('ROLE_USER')" />
+
 	</security:http>
 
 	<bean id="unauthorizedEntryPoint" class="com.noplan.security.UnauthorizedEntryPoint" />

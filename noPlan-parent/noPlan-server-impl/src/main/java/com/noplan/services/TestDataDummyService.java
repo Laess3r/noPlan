@@ -37,34 +37,35 @@ public class TestDataDummyService extends AbstractRepository {
 
 	@Autowired
 	private EventService eventService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@GET
 	@Path("/createadmin")
 	@Produces(MediaType.TEXT_HTML)
 	public String createAdminUser() {
-		
-		if(userService.getUserByUsername("admin") != null){
+
+		if (userService.getUserByUsername("admin") != null) {
 			return "admin already exists";
 		}
-		
+
 		UserDTO admin = new UserDTO();
-		admin.setFirstname("Administrator");
+		admin.setFirstname("Master");
 		admin.setLastname("Chief");
 		admin.setUsername("admin");
 		admin.setPassword("admin");
 		admin.setEnabled(true);
 		admin.setEmail("admin@admin.com");
-		
+
 		admin = userService.createUser(admin);
-		
+
 		userRepository.addRoleToUser(admin.getId(), UserRoles.ADMIN_ROLE);
-		
+		userRepository.addRoleToUser(admin.getId(), UserRoles.USER_ROLE);
+
 		return "admin created";
 	}
 

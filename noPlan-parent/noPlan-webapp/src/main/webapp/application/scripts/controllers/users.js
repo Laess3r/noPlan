@@ -115,8 +115,8 @@ angular
 							$scope.users = data;
 						}).error(
 								function(error) {
-									alert('Unable to load customer data: '
-											+ error.message);
+//									alert('Unable to load user data: '
+//											+ error.message);
 								});
 					};
 

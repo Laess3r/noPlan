@@ -6,7 +6,6 @@ angular
 				'LoginCtrl',
 				function($scope, $log, $http, $rootScope, $cookies, $location,
 						dataFactory) {
-					console.log("login Controller");
 					$rootScope.loggedIn = false;
 					$scope.remember = true;
 					$scope.error = false;

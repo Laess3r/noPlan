@@ -62,7 +62,11 @@ angular.module('mytodoApp', ['ngRoute','ngSanitize','ui.calendar','gantt','Local
                                     $location.path( "/login" );
                                     console.log('redirecting to login');   
                                  
-                            } else {
+                            } 
+                            else if (status === 403) {
+                                alert("Insufficient permissions for executing this action!");   
+                            }
+                            else {
                                     $rootScope.error = method + " on " + url + " failed with status " + status;
                             }
                             
@@ -97,6 +101,7 @@ angular.module('mytodoApp', ['ngRoute','ngSanitize','ui.calendar','gantt','Local
                 .error(function (error) {
                     console.log('Login failed:' + error.message);
                     $rootScope.loggedIn = false;
+                    $cookies.token = undefined;
                     $location.path("/login");
                 });
         }
