@@ -64,7 +64,6 @@ public class TestDataDummyService extends AbstractRepository {
 		admin = userService.createUser(admin);
 
 		userRepository.addRoleToUser(admin.getId(), UserRoles.ADMIN_ROLE);
-		userRepository.addRoleToUser(admin.getId(), UserRoles.USER_ROLE);
 
 		return "admin created";
 	}
