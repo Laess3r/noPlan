@@ -73,3 +73,32 @@ Max width before this PARTICULAR table gets nasty
 This query will take effect for any screen smaller than 760px
 and also iPads specifically.
 */
+
+
+/*grey background on panels footer*/
+#greyBackground {
+background-color: #b2b2b2
+}
+
+/*defined font */
+.aCoolFont{
+    font-size: 28px;
+    font-weight:bold;
+    text-align:center;   
+    color: #428bca;
+    background: white;   
+    margin: 10px auto 10px auto;
+    border-radius: 3px;
+    padding:5px;
+}
+
+/*centered text*/
+.centeredBlock {
+    margin: 50px auto 50px auto;
+    text-align:center;
+} 
+
+/*defined fontsize */
+.eventText {
+    font-size: 18px;
+} 

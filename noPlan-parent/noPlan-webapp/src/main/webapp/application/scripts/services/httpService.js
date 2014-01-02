@@ -92,14 +92,32 @@ angular.module('mytodoApp')
         
         dataFactory.checkSession = function () {
             return $http.get(urlBase + '/info/checksession');
-        }
-        
+        };
+
+        //by user ID(Token)
+        dataFactory.getMyConference= function () {
+            return $http.get(urlBase + '/userevents/getconferences');
+        };
+
+        //get tracks by conference id
+        dataFactory.getMyConferenceTrack= function (id) {
+            return $http.get(urlBase + '/userevents/gettracks/'+ id);
+        };
+
+        //get events by track id
+        dataFactory.getMyConferenceEvent= function (id) {
+            return $http.get(urlBase + '/userevents/getevents/'+ id);
+        };
+
+
+        //add or update list events at myPlan
         dataFactory.addUserEvents = function (ids) {
             return $http.post(urlBase + '/userevents/addevents', ids);
         };
-        
-        dataFactory.getUserConferences = function () {
-            return $http.get(urlBase + '/userevents/getconferences');
+
+        //remove list of events at myPlan
+        dataFactory.deleteUserEvents = function (ids) {
+            return $http.post(urlBase + '/userevents/removeevents', ids);
         };
         
         return dataFactory;

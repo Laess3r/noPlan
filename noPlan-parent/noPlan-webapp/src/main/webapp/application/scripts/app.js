@@ -40,6 +40,24 @@ angular.module('mytodoApp', ['ngRoute','ngSanitize','ui.calendar','gantt','Local
             controller: 'RegisterCtrl'
         })
 
+    //@chris
+    .when('/conferenceUserView', {
+            templateUrl: 'views/conferenceUserView.html',
+            controller: 'ConferenceUserViewCtrl'
+    })
+
+    //@chris
+    .when('/conferenceUserViewEdit', {
+            templateUrl: 'views/conferenceUserViewEdit.html',
+            controller: 'ConferenceUserViewEditCtrl'
+    })
+
+    //@chris
+    .when('/tracksUserView/:id', {
+            templateUrl: 'views/tracksUserView.html',
+            controller: 'TracksUserViewCtrl'
+    })
+
     .otherwise({
         redirectTo: 'views/main.html',
         controller: 'MainCtrl'
