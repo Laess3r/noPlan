@@ -1,0 +1,13 @@
+{
+    "myConferencesDB": [{
+        "description": "The best conference ever! You should visit it!See you there!",
+		"endDate": "1388016000000",
+		"id": "5",
+		"infolink": "http://www.linkToNothing.at",
+		"location": "Salzburg, Austria",
+		"name": "ChrisConference",
+		"startDate": "1387843200000"          
+    }]
+}
+
+

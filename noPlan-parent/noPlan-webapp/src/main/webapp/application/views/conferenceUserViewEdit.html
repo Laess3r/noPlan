@@ -1,0 +1,51 @@
+<div class="container">
+
+    <h2><i class="icon-calendar"></i> Conferences</h2>
+    
+    <!--search for a conference-->          
+    <div class="row search eventText">
+        <strong>Search:</strong> <input ng-model="searchConference" type="text" placeholder=" Conference Name">
+    </div>
+
+    <!--preview of tagged conference name or button to create a new plan--> 
+    <div class="row panel" style="border:2px; border-style:solid; border-color:#b2b2b2;border-radius: 4px" ng-mouseenter="showConfName='Choose a Conference'">
+        <div class="panel-heading" id="greyBackground"></div>
+         <div class="panel-body">
+            <p class="aCoolFont" >{{showConfName}}</p>
+            <span><a href="#/conferenceUserView" style="margin:10px" class="btn btn-primary btn-lg"><i class="icon-pencil"></i><strong> Create Plan</strong></a>
+        </div>      
+    </div>
+
+
+
+    <!--row element preview of conferences--> 
+    <div class="row">
+        <!--conference panels-->
+        <div class="thumbnails">       
+            <div ng-repeat="conference in myConferences | filter:searchConference" ng-mouseenter="setConfTitleToPreview(conference)" class="panel panel-primary">
+
+                <!--the conference panel head--> 
+                <div class="panel-heading" id="greyBackground">
+                    <h4><i class="icon-calendar"></i> {{conference.name}}</h4>
+                </div>
+
+                <!--the conference panel body--> 
+                <div class="panel-body eventText" >                            
+                    <!--<p><strong>ID:</strong>{{ conference.id }}</p>-->               
+                    <p><strong>Location:</strong> {{conference.location}}</p>
+                    <p><strong>From:</strong> {{ conference.startDate  | date:'yyyy-MM-dd' }} <strong>to</strong> {{ conference.endDate | date:'yyyy-MM-dd' }}</p>
+                    <p><strong>Description:</strong> {{ conference.description }}</p>
+                    <p ng-show=conference.infolink><strong>Infolink:</strong> <a href={{conference.infolink}} >{{conference.infolink}}</a> </p>
+                    <p><a href="#/tracksUserView/{{conference.id}}" class="btn btn-lg btn-warning "><i class="icon-file"></i> <strong>Load</strong></a></p>     
+                </div>
+                    
+                <!--the conference panel footer--> 
+                <div class="panel-footer"></div>
+            </div>
+        </div>
+    </div>    
+               
+    <!--service info state--> 
+    <div class="info">{{ status }}</div>        
+
+</div>

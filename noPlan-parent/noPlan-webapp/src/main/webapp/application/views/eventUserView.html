@@ -1,0 +1,30 @@
+<div ng-controller="EventsUserViewCtrl">
+
+        <h3><i class="icon-rocket"></i> <strong>Events</strong></h3>
+
+        <div class="row">
+            <!--events of track-->
+
+
+            <div ng-repeat="itemTr in trackItems" class="col-12 col-sm-12 col-lg-12" >
+                <div class="thumbnail">
+                <div class="caption ">                    
+                    <h4><strong>{{itemTr.name}}</strong></h4>         
+                    <!--<p><strong>Event ID:</strong> {{itemTr.id}}</p>-->
+                    <p class="eventText"><strong>Presenter:</strong> {{itemTr.presenter }}</p>  
+
+                    <p class="eventText"><strong>Description:</strong> {{itemTr.description }}</p>
+
+                    <p ng-show=itemTr.infolink class="eventText"><strong>Infolink:</strong> <a href={{itemTr.infolink}}>{{itemTr.infolink}}</a> </p>
+
+                    <p class="eventText"><strong>Date:</strong> {{itemTr.startdate | date:'yyyy-MM-dd'}} <strong>from</strong> {{schedEvents[itemTr.id].start}} <strong>to</strong> {{schedEvents[itemTr.id].end}}</p>
+
+
+                    <p><button class="btn btn-lg btn-primary" ng-click="addToMyPlan(itemTr)" ng-disabled="isDisabled[itemTr.id]"><i class="icon-plus"></i></button></p>
+                </div>
+                </div>
+            </div>
+
+        </div>
+ 
+</div>
