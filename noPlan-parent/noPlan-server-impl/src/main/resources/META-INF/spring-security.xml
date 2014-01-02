@@ -42,6 +42,22 @@
 		<security:intercept-url pattern="/rest/testdata/**"
 			access="permitAll" />
 
+		<!-- Loading of conferences and related data -->
+		<security:intercept-url method="GET" pattern="/rest/**"
+			access="hasRole('ROLE_USER')" />
+
+		<!-- User events -->
+		<security:intercept-url method="GET"
+			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="POST"
+			pattern="/rest/userevents/addevents" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="PUT"
+			pattern="/rest/userevents/addevents" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="POST"
+			pattern="/rest/userevents/removeevents" access="hasRole('ROLE_USER')" />
+		<security:intercept-url method="PUT"
+			pattern="/rest/userevents/removeevents" access="hasRole('ROLE_USER')" />
+
 		<!-- Admin maintenances -->
 		<security:intercept-url method="GET" pattern="/rest/user/**"
 			access="hasRole('ROLE_ADMIN')" />
@@ -52,17 +68,6 @@
 		<security:intercept-url method="DELETE"
 			pattern="/rest/**" access="hasRole('ROLE_ADMIN')" />
 
-		<!-- Loading of conferences and related data -->
-		<security:intercept-url method="GET" pattern="/rest/**"
-			access="hasRole('ROLE_USER')" />
-
-		<!-- User events -->
-		<security:intercept-url method="GET"
-			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
-		<security:intercept-url method="POST"
-			pattern="/rest/userevents/addevents/**" access="hasRole('ROLE_USER')" />
-		<security:intercept-url method="POST"
-			pattern="/rest/userevents/removeevents/**" access="hasRole('ROLE_USER')" />
 
 		<!-- Session handling -->
 		<security:intercept-url method="GET"
