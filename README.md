@@ -1,7 +1,7 @@
 noPlan - new online (conference) Planner
 -----
 
-noPlan is a online conference planner that offers following features:
+noPlan is a online conference planner that aims to replace the 'classic' PDF document that is usually used for big conferences.
 
 ###Introduction###
 Conferences that last more than one day usually have hundreds of visitors and many different speeches. The plans for these conferences are usually provided as a classic PDF file showing all presentations on one big page. It is difficult for users to choose what they really want to see and it’s also hard for the hosts to keep those plans up to date.
