@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-		.module('mytodoApp')
+		.module('noPlan')
 		.controller(
 				'LoginCtrl',
 				function($scope, $log, $http, $rootScope, $cookies, $location,

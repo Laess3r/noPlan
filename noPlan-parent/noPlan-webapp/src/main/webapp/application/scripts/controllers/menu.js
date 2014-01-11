@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init menu');
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('NavbarCtrl',function ($scope, $location,$route,$rootScope,$http,$cookies,dataFactory) {
     	
         $scope.breadcrumbs = [

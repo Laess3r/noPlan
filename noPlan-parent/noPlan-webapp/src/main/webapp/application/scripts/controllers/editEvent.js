@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('editEvent',function ($scope,$log,dataFactory) {
         $scope.editState = false;
         $scope.times = {};

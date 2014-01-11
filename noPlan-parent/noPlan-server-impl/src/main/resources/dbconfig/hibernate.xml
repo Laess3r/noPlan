@@ -26,6 +26,7 @@ http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 				<value>com.noplan.persistence.entity.TrackEntity</value>
 				<value>com.noplan.persistence.entity.EventEntity</value>
 				<value>com.noplan.persistence.entity.UserEventMappingEntity</value>
+				<!-- Further entities -->
 			</list>
 		</property>
 	</bean>
@@ -36,5 +37,4 @@ http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 	</bean>
 
 	<tx:annotation-driven proxy-target-class="true" />
-
 </beans>

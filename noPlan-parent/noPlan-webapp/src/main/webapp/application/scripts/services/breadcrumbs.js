@@ -1,6 +1,6 @@
 
 console.log("Init BreadCrumbs")
-angular.module('mytodoApp')
+angular.module('noPlan')
     .factory('BreadCrumbsService',[ '$rootScope', '$location' ,function($rootScope, $location) {
         console.log("Init BreadCrumbservice");
         var breadcrumbsService = {};

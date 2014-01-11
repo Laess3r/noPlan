@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('EventsUserViewCtrl',function ($routeParams,$scope,dataFactory) {
 
         //get current track id

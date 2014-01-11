@@ -70,11 +70,17 @@ public class UserServiceImpl implements UserService {
 
 		Map<String, Boolean> roles = new HashMap<String, Boolean>();
 
+		boolean isAdmin = false;
 		for (GrantedAuthority authority : userDetails.getAuthorities()) {
 			roles.put(authority.toString(), Boolean.TRUE);
+			if (UserRoles.ADMIN_ROLE.equals(authority.toString())) {
+				isAdmin = true;
+			}
 		}
 
-		return new UserDTO(userDetails.getUsername(), roles, TokenUtils.createToken(userDetails));
+		UserDTO loggedInUser = new UserDTO(userDetails.getUsername(), roles, TokenUtils.createToken(userDetails));
+		loggedInUser.setIsadmin(isAdmin);
+		return loggedInUser;
 	}
 
 	@Override

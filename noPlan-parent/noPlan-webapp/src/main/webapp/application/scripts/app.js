@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init app');
-angular.module('mytodoApp', ['ngRoute','ngSanitize','ui.calendar','gantt','LocalStorageModule','ngCookies','textAngular'])
+angular.module('noPlan', ['ngRoute','ngSanitize','ui.calendar','gantt','LocalStorageModule','ngCookies','textAngular'])
   .config([ '$routeProvider', '$locationProvider', '$httpProvider', function($routeProvider, $locationProvider, $httpProvider) {
     console.log('routeProvider');
 //    var baseUrl="/noPlan-webapp/application/";
@@ -27,10 +27,6 @@ angular.module('mytodoApp', ['ngRoute','ngSanitize','ui.calendar','gantt','Local
             templateUrl: 'views/events.html',
             controller: 'EventsCtrl'
         })
-    .when('/todo', {
-        templateUrl: 'views/todo.html',
-        controller: 'TodoCtrl'
-    })
     .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginCtrl'

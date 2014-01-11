@@ -2,7 +2,7 @@
 
 console.log("init conferenceUserView");
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('ConferenceUserViewCtrl',function ($routeParams,$scope,dataFactory){
         console.log('init ConferenceUserViewCtrl')
 

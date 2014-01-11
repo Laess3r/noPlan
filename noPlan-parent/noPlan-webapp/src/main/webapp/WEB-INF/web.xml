@@ -2,22 +2,26 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>noPlan</display-name>
      
+  	<!-- Spring Configurations -->
+  
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/spring-services.xml</param-value>
     </context-param>
     
-    <listener>
-    	<listener-class>org.h2.server.web.DbStarter</listener-class>
-	</listener>
-    
 	<listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener> 
     
+	<!-- Embedded H2 Definition -->
+	
+    <listener>
+    	<listener-class>org.h2.server.web.DbStarter</listener-class>
+	</listener>
+
     <context-param>
     	<param-name>db.url</param-name>
-    	<param-value>jdbc:h2:~/test;AUTO_SERVER=TRUE</param-value>
+    	<param-value>jdbc:h2:~/noPlan;AUTO_SERVER=TRUE</param-value>
 	</context-param>
 	<context-param>
 	    <param-name>db.user</param-name>
@@ -31,9 +35,12 @@
     	<param-name>db.tcpServer</param-name>
     	<param-value>-tcpAllowOthers</param-value>
 	</context-param>
+	
   
+	<!-- Jersey API Servlet -->
+	
 	<servlet>
-	    <servlet-name>jersey-serlvet</servlet-name>
+	    <servlet-name>jersey</servlet-name>
 	
 	    <servlet-class>
 	        com.sun.jersey.spi.spring.container.servlet.SpringServlet
@@ -43,19 +50,23 @@
 	        <param-name>com.sun.jersey.config.property.packages</param-name>
 	        <param-value>com.noplan.services</param-value>
 	    </init-param>
-	
-	    <init-param>
+	    
+	     <init-param>
 	        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
 	        <param-value>true</param-value>
 	    </init-param>
 	
 	    <load-on-startup>1</load-on-startup>
+	    
 	</servlet>
 
 	<servlet-mapping>
-	    <servlet-name>jersey-serlvet</servlet-name>
+	    <servlet-name>jersey</servlet-name>
 	    <url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
+	
+	
+	<!-- Spring Security Filter -->
 
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
@@ -63,28 +74,7 @@
     </filter>
     <filter-mapping>
         <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </filter-mapping>
-
-<!-- <security-constraint> -->
-<!--     <web-resource-collection> -->
-<!--         <web-resource-name>Basic Authentication</web-resource-name> -->
-<!--         <url-pattern>/*</url-pattern> -->
-<!--         <http-method>GET</http-method> -->
-<!--         <http-method>POST</http-method> -->
-<!--     </web-resource-collection> -->
-<!--     <auth-constraint> -->
-<!--         <role-name>login</role-name> -->
-<!--     </auth-constraint> -->
-<!-- </security-constraint> -->
-
-<!-- <login-config> -->
-<!--     <auth-method>BASIC</auth-method> -->
-<!-- </login-config> -->
-
-<!-- <security-role> -->
-<!--     <description>Login role</description> -->
-<!--     <role-name>login</role-name> -->
-<!-- </security-role> -->
 
 </web-app>

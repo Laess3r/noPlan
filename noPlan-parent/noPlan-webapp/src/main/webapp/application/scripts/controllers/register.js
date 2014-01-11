@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp').controller('RegisterCtrl',
+angular.module('noPlan').controller('RegisterCtrl',
 		function($scope, $rootScope, $location, dataFactory) {
 
 			$scope.clicked = false;

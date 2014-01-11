@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-		.module('mytodoApp')
+		.module('noPlan')
 		.controller(
 				'UserCtrl',
 				function($scope, $location, dataFactory) {
@@ -115,8 +115,8 @@ angular
 							$scope.users = data;
 						}).error(
 								function(error) {
-//									alert('Unable to load user data: '
-//											+ error.message);
+									alert('Unable to load user data: '
+											+ error.message);
 								});
 					};
 

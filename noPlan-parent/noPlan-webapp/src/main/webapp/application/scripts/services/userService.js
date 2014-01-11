@@ -1,5 +1,5 @@
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .factory('UserService', [ "$q","$timeout",function($q,$timeout) {
         console.log("init userService");
 

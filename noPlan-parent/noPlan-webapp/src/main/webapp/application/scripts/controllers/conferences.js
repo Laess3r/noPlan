@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init conference');
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('ConferencesCtrl',function ($scope,$log,dataFactory) {
         console.log('init ConferenceCtrl');
 

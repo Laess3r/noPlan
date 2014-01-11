@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init track');
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('TracksCtrl',function ($routeParams,$scope,$log,dataFactory) {
         var date = new Date();
 		var d = date.getDate();

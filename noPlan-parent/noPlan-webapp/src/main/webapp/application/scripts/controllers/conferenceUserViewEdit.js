@@ -1,7 +1,7 @@
 'use strict';
 console.log("init conferenceUserViewEdit");
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('ConferenceUserViewEditCtrl',function ($routeParams,$scope,dataFactory){
         console.log('init ConferenceUserViewEditCtrl')
 

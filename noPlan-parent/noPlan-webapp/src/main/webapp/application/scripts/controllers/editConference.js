@@ -1,7 +1,7 @@
 'use strict';
 
 console.log('init edit');
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('editConference',function ($scope,$log,dataFactory) {
         console.log('init EditCtrl',$scope.conference.id);
         $scope.editState = false;

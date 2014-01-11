@@ -14,13 +14,14 @@
 		<property name="cache.use_minimal_puts">false</property>
 		<property name="max_fetch_depth">3</property>
 
-		<!-- Turn this on to enable hibernate Logging -->
-		<property name="show_sql">true</property>
-		<property name="format_sql">true</property>
-<!-- 		<property name="show_sql">false</property> -->
-<!-- 		<property name="format_sql">false</property> -->
-
 		<property name="hbm2ddl.auto">update</property>
+
+<!-- Turn this on to enable hibernate Logging WARNING: This will slow down the application! -->
+<!-- 		<property name="show_sql">true</property> -->
+<!-- 		<property name="format_sql">true</property> -->
+
+		<property name="show_sql">false</property>
+		<property name="format_sql">false</property>
 
 	</session-factory>
 

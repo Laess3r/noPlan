@@ -6,17 +6,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.noplan.persistence.entity.AbstractEntity;
 
 /**
- * Abstract repo is used to always have at least a readonly transaction in the
- * reposities
- * 
  * @author DaHu4wA (Stefan Huber)
  */
-//@Transactional(readOnly = true)
 @Repository
 public abstract class AbstractRepository {
 
@@ -37,5 +32,6 @@ public abstract class AbstractRepository {
 
 	public void delete(AbstractEntity entity) {
 		getSession().delete(entity);
+		// Gener
 	}
 }

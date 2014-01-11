@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('TracksUserViewCtrl',function ($routeParams,$scope,dataFactory,$timeout) {
 
         $scope.saveEvents = false;

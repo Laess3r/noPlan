@@ -1,5 +1,5 @@
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .factory('dataFactory', ['$http', function($http) {
         console.log("init dataFactory");
         var urlBase = '/rest';

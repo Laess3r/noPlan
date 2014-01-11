@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mytodoApp')
+angular.module('noPlan')
     .controller('EventsCtrl',function ($routeParams,$scope,$log,dataFactory) {
         $scope.trackId=$scope.track.id;
         $scope.trackName = $scope.track.name;

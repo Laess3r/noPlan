@@ -42,10 +42,6 @@
 		<security:intercept-url pattern="/rest/testdata/**"
 			access="permitAll" />
 
-		<!-- Loading of conferences and related data -->
-		<security:intercept-url method="GET" pattern="/rest/**"
-			access="hasRole('ROLE_USER')" />
-
 		<!-- User events -->
 		<security:intercept-url method="GET"
 			pattern="/rest/userevents/**" access="hasRole('ROLE_USER')" />
@@ -72,6 +68,10 @@
 		<!-- Session handling -->
 		<security:intercept-url method="GET"
 			pattern="/rest/info/checksession/**" access="hasRole('ROLE_USER')" />
+		
+		<!-- Loading of conferences and related data -->
+		<security:intercept-url method="GET" pattern="/rest/**"
+			access="hasRole('ROLE_USER')" />
 
 	</security:http>
 
