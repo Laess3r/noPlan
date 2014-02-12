@@ -42,7 +42,7 @@
                             <label class="control-label">Infolink</label>
                             <input class="form-control" type="text" placeholder="Infolink" ng-model="event.infolink">
                         </div>
-                        <div class="btn-group">
+                        <div ng-show="user.isadmin" class="btn-group">
                             <button class="btn" ng-click="edit($index)" ng-disabled="form.$invalid" ><i class="icon-save"></i></button>
                             <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>
                         </div>
@@ -59,7 +59,7 @@
 					<p ng-show=event.infolink><strong>Infolink:</strong> <a href={{event.infolink}}>{{event.infolink}}</a> </p>
 				
 					
-                    <div class="btn-group">
+                    <div ng-show="user.isadmin" class="btn-group">
                         <button class="btn" ng-click="edit($index)"><i class="icon-pencil"></i></button>
                         <button class="btn btn-danger" ng-click="deleteEvent(event.id,$index)"><i class="icon-trash"></i></button>
                     </div>
@@ -68,5 +68,5 @@
         </div>
     </div>
 </div>
-<button class="btn" ng-click="addEvent()"><i class="icon-plus"></i> Create</button>
+<button ng-show="user.isadmin" class="btn" ng-click="addEvent()"><i class="icon-plus"></i> Create</button>
 </div>

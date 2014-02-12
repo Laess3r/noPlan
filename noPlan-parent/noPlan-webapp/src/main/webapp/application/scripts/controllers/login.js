@@ -26,10 +26,12 @@ angular
 											console.log("token", user.token);
 											if ($scope.remember) {
 												$cookies.token = user.token;
+												$cookies.admin = user.isadmin.toString();
 											}
 
 											else {
 												$cookies.token = undefined;
+												$cookies.admin = undefined;
 												console.log('Saving no token!');
 											}
 											$rootScope.loggedIn = true;

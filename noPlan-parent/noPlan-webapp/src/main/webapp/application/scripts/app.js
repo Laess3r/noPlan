@@ -110,12 +110,20 @@ angular.module('noPlan', ['ngRoute','ngSanitize','ui.calendar','gantt','LocalSto
                     console.log('Success! '+user.username+' is now logged in! (Token: "'+user.token+ '" )');
 
                     $rootScope.loggedIn = true;
+                    if($rootScope.user === undefined){
+                    	$rootScope.user = {};
+                    }
+                    if($cookies.admin === "true"){
+                    	$rootScope.user.isadmin = $cookies.admin;
+                    }
+                    
                     console.log("logged in");
                 })
                 .error(function (error) {
                     console.log('Login failed:' + error.message);
                     $rootScope.loggedIn = false;
                     $cookies.token = undefined;
+                    $cookies.admin = undefined;
                     $location.path("/login");
                 });
         }
